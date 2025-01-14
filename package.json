@@ -4,7 +4,7 @@
   "description": "",
   "main": "Server.mjs",
   "scripts": {
-    "start": "node Server.mjs",
+    "start": "node assest/js/Server.mjs",
     "build": "node build.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d ../../dist"
