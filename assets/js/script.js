@@ -112,7 +112,7 @@ function sendToTelegram(event) {
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
 
-  fetch('http://localhost:3005/send-to-telegram', {
+  fetch('https://my-portfolio-1-asjo.onrender.com/send-to-telegram', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
