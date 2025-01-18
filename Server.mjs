@@ -3,11 +3,24 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
+import helmet from 'helmet';
 
 dotenv.config();
 
 const app = express();
 const port = 3005;
+
+// Use helmet to set various security headers, including CSP
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "https://unpkg.com"],
+      connectSrc: ["'self'", "https://my-portfolio-1-asjo.onrender.com"],
+      // Add other directives as needed
+    },
+  },
+}));
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
