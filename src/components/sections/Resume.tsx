@@ -7,8 +7,18 @@ interface ResumeProps {
 const Resume = ({ active }: ResumeProps) => {
     return (
         <article className={`resume ${active ? 'active' : ''}`} data-page="resume">
-            <header>
+            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h2 className="h2 article-title">Resume</h2>
+                <a
+                    href="/resume.pdf"
+                    download="Bemnet_Kibret_Resume.pdf"
+                    className="form-btn"
+                    style={{ width: 'auto', padding: '10px 20px', fontSize: 'var(--fs-6)', marginTop: '-10px' }}
+                >
+                    {/* @ts-ignore */}
+                    <ion-icon name="download-outline"></ion-icon>
+                    <span>Download CV</span>
+                </a>
             </header>
 
             <section className="timeline">
