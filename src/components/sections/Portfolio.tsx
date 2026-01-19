@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 interface Project {
@@ -7,6 +8,9 @@ interface Project {
     category: string;
     image: string;
     link: string;
+    github?: string;
+    tech?: string[];
+    description?: string;
 }
 
 interface PortfolioProps {
@@ -16,7 +20,23 @@ interface PortfolioProps {
     isFilterActive: boolean;
     setIsFilterActive: (active: boolean) => void;
     filteredProjects: Project[];
+    handleProjectClick: (project: Project) => void;
 }
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1
+        }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+};
 
 const Portfolio = ({
     active,
@@ -24,7 +44,8 @@ const Portfolio = ({
     setPortfolioFilter,
     isFilterActive,
     setIsFilterActive,
-    filteredProjects
+    filteredProjects,
+    handleProjectClick
 }: PortfolioProps) => {
     return (
         <article className={`portfolio ${active ? 'active' : ''}`} data-page="portfolio">
@@ -63,23 +84,99 @@ const Portfolio = ({
                     </ul>
                 </div>
 
-                <ul className="project-list">
+                <motion.ul
+                    className="project-list"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="show"
+                    key={portfolioFilter} // Force re-animation on filter change
+                >
                     {filteredProjects.map((project, index) => (
-                        <li key={index} className="project-item active" data-filter-item data-category={project.category}>
-                            <a href={project.link} target="_blank" rel="noopener noreferrer">
-                                <figure className="project-img">
+                        <motion.li
+                            key={index}
+                            className="project-item active"
+                            data-filter-item
+                            data-category={project.category}
+                            variants={itemVariants}
+                            onClick={() => handleProjectClick(project)}
+                            style={{ cursor: 'pointer' }}
+                        >
+                            <div className="content-card" style={{ position: 'relative', padding: '0', overflow: 'hidden' }}>
+                                <figure className="project-img" style={{ margin: '0', borderRadius: '0' }}>
                                     <div className="project-item-icon-box">
                                         {/* @ts-ignore */}
                                         <ion-icon name="eye-outline"></ion-icon>
                                     </div>
-                                    <Image src={project.image} alt={project.title} width={300} height={200} />
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        width={300}
+                                        height={200}
+                                        style={{ width: '100%', height: 'auto' }}
+                                        loading={index < 3 ? 'eager' : 'lazy'}
+                                        priority={index === 0}
+                                    />
                                 </figure>
-                                <h3 className="project-title">{project.title}</h3>
-                                <p className="project-category">{project.category}</p>
-                            </a>
-                        </li>
+                                <div style={{ padding: '20px' }}>
+                                    <h3 className="project-title" style={{ fontSize: 'var(--fs-5)', marginBottom: '5px' }}>{project.title}</h3>
+                                    <p className="project-category" style={{ fontSize: 'var(--fs-7)', color: 'var(--light-gray-70)' }}>{project.category}</p>
+
+                                    {project.tech && (
+                                        <div className="tech-stack" style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '12px' }}>
+                                            {project.tech.map((t) => (
+                                                <span
+                                                    key={t}
+                                                    style={{
+                                                        fontSize: '10px',
+                                                        color: 'var(--orange-yellow-crayola)',
+                                                        background: 'rgba(255, 184, 0, 0.1)',
+                                                        padding: '2px 8px',
+                                                        borderRadius: '4px',
+                                                        border: '1px solid rgba(255, 184, 0, 0.2)',
+                                                    }}
+                                                >
+                                                    {t}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+
+                                {project.github && (
+                                    <motion.a
+                                        whileHover={{ scale: 1.1, backgroundColor: 'var(--orange-yellow-crayola)', color: 'var(--eerie-black-1)' }}
+                                        href={project.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="github-icon-link"
+                                        title="View Source Code"
+                                        onClick={(e) => e.stopPropagation()}
+                                        style={{
+                                            position: 'absolute',
+                                            top: '15px',
+                                            right: '15px',
+                                            background: 'rgba(0,0,0,0.5)',
+                                            backdropFilter: 'blur(4px)',
+                                            color: 'var(--white-2)',
+                                            width: '35px',
+                                            height: '35px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            borderRadius: '10px',
+                                            fontSize: '18px',
+                                            zIndex: 5,
+                                            border: '1px solid var(--glass-border)',
+                                        }}
+                                    >
+                                        {/* @ts-ignore */}
+                                        <ion-icon name="logo-github"></ion-icon>
+                                    </motion.a>
+                                )}
+                            </div>
+                        </motion.li>
                     ))}
-                </ul>
+                </motion.ul>
             </section>
         </article>
     );

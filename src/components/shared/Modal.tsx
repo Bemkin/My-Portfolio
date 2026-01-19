@@ -1,5 +1,7 @@
 'use client';
 
+import { motion, AnimatePresence } from 'framer-motion';
+
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -7,19 +9,35 @@ interface ModalProps {
 }
 
 const Modal = ({ isOpen, onClose, children }: ModalProps) => {
-    if (!isOpen) return null;
-
     return (
-        <div className={`modal-container ${isOpen ? 'active' : ''}`} data-modal-container>
-            <div className={`overlay ${isOpen ? 'active' : ''}`} data-overlay onClick={onClose}></div>
-            <section className="testimonials-modal">
-                <button className="modal-close-btn" data-modal-close-btn onClick={onClose}>
-                    {/* @ts-ignore */}
-                    <ion-icon name="close"></ion-icon>
-                </button>
-                {children}
-            </section>
-        </div>
+        <AnimatePresence>
+            {isOpen && (
+                <div className="modal-container active" data-modal-container>
+                    <motion.div
+                        className="overlay active"
+                        data-overlay
+                        onClick={onClose}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    ></motion.div>
+
+                    <motion.section
+                        className="testimonials-modal"
+                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.8, y: 20 }}
+                        transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 25 }}
+                    >
+                        <button className="modal-close-btn" data-modal-close-btn onClick={onClose}>
+                            {/* @ts-ignore */}
+                            <ion-icon name="close"></ion-icon>
+                        </button>
+                        {children}
+                    </motion.section>
+                </div>
+            )}
+        </AnimatePresence>
     );
 };
 

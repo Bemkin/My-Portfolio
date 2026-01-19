@@ -1,6 +1,8 @@
 'use client';
 
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { trackExternalLink } from '@/lib/analytics';
 
 interface SidebarProps {
     active: boolean;
@@ -12,7 +14,13 @@ const Sidebar = ({ active, onToggle }: SidebarProps) => {
         <aside className={`sidebar ${active ? 'active' : ''}`} data-sidebar>
             <div className="sidebar-info">
                 <figure className="avatar-box">
-                    <Image src="/images/2M0A8352.JPG" alt="Bemnet Kibret" width={80} height={80} />
+                    <Image
+                        src="/images/2M0A8352.JPG"
+                        alt="Bemnet Kibret"
+                        width={80}
+                        height={80}
+                        className="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-110"
+                    />
                 </figure>
 
                 <div className="info-content">
@@ -20,82 +28,88 @@ const Sidebar = ({ active, onToggle }: SidebarProps) => {
                     <p className="title">Full Stack Web developer</p>
                 </div>
 
-                <button className="info_more-btn" onClick={onToggle}>
-                    <span>Show Contacts</span>
-                    {/* @ts-ignore */}
-                    <ion-icon name="chevron-down"></ion-icon>
-                </button>
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="info_more-btn"
+                    onClick={onToggle}
+                >
+                    <span className="sr-only">Show Contacts</span>
+                    <motion.div
+                        animate={{ rotate: active ? 180 : 0 }}
+                        transition={{ duration: 0.4 }}
+                    >
+                        {/* @ts-ignore */}
+                        <ion-icon name="chevron-down"></ion-icon>
+                    </motion.div>
+                </motion.button>
             </div>
 
-            <div className="sidebar-info_more">
+            <div
+                className={`sidebar-info_more ${active ? 'visible' : ''}`}
+                style={{
+                    overflow: 'hidden',
+                    transition: 'max-height 0.5s ease-in-out, opacity 0.5s ease-in-out',
+                    maxHeight: active ? '1000px' : undefined // Let CSS handle mobile/desktop defaults
+                }}
+            >
                 <div className="separator"></div>
                 <ul className="contacts-list">
-                    <li className="contact-item">
-                        <div className="icon-box">
-                            {/* @ts-ignore */}
-                            <ion-icon name="mail-outline"></ion-icon>
-                        </div>
-                        <div className="contact-info">
-                            <p className="contact-title">Email</p>
-                            <a href="mailto:bemnetkibret4@gmail.com" className="contact-link">bemnetkibret4@gmail.com</a>
-                        </div>
-                    </li>
-
-                    <li className="contact-item">
-                        <div className="icon-box">
-                            {/* @ts-ignore */}
-                            <ion-icon name="phone-portrait-outline"></ion-icon>
-                        </div>
-                        <div className="contact-info">
-                            <p className="contact-title">Phone</p>
-                            <a href="tel:+251929177999" className="contact-link">+251929177999</a>
-                        </div>
-                    </li>
-
-                    <li className="contact-item">
-                        <div className="icon-box">
-                            {/* @ts-ignore */}
-                            <ion-icon name="calendar-outline"></ion-icon>
-                        </div>
-                        <div className="contact-info">
-                            <p className="contact-title">Birthday</p>
-                            <time dateTime="2003-08-27">August 27, 2003</time>
-                        </div>
-                    </li>
-
-                    <li className="contact-item">
-                        <div className="icon-box">
-                            {/* @ts-ignore */}
-                            <ion-icon name="location-outline"></ion-icon>
-                        </div>
-                        <div className="contact-info">
-                            <p className="contact-title">Location</p>
-                            <address>Addis Ababa, Ethiopia</address>
-                        </div>
-                    </li>
+                    {[
+                        { title: 'Email', value: 'bemnetkibret4@gmail.com', href: 'mailto:bemnetkibret4@gmail.com', icon: 'mail-outline' },
+                        { title: 'Phone', value: '+251929177999', href: 'tel:+251929177999', icon: 'phone-portrait-outline' },
+                        { title: 'Birthday', value: 'August 27, 2003', icon: 'calendar-outline' },
+                        { title: 'Location', value: 'Addis Ababa, Ethiopia', icon: 'location-outline' }
+                    ].map((contact, i) => (
+                        <motion.li
+                            key={i}
+                            className="contact-item"
+                            initial={false}
+                            animate={active ? { x: 0, opacity: 1 } : {}}
+                        >
+                            <div className="icon-box">
+                                {/* @ts-ignore */}
+                                <ion-icon name={contact.icon}></ion-icon>
+                            </div>
+                            <div className="contact-info">
+                                <p className="contact-title">{contact.title}</p>
+                                {contact.href ? (
+                                    <a
+                                        href={contact.href}
+                                        className="contact-link"
+                                        onClick={() => trackExternalLink(contact.href!, contact.title.toLowerCase())}
+                                    >
+                                        {contact.value}
+                                    </a>
+                                ) : (
+                                    <span className="contact-link whitespace-nowrap">{contact.value}</span>
+                                )}
+                            </div>
+                        </motion.li>
+                    ))}
                 </ul>
 
                 <div className="separator"></div>
 
                 <ul className="social-list">
-                    <li className="social-item">
-                        <a href="https://www.instagram.com/bem__kin_/" className="social-link" target="_blank" rel="noopener noreferrer">
-                            {/* @ts-ignore */}
-                            <ion-icon name="logo-instagram"></ion-icon>
-                        </a>
-                    </li>
-                    <li className="social-item">
-                        <a href="https://github.com/Bemkin" className="social-link" target="_blank" rel="noopener noreferrer">
-                            {/* @ts-ignore */}
-                            <ion-icon name="logo-github"></ion-icon>
-                        </a>
-                    </li>
-                    <li className="social-item">
-                        <a href="https://www.linkedin.com/in/bemnet-kibret-054a792a9/" className="social-link" target="_blank" rel="noopener noreferrer">
-                            {/* @ts-ignore */}
-                            <ion-icon name="logo-linkedin"></ion-icon>
-                        </a>
-                    </li>
+                    {[
+                        { href: 'https://www.instagram.com/bem__kin_/', icon: 'logo-instagram', name: 'instagram' },
+                        { href: 'https://github.com/Bemkin', icon: 'logo-github', name: 'github' },
+                        { href: 'https://www.linkedin.com/in/bemnet-kibret-054a792a9/', icon: 'logo-linkedin', name: 'linkedin' }
+                    ].map((social, i) => (
+                        <motion.li key={i} className="social-item" whileHover={{ y: -3 }}>
+                            <a
+                                href={social.href}
+                                className="social-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => trackExternalLink(social.href, `social_${social.name}`)}
+                            >
+                                {/* @ts-ignore */}
+                                <ion-icon name={social.icon}></ion-icon>
+                            </a>
+                        </motion.li>
+                    ))}
                 </ul>
             </div>
         </aside>
