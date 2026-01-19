@@ -30,7 +30,7 @@ const Resume = ({ active }: ResumeProps) => {
                 <h2 className="h2 article-title">Resume</h2>
                 <motion.a
                     whileTap={{ scale: 0.95 }}
-                    href="/resume.pdf"
+                    href="/Bemnet Kibret _ Full Stack Web Developer & Professional DJ.pdf"
                     download="Bemnet_Kibret_Resume.pdf"
                     className="btn-filled"
                     onClick={() => trackButtonClick('download_cv', 'resume_section')}
@@ -121,7 +121,7 @@ const Resume = ({ active }: ResumeProps) => {
                             {
                                 title: 'MARVELS CREATIVE TECHNOLOGY',
                                 date: 'March — June 2025',
-                                text: 'Backend developer internship building scalable systems with Typescript and Next.js.'
+                                text: 'Completed a backend developer internship building scalable systems with TypeScript and Next.js, gaining valuable industry experience in modern web development practices.'
                             }
                         ].map((item, i) => (
                             <li key={i} className="timeline-item" style={{ position: 'relative', paddingLeft: '30px', marginBottom: '25px' }}>

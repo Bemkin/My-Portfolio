@@ -39,13 +39,16 @@ const About = ({ active, testimonials, onTestimonialClick }: AboutProps) => {
 
             <section className="about-text">
                 <p>
-                    I'm a versatile full-stack web developer proficient in developing and deploying complex web applications. With a strong foundation in both front-end and back-end technologies, I create seamless user experiences by blending creativity with technical expertise. My skills encompass HTML, CSS, JavaScript, React, Node.js, and various databases.
+                    Hello! I'm Bemnet Kibret, a passionate full-stack web developer from Addis Ababa, Ethiopia. My journey into the world of technology began with a solid education at Addis Ababa Science and Technology University, where I developed a keen interest in building innovative digital solutions. This passion led me to Evangadi Technologies in 2024, where I underwent intensive full-stack web development training that transformed me from an enthusiast into a professional developer.
                 </p>
                 <p>
-                    My job is to build your website so that it is functional and user-friendly but at the same time attractive. Moreover, I add personal touch to your product and make sure that is eye-catching and easy to use. My aim is to bring across your message and identity in the most creative way.
+                    Currently, I work as a freelance developer, taking on diverse projects that challenge me to create modern, user-friendly web applications. Beyond client work, I've also built and launched several of my own startups, applying my technical skills to create solutions that solve real-world problems. My technical expertise was further honed during my Backend Developer Internship at MARVELS CREATIVE TECHNOLOGY (March - June 2025), where I worked with cutting-edge technologies like TypeScript and Next.js to build scalable systems. My technical stack includes React, Next.js, Node.js, TypeScript, and various databases, allowing me to deliver end-to-end solutions from concept to deployment.
                 </p>
                 <p>
-                    As I continue to grow as a web developer, my goal is to take on more challenging projects that push the boundaries of my skills and knowledge. I am eager to collaborate with clients who value innovation and creativity, and I look forward to building impactful web applications that make a difference.
+                    Beyond coding, I have a creative side as a professional DJ, where I curate soundscapes and create memorable experiences through music. This unique combination of technical precision and artistic creativity gives me a distinctive perspective on user experience design—I understand that great products should not only function flawlessly but also evoke emotion and delight.
+                </p>
+                <p>
+                    I'm driven by the desire to build impactful web applications that solve real problems and make a difference in people's lives. Whether it's developing a complex inventory management system like Senselet or creating intuitive AI-powered tools like FormCheck AI, I approach each project with meticulous attention to detail, a commitment to clean code, and a focus on creating exceptional user experiences. I'm always eager to collaborate on innovative projects that push the boundaries of what's possible on the web.
                 </p>
             </section>
 

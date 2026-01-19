@@ -243,4 +243,4 @@ export const spotifyPlaylists = [
     }
 ];
 
-export const resumePdf = '/resume.pdf';
+export const resumePdf = '/Bemnet Kibret _ Full Stack Web Developer & Professional DJ.pdf';
