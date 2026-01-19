@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: "Bemnet Kibret Portfolio",
     images: [
       {
-        url: "/images/og-banner.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
       },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Bemnet Kibret | Full Stack Web Developer & Professional DJ",
     description: "Bemnet Kibret | Full Stack Developer & DJ. Specialist in React, Next.js, and Node.js. Creator of Senselet, Trainer CRM, and AI-powered FormCheck.",
-    images: ["/images/og-banner.png"],
+    images: ["/og-image.png"],
   },
 };
 
