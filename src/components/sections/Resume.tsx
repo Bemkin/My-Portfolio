@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { trackButtonClick } from '@/lib/analytics';
+import GitHubActivity from './GitHubActivity';
 
 interface ResumeProps {
     active: boolean;
@@ -143,6 +144,9 @@ const Resume = ({ active }: ResumeProps) => {
                 </section>
             </div>
 
+            {/* GitHub Activity */}
+            <GitHubActivity username="Bemkin" />
+
             {/* Skills */}
             <section className="skill">
                 <h3 className="h3 skills-title">My skills</h3>
@@ -154,13 +158,11 @@ const Resume = ({ active }: ResumeProps) => {
                     style={{ marginBottom: '40px', cursor: 'default' }}
                 >
                     {[
-                        { name: 'Front-End Development', level: 80 },
-                        { name: 'Back-End Development', level: 95 },
-                        { name: 'Web design', level: 85 },
-                        { name: 'Graphic design', level: 75 },
-                        { name: 'Branding', level: 90 },
-                        { name: 'WordPress', level: 60 },
-                        { name: 'Frameworks and Libraries', level: 70 }
+                        { name: 'Full-Stack Architecture', level: 95 },
+                        { name: 'API Design & Database Management', level: 90 },
+                        { name: 'Frontend Engineering (React/Next.js)', level: 85 },
+                        { name: 'UI/UX & Interactive Design', level: 80 },
+                        { name: 'Brand Strategy & Visual Design', level: 75 }
                     ].map((skill) => (
                         <motion.li key={skill.name} className="skills-item" variants={itemVariants} style={{ marginBottom: '20px' }}>
                             <div className="title-wrapper" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>

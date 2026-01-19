@@ -109,20 +109,53 @@ const About = ({ active, testimonials, onTestimonialClick }: AboutProps) => {
                 </motion.ul>
             </section>
 
-            {/* Clients */}
+            {/* Collaborations & Technology */}
             <section className="clients">
-                <h3 className="h3 clients-title">Clients</h3>
+                <h3 className="h3 clients-title">Collaborations & Tech</h3>
                 <motion.ul
                     className="clients-list has-scrollbar"
                     variants={containerVariants}
                     initial="hidden"
                     animate="show"
+                    style={{ paddingBottom: '20px' }}
                 >
-                    {['logo-2-color.png', 'white primary whith purple logo.svg', 'logo-3-color.png', 'logo-4-color.png', 'logo-5-color.png', 'logo-6-color.png'].map((logo, i) => (
-                        <motion.li key={i} className="clients-item" variants={itemVariants}>
-                            <a href="#">
-                                <Image src={`/images/${logo}`} alt="client logo" width={100} height={40} />
-                            </a>
+                    {[
+                        { name: 'Marvel', src: '/images/white primary whith purple logo.svg' },
+                        { name: 'Next.js', src: 'https://cdn.simpleicons.org/nextdotjs/white' },
+                        { name: 'React', src: 'https://cdn.simpleicons.org/react/61DAFB' },
+                        { name: 'TypeScript', src: 'https://cdn.simpleicons.org/typescript/3178C6' },
+                        { name: 'Node.js', src: 'https://cdn.simpleicons.org/nodedotjs/339933' },
+                        { name: 'Tailwind CSS', src: 'https://cdn.simpleicons.org/tailwindcss/06B6D4' }
+                    ].map((tech, i) => (
+                        <motion.li key={i} className="clients-item" variants={itemVariants} style={{ minWidth: tech.name === 'Marvel' ? '120px' : '80px' }}>
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                gap: '10px',
+                                opacity: 0.8,
+                                transition: '0.3s'
+                            }} className="hover:opacity-100 transition-opacity cursor-default">
+                                <Image
+                                    src={tech.src}
+                                    alt={tech.name}
+                                    width={tech.name === 'Marvel' ? 120 : 40}
+                                    height={tech.name === 'Marvel' ? 30 : 40}
+                                    style={{
+                                        height: tech.name === 'Marvel' ? '30px' : '40px',
+                                        width: 'auto',
+                                        objectFit: 'contain'
+                                    }}
+                                    className="tech-logo"
+                                    unoptimized={tech.src.startsWith('http')}
+                                />
+                                <span style={{
+                                    fontSize: 'var(--fs-8)',
+                                    color: 'var(--light-gray-70)',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '1px'
+                                }}>{tech.name}</span>
+                            </div>
                         </motion.li>
                     ))}
                 </motion.ul>

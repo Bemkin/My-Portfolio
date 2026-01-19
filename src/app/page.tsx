@@ -10,6 +10,7 @@ import Resume from '@/components/sections/Resume';
 import Portfolio from '@/components/sections/Portfolio';
 import Blog from '@/components/sections/Blog';
 import Contact from '@/components/sections/Contact';
+import Life from '@/components/sections/Life';
 import Modal from '@/components/shared/Modal';
 import Toast from '@/components/shared/Toast';
 import { testimonials, projects } from '@/lib/constants';
@@ -20,18 +21,17 @@ export default function Home() {
   const [sidebarActive, setSidebarActive] = useState(false);
   const [selectedTestimonial, setSelectedTestimonial] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<any>(null);
   const [portfolioFilter, setPortfolioFilter] = useState('all');
   const [isFilterActive, setIsFilterActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
-  // Handle URL hash navigation
+  // Handle URL hash navigation - removed to ensure landing on 'about' upon reload
   useEffect(() => {
-    const hash = window.location.hash.replace('#', '');
-    if (hash && ['about', 'resume', 'portfolio', 'blog', 'contact'].includes(hash)) {
-      setActivePage(hash);
-      trackTabChange(hash);
-    }
+    // We intentionally ignore the hash on initial load to land on 'about'
+    // but we can still keep it for external link support if needed.
+    // However, the user requested to always go to 'about' on reload.
   }, []);
 
   // Track tab changes
@@ -150,6 +150,15 @@ export default function Home() {
           {activePage === 'blog' && (
             <motion.div key="blog" {...sectionVariants}>
               <Blog active={true} />
+            </motion.div>
+          )}
+
+          {activePage === 'life' && (
+            <motion.div key="life" {...sectionVariants}>
+              <Life
+                active={true}
+                onPhotoClick={setSelectedPhoto}
+              />
             </motion.div>
           )}
 
@@ -301,6 +310,47 @@ export default function Home() {
                   </a>
                 )}
               </div>
+            </div>
+          </div>
+        )}
+      </Modal>
+
+      {/* Photo Gallery Modal */}
+      <Modal
+        isOpen={selectedPhoto !== null}
+        onClose={() => setSelectedPhoto(null)}
+      >
+        {selectedPhoto && (
+          <div className="photo-modal-content">
+            <figure style={{
+              borderRadius: '12px',
+              overflow: 'hidden',
+              marginBottom: '20px',
+              border: '1px solid var(--jet)',
+              lineHeight: 0
+            }}>
+              <Image
+                src={selectedPhoto.image}
+                alt={selectedPhoto.title}
+                width={800}
+                height={500}
+                style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+              />
+            </figure>
+            <div className="modal-content" style={{ textAlign: 'left' }}>
+              <h4 className="h3 modal-title">{selectedPhoto.title}</h4>
+              <p style={{
+                fontSize: 'var(--fs-6)',
+                color: 'var(--orange-yellow-crayola)',
+                marginBottom: '10px',
+                textTransform: 'uppercase',
+                letterSpacing: '1px'
+              }}>
+                {selectedPhoto.category}
+              </p>
+              <p style={{ color: 'var(--light-gray)', lineHeight: '1.8' }}>
+                {selectedPhoto.description}
+              </p>
             </div>
           </div>
         )}

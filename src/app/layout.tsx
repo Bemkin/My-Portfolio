@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     siteName: "Bemnet Kibret Portfolio",
     images: [
       {
-        url: "/images/my-avatar.png", // Or a dedicated OG image
-        width: 800,
-        height: 600,
+        url: "/images/og-banner.png",
+        width: 1200,
+        height: 630,
       },
     ],
     locale: "en_US",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Bemnet Kibret | Full Stack Web Developer",
     description: "Professional Portfolio of Bemnet Kibret.",
-    images: ["/images/my-avatar.png"],
+    images: ["/images/og-banner.png"],
   },
 };
 

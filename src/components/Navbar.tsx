@@ -8,7 +8,7 @@ interface NavbarProps {
 }
 
 const Navbar = ({ activePage, onPageChange }: NavbarProps) => {
-    const pages = ['About', 'Resume', 'Portfolio', 'Blog', 'Contact'];
+    const pages = ['About', 'Resume', 'Portfolio', 'Blog', 'Life', 'Contact'];
 
     return (
         <nav className="navbar">

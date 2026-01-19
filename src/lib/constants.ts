@@ -4,24 +4,33 @@ export const testimonials = [
         text: 'Bemnet Kibret was hired to create a job application software. We were very pleased with the work done. He proved to be a highly skilled and reliable full-stack web developer.',
         avatar: '/images/avatar-1.png'
     },
-    {
-        name: 'Yeshi Desta',
-        text: 'Bemnet played a key role in several backend development projects, ensuring the smooth functioning of the application\'s server-side components.',
-        avatar: '/images/avatar-2.png'
-    },
-    {
-        name: 'Emily evans',
-        text: 'Bemnet assisted in designing and implementing the front-end components of a web application, ensuring a smooth and user-friendly experience.',
-        avatar: '/images/avatar-3.png'
-    },
-    {
-        name: 'Henry william',
-        text: 'Bemnet Kibret consistently showed a strong willingness to learn, take feedback constructively, and deliver high-quality results on time.',
-        avatar: '/images/avatar-4.png'
-    },
 ];
 
 export const projects = [
+    {
+        title: 'Senselet - Inventory Intelligence',
+        category: 'applications',
+        image: '/images/senselet-banner.png',
+        link: 'https://www.senselet.store/',
+        tech: ['Next.js', 'React', 'Tailwind', 'Telegram API'],
+        description: 'A high-performance Retail Inventory Intelligence Platform featuring a Telegram Mini App for on-the-go management. Includes cognitive sales forecasting, digital twins for real-time tracking, and multi-warehouse global synchronization.'
+    },
+    {
+        title: 'Trainer CRM - Fitness Management',
+        category: 'applications',
+        image: '/images/trainer-crm-banner.png',
+        link: 'https://trainer-crm-amber.vercel.app/',
+        tech: ['Next.js', 'React', 'Tailwind', 'PostgreSQL'],
+        description: 'A comprehensive CRM platform with a companion mobile app designed for personal trainers. Streamlines client management, workout scheduling, and performance tracking with data-driven insights and effortless business automation.'
+    },
+    {
+        title: 'FormCheck AI - Workout Assistant',
+        category: 'applications',
+        image: '/images/formcheck-hero.png',
+        link: 'https://form-wiz-79.vercel.app/',
+        tech: ['Next.js', 'React', 'Mediapipe AI', 'Tailwind'],
+        description: 'An AI-powered exercise form analysis tool. Provides real-time technique feedback via live camera or video uploads to ensure safety and maximize efficiency. Leverages computer vision to track body mechanics and prevent training injuries.'
+    },
     {
         title: 'Netflix Clone',
         category: 'web development',
@@ -62,328 +71,125 @@ export const projects = [
 
 export const blogPosts = [
     {
-        title: 'Top Programming Languages for 2025',
-        slug: 'top-programming-languages-2025',
-        category: 'Coding Trends',
-        date: 'Jan 13, 2025',
-        dateTime: '2025-01-13',
-        image: '/images/Top-Programming-languages-for-2025.webp',
-        excerpt: 'Discover the top programming languages predicted to dominate in 2025, including Python, Rust, and Go. Learn about their unique features and how they\'re shaping the future of software development.',
+        title: 'Scaling Retail Intelligence: The Journey of Senselet',
+        slug: 'journey-of-senselet',
+        category: 'Startup Insights',
+        date: 'Jan 19, 2025',
+        dateTime: '2025-01-19',
+        image: '/images/senselet-banner.png',
+        excerpt: 'How I built a solo, enterprise-grade inventory intelligence platform with cognitive forecasting and digital twins.',
         content: `
-## Introduction
+## The Vision Behind Senselet
 
-The technology landscape is constantly evolving, and staying ahead means understanding which programming languages will dominate in the coming years. As we move into 2025, several languages have emerged as clear frontrunners for developers looking to stay competitive.
+Senselet was born from a simple observation: retail logistics is often fragmented and reactive. I set out to build a platform that doesn't just track inventory, but predicts its movement.
 
-## Python: The Versatile Giant
+### Engineering the Digital Twin
 
-Python continues to reign supreme across multiple domains:
+The core of Senselet is its "Digital Twin" capability. This isn't just a 3D model—it's a real-time data representation of physical inventory across global warehouses. Synchronizing this data with sub-second latency required a robust architecture using Next.js and high-frequency API endpoints.
 
-- **Data Science & AI**: Libraries like TensorFlow, PyTorch, and scikit-learn make Python the go-to choice
-- **Web Development**: Frameworks like Django and Flask power countless applications
-- **Automation**: Simple syntax makes it perfect for scripting and automation tasks
+### Cognitive Sales Forecasting
 
-## Rust: Safety Meets Performance
+By implementing weighted moving average algorithms and analyzing historical trends, Senselet provides "Cognitive Forecasting." This helps retailers anticipate stockouts before they happen, effectively democratizing enterprise-grade logistics for smaller businesses.
 
-Rust has been gaining tremendous momentum:
+### The Solo Developer Challenge
 
-- **Memory Safety**: Eliminates entire classes of bugs without garbage collection
-- **Systems Programming**: Perfect for operating systems, game engines, and embedded systems
-- **Growing Ecosystem**: More companies adopting Rust for critical infrastructure
-
-## Go: Simplicity at Scale
-
-Google's Go language excels in modern infrastructure:
-
-- **Concurrency**: Goroutines make parallel programming elegant
-- **Cloud Native**: Powers Docker, Kubernetes, and many cloud services
-- **Fast Compilation**: Rapid development cycles
-
-## TypeScript: JavaScript's Grown-Up Sibling
-
-TypeScript brings type safety to the JavaScript ecosystem:
-
-- **Type Safety**: Catch errors before runtime
-- **Better Tooling**: Enhanced IDE support and autocomplete
-- **Angular & React**: First-class support in major frameworks
-
-## Conclusion
-
-The programming languages of 2025 reflect industry demands: safety, performance, and developer experience. Whether you're building AI models, cloud infrastructure, or web applications, these languages provide the tools you need to succeed.
+Building Senselet as a solo project meant wearing every hat—Architect, Frontend Engineer, and DevOps. From designing the Tailwind-powered glassmorphism UI to integrating the Telegram API for instant stock alerts, every decision was aimed at creating a seamless, automated infrastructure.
         `
     },
     {
-        title: 'AI and Machine Learning Trends',
-        slug: 'ai-machine-learning-trends',
-        category: 'Coding Trends',
-        date: 'Jan 13, 2025',
-        dateTime: '2025-01-13',
-        image: '/images/1937493-what-is-7.webp',
-        excerpt: 'Explore the latest trends in artificial intelligence and machine learning, including advancements in deep learning, natural language processing, and computer vision.',
+        title: 'Business Logic in Fitness: Building Trainer CRM',
+        slug: 'building-trainer-crm',
+        category: 'Product Engineering',
+        date: 'Jan 18, 2025',
+        dateTime: '2025-01-18',
+        image: '/images/trainer-crm-banner.png',
+        excerpt: 'A deep dive into the architecture of a full-stack CRM designed specifically for personal trainers and client tracking.',
         content: `
-## The AI Revolution Continues
+## Solving for Solopreneurs
 
-Artificial Intelligence and Machine Learning are no longer just buzzwords—they're transforming how we build software and solve problems. Here are the key trends shaping 2025.
+Personal trainers often struggle with managing disparate data points—workout plans, client payments, and progress metrics. My goal with Trainer CRM was to unify these into a single, intuitive dashboard.
 
-## Large Language Models (LLMs)
+### Architecting for Scale
 
-The explosion of LLMs has changed everything:
+Using PostgreSQL and a robust backend architecture, I ensured that every piece of client data is secure and instantly accessible. The platform emphasizes "Data-Driven Fitness," allowing trainers to visualize client progress through automated charting and reporting.
 
-- **GPT and Beyond**: More powerful, more accessible models
-- **Fine-tuning**: Customizing models for specific tasks
-- **Multimodal AI**: Models that understand text, images, and video
+### Localized Experience
 
-## Edge AI
+One of the standout features of this project was the multilingual support, including full Amharic localization. This ensures that fitness professionals in different regions can manage their businesses in their native language, removing barriers to entry for modern business tools.
 
-AI is moving closer to the data:
+### Seamless Operations
 
-- **On-Device Processing**: Faster responses, better privacy
-- **IoT Integration**: Smart devices getting smarter
-- **Reduced Latency**: Critical for real-time applications
-
-## AutoML and AI Democratization
-
-Making AI accessible to everyone:
-
-- **No-Code Solutions**: Building ML models without expertise
-- **Automated Feature Engineering**: AI building AI
-- **Transfer Learning**: Leveraging pre-trained models
-
-## Ethical AI and Responsible Development
-
-Growing focus on AI safety:
-
-- **Bias Detection**: Identifying and mitigating algorithmic bias
-- **Explainable AI**: Understanding model decisions
-- **Privacy-Preserving ML**: Federated learning and differential privacy
-
-## Computer Vision Advances
-
-Visual AI reaching new heights:
-
-- **Real-Time Object Detection**: Faster and more accurate
-- **3D Vision**: Understanding depth and spatial relationships
-- **Medical Imaging**: AI-powered diagnostics
+From automated workout scheduling to integrated billing flows, Trainer CRM is built to maximize a trainer's time. By automating the "admin" side of fitness, trainers can focus on what they do best: transforming lives.
         `
     },
     {
-        title: 'The Future of Web Development',
-        slug: 'future-web-development',
-        category: 'Coding Trends',
-        date: 'Jan 13, 2025',
-        dateTime: '2025-01-13',
-        image: '/images/The-Future-of-Web-Development-[Top-Trends-and-Predictions].webp',
-        excerpt: 'Dive into the future of web development with the rise of new frameworks, progressive web apps, and the increasing importance of responsive design.',
+        title: 'AI in the Gym: FormCheck AI & Computer Vision',
+        slug: 'ai-in-gym-formcheck',
+        category: 'AI & Innovation',
+        date: 'Jan 17, 2025',
+        dateTime: '2025-01-17',
+        image: '/images/formcheck-hero.png',
+        excerpt: 'Using computer vision to solve the problem of improper exercise technique in real-time.',
         content: `
-## Web Development in 2025
+## The Problem: Improper Form
 
-The web continues to evolve at a breakneck pace. Here's what's shaping the future of web development.
+In fitness, form is everything. Improper technique leads to injury and stalled progress. FormCheck AI was built to act as a virtual coach that never blinks.
 
-## Modern Frameworks
+### Integrating Mediapipe
 
-The framework landscape is maturing:
+By leveraging the Mediapipe framework, I implemented real-time body tracking directly in the browser. The application analyzes joint angles and movement planes to provide immediate feedback on squat depth, back posture, and more.
 
-- **React & Next.js**: Server components and streaming SSR
-- **Vue & Nuxt**: Improved TypeScript support
-- **Svelte & SvelteKit**: Compile-time magic
+### Real-Time vs. Asynchronous Feedback
 
-## Progressive Web Apps (PWAs)
+The app supports two modes: live camera analysis for instant correction, and video upload for detailed post-workout review. This flexibility ensures that whether you're at the gym or home, your technique remains flawless.
 
-Bridging web and native:
+### Future of AI-Driven Fitness
 
-- **Offline Capabilities**: Service workers for resilience
-- **App-Like Experience**: Installation and push notifications
-- **Performance**: Near-native speed
-
-## Web Assembly (WASM)
-
-Bringing new languages to the browser:
-
-- **Near-Native Performance**: Faster than JavaScript
-- **Language Diversity**: Run Rust, C++, Go in browsers
-- **Gaming & Graphics**: High-performance applications
-
-## JAMstack Architecture
-
-Modern web architecture:
-
-- **JavaScript, APIs, Markdown**: Decoupled architecture
-- **Static Site Generation**: Blazing fast load times
-- **Edge Computing**: Content delivery optimization
-
-## Accessibility First
-
-No longer an afterthought:
-
-- **WCAG Compliance**: Legal requirements driving adoption
-- **Semantic HTML**: Better structure, better accessibility
-- **Automated Testing**: Tools catching issues early
-        `
-    },
-    {
-        title: 'Security Best Practices',
-        slug: 'security-best-practices',
-        category: 'Coding Trends',
-        date: 'Jan 13, 2025',
-        dateTime: '2025-01-13',
-        image: '/images/Top-Network-Security-best-practices.webp',
-        excerpt: 'Learn about the latest security best practices for developers, including secure coding techniques, vulnerability management, and the importance of regular security audits.',
-        content: `
-## Security Cannot Be an Afterthought
-
-In 2025, security breaches are more costly than ever. Here's how to build secure applications from the ground up.
-
-## Authentication & Authorization
-
-Getting the fundamentals right:
-
-- **OAuth 2.0 & OpenID Connect**: Industry-standard protocols
-- **Multi-Factor Authentication**: Essential for sensitive data
-- **JWT Best Practices**: Secure token management
-- **Role-Based Access Control**: Principle of least privilege
-
-## Input Validation & Sanitization
-
-Never trust user input:
-
-- **SQL Injection Prevention**: Parameterized queries
-- **XSS Protection**: Content Security Policy
-- **CSRF Tokens**: Protecting state-changing operations
-
-## Dependency Management
-
-Your code is only as secure as your dependencies:
-
-- **Regular Updates**: Patching known vulnerabilities
-- **SBOM**: Software Bill of Materials
-- **Automated Scanning**: Tools like Dependabot and Snyk
-
-## Secure Development Lifecycle
-
-Security at every stage:
-
-- **Threat Modeling**: Identifying risks early
-- **Code Reviews**: Multiple eyes on security
-- **Penetration Testing**: Finding vulnerabilities before attackers
-
-## API Security
-
-Protecting your endpoints:
-
-- **Rate Limiting**: Preventing abuse
-- **API Keys & Secrets**: Proper rotation and storage
-- **HTTPS Everywhere**: Encryption in transit
-        `
-    },
-    {
-        title: 'The Rise of Serverless Architecture',
-        slug: 'serverless-architecture',
-        category: 'Coding Trends',
-        date: 'Jan 13, 2025',
-        dateTime: '2025-01-13',
-        image: '/images/The-Rise-of-Serverless-Architectures.jpg',
-        excerpt: 'Discover how serverless architecture is revolutionizing the way applications are built and deployed. Learn about its benefits, challenges, and best practices.',
-        content: `
-## Serverless: The New Normal
-
-Serverless architecture has moved from experimental to mainstream. Here's why it matters and how to use it effectively.
-
-## What is Serverless?
-
-Understanding the paradigm:
-
-- **Function as a Service (FaaS)**: Event-driven execution
-- **Backend as a Service (BaaS)**: Managed services
-- **Pay-per-Use**: Cost efficiency at scale
-
-## Benefits of Serverless
-
-Why developers are making the switch:
-
-- **Auto-Scaling**: Handle traffic spikes automatically
-- **Reduced Operations**: No servers to manage
-- **Cost Optimization**: Pay only for what you use
-- **Faster Time to Market**: Focus on code, not infrastructure
-
-## Popular Serverless Platforms
-
-Choosing the right platform:
-
-- **AWS Lambda**: The pioneer with vast ecosystem
-- **Google Cloud Functions**: Great for Firebase integration
-- **Azure Functions**: Best for Microsoft shops
-- **Vercel & Netlify**: Optimal for JAMstack
-
-## Best Practices
-
-Getting serverless right:
-
-- **Cold Start Optimization**: Minimize initialization time
-- **Stateless Functions**: Design for scalability
-- **Observability**: Monitoring distributed systems
-- **Cost Monitoring**: Preventing bill surprises
-
-## Use Cases
-
-Where serverless shines:
-
-- **API Backends**: REST and GraphQL APIs
-- **Data Processing**: ETL pipelines
-- **Real-Time Applications**: Chat, notifications
-- **Scheduled Tasks**: Cron jobs at scale
-        `
-    },
-    {
-        title: 'The Future of IoT',
-        slug: 'future-of-iot',
-        category: 'Coding Trends',
-        date: 'Jan 13, 2025',
-        dateTime: '2025-01-13',
-        image: '/images/960x0.webp',
-        excerpt: 'Explore the latest trends in the Internet of Things (IoT), including advancements in smart devices, edge computing, and the integration of AI and IoT.',
-        content: `
-## IoT: Connecting the Physical and Digital
-
-The Internet of Things is expanding beyond smart homes into every aspect of our lives. Here's what's next.
-
-## Edge Computing
-
-Bringing computation closer to devices:
-
-- **Reduced Latency**: Real-time responses
-- **Bandwidth Optimization**: Process locally, send summaries
-- **Privacy**: Keep sensitive data on-device
-
-## AI-Powered IoT
-
-Intelligence at the edge:
-
-- **Predictive Maintenance**: Anticipate failures
-- **Anomaly Detection**: Security and quality control
-- **Computer Vision**: Smart cameras and sensors
-
-## Industrial IoT (IIoT)
-
-Transforming manufacturing:
-
-- **Digital Twins**: Virtual replicas for simulation
-- **Supply Chain Optimization**: Real-time tracking
-- **Energy Management**: Smart grids and consumption
-
-## Security Challenges
-
-Protecting connected devices:
-
-- **Device Authentication**: Secure identity
-- **Over-the-Air Updates**: Patching vulnerabilities
-- **Network Segmentation**: Isolating IoT devices
-
-## 5G and IoT
-
-Next-generation connectivity:
-
-- **Massive Device Density**: Billions of connections
-- **Ultra-Low Latency**: Critical applications
-- **Energy Efficiency**: Battery life improvements
+FormCheck AI isn't just a gimmick; it's a look at the future of personalized training. By blending computer vision with a reactive Next.js frontend, I've created a tool that makes high-level coaching accessible to everyone with a smartphone.
         `
     }
 ];
+
+export const lifePhotos = [
+    {
+        id: 1,
+        title: 'Mainstage Groove',
+        image: '/images/dj-life-1.jpg',
+        category: 'Performance',
+        description: 'Capturing the peak energy during a professional DJ set.'
+    },
+    {
+        id: 2,
+        title: 'The Blue Hour',
+        image: '/images/dj-life-2.jpg',
+        category: 'Creative',
+        description: 'Deep house vibes during a sundowner session.'
+    },
+    {
+        id: 3,
+        title: 'The Lab',
+        image: '/images/the-lab-event.jpg',
+        category: 'Live',
+        description: 'An electrifying session at The Lab, where rhythm meets raw energy.'
+    }
+];
+
+export const spotifyPlaylists = [
+    {
+        id: 1,
+        title: 'Deep House Curation',
+        embedUrl: 'https://open.spotify.com/embed/playlist/60xP6PmZNJxMkUTLJAS2zy?utm_source=generator'
+    },
+    {
+        id: 2,
+        title: 'Techno Explorations',
+        embedUrl: 'https://open.spotify.com/embed/playlist/3Ih9XuB4zPAk5g8tUeF32l?utm_source=generator'
+    },
+    {
+        id: 3,
+        title: 'Club Staples',
+        embedUrl: 'https://open.spotify.com/embed/playlist/5zo5BaMcyCnXkPTGLQ0JtP?utm_source=generator'
+    }
+];
+
+export const resumePdf = '/resume.pdf';
