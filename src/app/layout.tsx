@@ -11,12 +11,12 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL("https://my-portfolio-theta-flame-45.vercel.app/"),
   title: "Bemnet Kibret | Full Stack Web Developer & Professional DJ",
-  description: "Professional Portfolio of Bemnet Kibret, a Full Stack Developer specializing in React, Next.js, and Node.js. Explore enterprise-grade projects including Senselet Inventory Intelligence with Telegram Mini App, Trainer CRM with Mobile App, and FormCheck AI computer vision platform.",
+  description: "Bemnet Kibret | Full Stack Developer & DJ. Specialist in React, Next.js, and Node.js. Creator of Senselet, Trainer CRM, and AI-powered FormCheck.",
   keywords: ["Bemnet Kibret", "Full Stack Developer", "Portfolio", "React", "Next.js", "Node.js", "Web Development"],
   authors: [{ name: "Bemnet Kibret" }],
   openGraph: {
     title: "Bemnet Kibret | Full Stack Web Developer & Professional DJ",
-    description: "Professional Portfolio of Bemnet Kibret, a Full Stack Developer specializing in React, Next.js, and Node.js. Explore enterprise-grade projects including Senselet Inventory Intelligence with Telegram Mini App, Trainer CRM with Mobile App, and FormCheck AI computer vision platform.",
+    description: "Bemnet Kibret | Full Stack Developer & DJ. Specialist in React, Next.js, and Node.js. Creator of Senselet, Trainer CRM, and AI-powered FormCheck.",
     url: "https://my-portfolio-theta-flame-45.vercel.app/",
     siteName: "Bemnet Kibret Portfolio",
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Bemnet Kibret | Full Stack Web Developer & Professional DJ",
-    description: "Professional Portfolio of Bemnet Kibret, a Full Stack Developer specializing in React, Next.js, and Node.js. Explore enterprise-grade projects including Senselet Inventory Intelligence with Telegram Mini App, Trainer CRM with Mobile App, and FormCheck AI computer vision platform.",
+    description: "Bemnet Kibret | Full Stack Developer & DJ. Specialist in React, Next.js, and Node.js. Creator of Senselet, Trainer CRM, and AI-powered FormCheck.",
     images: ["/images/og-banner.png"],
   },
 };

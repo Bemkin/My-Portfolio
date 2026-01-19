@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner Generator</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --gold: #ffdb70;
+            --white: #ffffff;
+            --eerie-black-2: #1e1e1f;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1200px;
+            height: 630px;
+            overflow: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .banner {
+            display: flex;
+            width: 1200px;
+            height: 630px;
+            background: var(--bg-color);
+        }
+
+        .left {
+            width: 45%;
+            height: 100%;
+            background: #fdf6e3;
+            /* Cream background to match the photo */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-photo {
+            width: 130%;
+            /* Zoom in slightly */
+            height: auto;
+            position: absolute;
+            bottom: -50px;
+            /* Lower the face significantly */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .right {
+            width: 55%;
+            height: 100%;
+            background: linear-gradient(135deg, #111111 0%, #000000 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            /* Push text to the bottom area */
+            padding: 80px 60px;
+            box-sizing: border-box;
+            color: var(--white);
+            border-left: 2px solid var(--gold);
+        }
+
+        .name {
+            font-size: 80px;
+            font-weight: 800;
+            color: var(--gold);
+            margin: 0;
+            letter-spacing: -2px;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 400;
+            margin: 10px 0 40px 0;
+            opacity: 0.9;
+        }
+
+        .icons {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            filter: grayscale(1) brightness(2) sepia(1) hue-rotate(5deg) saturate(2);
+            opacity: 0.8;
+        }
+
+        /* Decoration */
+        .glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 219, 112, 0.05) 0%, rgba(255, 219, 112, 0) 70%);
+            top: 20%;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="left">
+            <!-- Using the uploaded photo path -->
+            <img src="C:/Users/bemne/.gemini/antigravity/brain/d267ebdc-a920-4bde-b65a-560dc6d539b6/uploaded_image_1768848286699.jpg"
+                class="user-photo">
+        </div>
+        <div class="right">
+            <div class="glow"></div>
+            <h1 class="name">Bemnet Kibret</h1>
+            <p class="title">Full-Stack Engineer | Curating Soundscapes</p>
+            <div class="icons">
+                <!-- Using CDN icons for reliability in the generator -->
+                <img src="https://simpleicons.org/icons/nextdotjs.svg" class="icon">
+                <img src="https://simpleicons.org/icons/react.svg" class="icon">
+                <img src="https://simpleicons.org/icons/typescript.svg" class="icon">
+                <img src="https://simpleicons.org/icons/nodedotjs.svg" class="icon">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
