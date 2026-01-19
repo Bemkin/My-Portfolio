@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import Sidebar from '@/components/Sidebar';
 import Navbar from '@/components/Navbar';
+import Link from 'next/link';
 import About from '@/components/sections/About';
 import Resume from '@/components/sections/Resume';
 import Portfolio from '@/components/sections/Portfolio';
@@ -15,13 +16,14 @@ import Modal from '@/components/shared/Modal';
 import Toast from '@/components/shared/Toast';
 import { testimonials, projects } from '@/lib/constants';
 import { trackTabChange, trackProjectView, trackFormSubmit, trackExternalLink } from '@/lib/analytics';
+import type { Project, LifePhoto } from '@/types';
 
 export default function Home() {
   const [activePage, setActivePage] = useState('about');
   const [sidebarActive, setSidebarActive] = useState(false);
   const [selectedTestimonial, setSelectedTestimonial] = useState<number | null>(null);
-  const [selectedProject, setSelectedProject] = useState<any>(null);
-  const [selectedPhoto, setSelectedPhoto] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<LifePhoto | null>(null);
   const [portfolioFilter, setPortfolioFilter] = useState('all');
   const [isFilterActive, setIsFilterActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -260,6 +262,32 @@ export default function Home() {
                 </div>
               )}
 
+              {selectedProject.problem && (
+                <div style={{ marginBottom: '25px' }}>
+                  <Link
+                    href={`/projects/${selectedProject.slug}`}
+                    className="form-btn"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      justifyContent: 'center',
+                      padding: '12px',
+                      borderRadius: '12px',
+                      color: 'var(--orange-yellow-crayola)',
+                      border: '1px solid var(--jet)',
+                      width: '100%',
+                      fontWeight: 'bold'
+                    }}
+                    onClick={() => setSelectedProject(null)}
+                  >
+                    {/* @ts-expect-error */}
+                    <ion-icon name="document-text-outline"></ion-icon>
+                    View Full Case Study
+                  </Link>
+                </div>
+              )}
+
               <div style={{ display: 'flex', gap: '15px', marginTop: 'auto' }}>
                 <a
                   href={selectedProject.link}
@@ -278,7 +306,7 @@ export default function Home() {
                     justifyContent: 'center'
                   }}
                 >
-                  {/* @ts-ignore */}
+                  {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                   <ion-icon name="eye-outline"></ion-icon>
                   Live Demo
                 </a>
@@ -289,7 +317,7 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="form-btn"
-                    onClick={() => trackExternalLink(selectedProject.github, 'project_source_code')}
+                    onClick={() => trackExternalLink(selectedProject.github!, 'project_source_code')}
                     style={{
                       padding: '12px 25px',
                       borderRadius: '8px',
@@ -304,7 +332,7 @@ export default function Home() {
                       boxShadow: 'var(--shadow-2)'
                     }}
                   >
-                    {/* @ts-ignore */}
+                    {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                     <ion-icon name="logo-github"></ion-icon>
                     Source Code
                   </a>

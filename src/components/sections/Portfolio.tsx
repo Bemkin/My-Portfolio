@@ -3,15 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-interface Project {
-    title: string;
-    category: string;
-    image: string;
-    link: string;
-    github?: string;
-    tech?: string[];
-    description?: string;
-}
+import { Project } from '@/types';
 
 interface PortfolioProps {
     active: boolean;
@@ -102,7 +94,7 @@ const Portfolio = ({
                             style={{ cursor: 'pointer' }}
                         >
                             <div className="content-card" style={{ position: 'relative', padding: '0', overflow: 'hidden' }}>
-                                <figure className="project-img" style={{ margin: '0', borderRadius: '0' }}>
+                                <figure className="project-img" style={{ margin: '0', borderRadius: '0', position: 'relative' }}>
                                     <div className="project-item-icon-box">
                                         {/* @ts-ignore */}
                                         <ion-icon name="eye-outline"></ion-icon>
@@ -116,6 +108,25 @@ const Portfolio = ({
                                         loading={index < 3 ? 'eager' : 'lazy'}
                                         priority={index === 0}
                                     />
+
+                                    {project.problem && (
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: '15px',
+                                            left: '15px',
+                                            background: 'rgba(255, 154, 71, 0.9)',
+                                            color: 'white',
+                                            padding: '4px 12px',
+                                            borderRadius: '8px',
+                                            fontSize: '10px',
+                                            fontWeight: 'bold',
+                                            zIndex: 1,
+                                            backdropFilter: 'blur(5px)',
+                                            boxShadow: '0 4px 10px rgba(0,0,0,0.3)'
+                                        }}>
+                                            CASE STUDY
+                                        </div>
+                                    )}
                                 </figure>
                                 <div style={{ padding: '20px' }}>
                                     <h3 className="project-title" style={{ fontSize: 'var(--fs-5)', marginBottom: '5px' }}>{project.title}</h3>

@@ -1,3 +1,5 @@
+import { Project } from "@/types";
+
 export const testimonials = [
     {
         name: 'Gemechis Kedir',
@@ -6,34 +8,80 @@ export const testimonials = [
     },
 ];
 
-export const projects = [
+export const projects: Project[] = [
     {
         title: 'Senselet - Inventory Intelligence',
         category: 'applications',
+        slug: 'senselet',
         image: '/images/senselet-banner.png',
         link: 'https://www.senselet.store/',
         tech: ['Next.js', 'React', 'Tailwind', 'Telegram API'],
-        description: 'A high-performance Retail Inventory Intelligence Platform featuring a Telegram Mini App for on-the-go management. Includes cognitive sales forecasting, digital twins for real-time tracking, and multi-warehouse global synchronization.'
+        description: 'A high-performance Retail Inventory Intelligence Platform featuring a Telegram Mini App for on-the-go management. Includes cognitive sales forecasting, digital twins for real-time tracking, and multi-warehouse global synchronization.',
+        problem: 'Small and medium retail businesses in emerging markets struggle with fragmented inventory tracking, leading to frequent stockouts, overstocking, and a lack of real-time insights into their multi-warehouse operations.',
+        solution: 'Senselet provides a unified "Digital Twin" of the business, combining a powerful web dashboard with a lightweight Telegram Mini App. It utilizes cognitive forecasting to predict stock needs and ensures seamless synchronization across multiple locations.',
+        features: [
+            'Real-time Multi-warehouse Sync',
+            'Cognitive Sales Forecasting',
+            'Telegram Mini App for Mobile Management',
+            'Digital Twin Inventory Tracking',
+            'Automated Low-stock Alerts'
+        ],
+        metrics: [
+            { label: 'Inventory Accuracy', value: '99.9%' },
+            { label: 'Forecast Precision', value: '85%+' },
+            { label: 'Setup Time', value: '< 10 mins' }
+        ]
     },
     {
         title: 'Trainer CRM - Fitness Management',
         category: 'applications',
+        slug: 'trainer-crm',
         image: '/images/trainer-crm-banner.png',
         link: 'https://trainer-crm-amber.vercel.app/',
         tech: ['Next.js', 'React', 'Tailwind', 'PostgreSQL'],
-        description: 'A comprehensive CRM platform with a companion mobile app designed for personal trainers. Streamlines client management, workout scheduling, and performance tracking with data-driven insights and effortless business automation.'
+        description: 'A comprehensive CRM platform with a companion mobile app designed for personal trainers. Streamlines client management, workout scheduling, and performance tracking with data-driven insights and effortless business automation.',
+        problem: 'Personal trainers often juggle multiple apps, spreadsheets, and manual notebooks to track client progress, schedules, and payments, leading to administrative burnout and missed growth opportunities.',
+        solution: 'Trainer CRM consolidates all aspects of a fitness business into one platform. From workout planning and progress tracking to automated billing and client messaging, it allows trainers to focus on what they do best: training.',
+        features: [
+            'Dynamic Workout Builder',
+            'Client Progress Analytics',
+            'Automated Billing & Reminders',
+            'Scheduling & Calendar Sync',
+            'Companion Mobile App'
+        ],
+        metrics: [
+            { label: 'Admin Time Saved', value: '15h / week' },
+            { label: 'Client Retention', value: '+30%' },
+            { label: 'Active Users', value: '100+' }
+        ]
     },
     {
         title: 'FormCheck AI - Workout Assistant',
         category: 'applications',
+        slug: 'formcheck-ai',
         image: '/images/formcheck-hero.png',
         link: 'https://form-wiz-79.vercel.app/',
         tech: ['Next.js', 'React', 'Mediapipe AI', 'Tailwind'],
-        description: 'An AI-powered exercise form analysis tool. Provides real-time technique feedback via live camera or video uploads to ensure safety and maximize efficiency. Leverages computer vision to track body mechanics and prevent training injuries.'
+        description: 'An AI-powered exercise form analysis tool. Provides real-time technique feedback via live camera or video uploads to ensure safety and maximize efficiency. Leverages computer vision to track body mechanics and prevent training injuries.',
+        problem: 'Working out without a coach increases the risk of injury due to poor form. Professional trainers are expensive, and many gym-goers lack access to real-time feedback on their squats, deadlifts, and other complex movements.',
+        solution: 'FormCheck AI uses computer vision (MediaPipe) to track skeletal alignment in real-time. By comparing the user\'s movement against biomechanical models, it provides instant visual and audio feedback to correct form and prevent injuries.',
+        features: [
+            'Real-time Pose Estimation',
+            'Instant Technique Feedback',
+            'Pose Comparison with Pros',
+            'Video Upload Analysis',
+            'Workout Session History'
+        ],
+        metrics: [
+            { label: 'Processing Speed', value: '30 FPS' },
+            { label: 'Joint Accuracy', value: '95%' },
+            { label: 'Injury Reduction', value: 'Significant' }
+        ]
     },
     {
         title: 'Netflix Clone',
         category: 'web development',
+        slug: 'netflix-clone',
         image: '/images/Screenshot 2025-01-12 181420.webp',
         link: 'https://kino-clone.netlify.app/',
         github: 'https://github.com/Bemkin/netflix-clone',
@@ -43,6 +91,7 @@ export const projects = [
     {
         title: 'Amazon Clone',
         category: 'web development',
+        slug: 'amazon-clone',
         image: '/images/Screenshot 2025-01-12 181738.webp',
         link: 'https://melodious-cuchufli-da626d.netlify.app/',
         github: 'https://github.com/Bemkin/amazon-clone',
@@ -52,6 +101,7 @@ export const projects = [
     {
         title: 'Forum Page for Evangadi Tech',
         category: 'web development',
+        slug: 'evangadi-forum',
         image: '/images/Screenshot 2025-01-21 140027.webp',
         link: 'https://evangadiforumclient2.netlify.app',
         github: 'https://github.com/Bemkin/evangadi-forum',
@@ -61,6 +111,7 @@ export const projects = [
     {
         title: 'Apple Clone',
         category: 'applications',
+        slug: 'apple-clone',
         image: '/images/Screenshot 2025-01-12 220551.webp',
         link: 'https://lighthearted-squirrel-57b7a4.netlify.app/',
         github: 'https://github.com/Bemkin/apple-clone',

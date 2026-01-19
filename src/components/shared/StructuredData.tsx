@@ -4,7 +4,7 @@ export default function StructuredData() {
         "@type": "Person",
         "name": "Bemnet Kibret",
         "url": "https://my-portfolio-theta-flame-45.vercel.app/",
-        "image": "https://my-portfolio-theta-flame-45.vercel.app/images/my-avatar.png",
+        "image": "https://my-portfolio-theta-flame-45.vercel.app/images/bemnet-avatar.jpg",
         "sameAs": [
             "https://www.instagram.com/bem__kin_/",
             "https://github.com/Bemkin",

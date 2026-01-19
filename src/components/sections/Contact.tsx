@@ -101,7 +101,7 @@ const Contact = ({ active, onSubmit, isSubmitting }: ContactProps) => {
                     }}
                     style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
                 >
-                    <div className="input-wrapper" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+                    <div className="input-wrapper" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
                         <motion.input
                             variants={itemVariants}
                             type="text"

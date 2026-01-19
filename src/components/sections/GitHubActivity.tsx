@@ -1,18 +1,32 @@
 'use client';
 
 import { GitHubCalendar } from 'react-github-calendar';
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
 interface GitHubActivityProps {
     username: string;
 }
 
 const GitHubActivity = ({ username }: GitHubActivityProps) => {
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+
     // Customizing the colors to match the portfolio theme
     const theme = {
         light: ['#2d2d2e', '#826d2e', '#c2912e', '#e0a800', '#ffdb70'],
         dark: ['#2d2d2e', '#826d2e', '#c2912e', '#e0a800', '#ffdb70'],
     };
+
+    // Auto-scroll to the right (most recent activity) when component loads
+    useEffect(() => {
+        if (scrollContainerRef.current) {
+            // Small delay to ensure the calendar has rendered
+            setTimeout(() => {
+                if (scrollContainerRef.current) {
+                    scrollContainerRef.current.scrollLeft = scrollContainerRef.current.scrollWidth;
+                }
+            }, 100);
+        }
+    }, []);
 
     return (
         <section className="github-activity" style={{ marginTop: '40px' }}>
@@ -30,6 +44,7 @@ const GitHubActivity = ({ username }: GitHubActivityProps) => {
                 cursor: 'default'
             }}>
                 <div
+                    ref={scrollContainerRef}
                     className="has-scrollbar"
                     style={{
                         display: 'flex',

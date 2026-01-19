@@ -14,10 +14,18 @@ export async function POST(request: Request) {
 
         const telegramMessage = `Name: ${fullname}\nEmail: ${email}\nMessage: ${message}`;
         const token = process.env.TELEGRAM_API_TOKEN;
-        const chatId = '425667436';
+        const chatId = process.env.TELEGRAM_CHAT_ID;
 
         if (!token) {
             console.error('TELEGRAM_API_TOKEN not found in environment variables');
+            return NextResponse.json(
+                { error: 'Server configuration error' },
+                { status: 500 }
+            );
+        }
+
+        if (!chatId) {
+            console.error('TELEGRAM_CHAT_ID not found in environment variables');
             return NextResponse.json(
                 { error: 'Server configuration error' },
                 { status: 500 }
