@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banner Generator</title>
+    <title>Authentic Banner Generator</title>
     <style>
         :root {
-            --bg-color: #0b0b0b;
+            --bg-left: #fdf6e3;
+            --bg-right-start: #111111;
+            --bg-right-end: #000000;
             --gold: #ffdb70;
             --white: #ffffff;
-            --eerie-black-2: #1e1e1f;
         }
 
         body {
@@ -19,103 +20,104 @@
             width: 1200px;
             height: 630px;
             overflow: hidden;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg-right-end);
         }
 
-        .banner {
-            display: flex;
+        .container {
             width: 1200px;
             height: 630px;
-            background: var(--bg-color);
+            display: flex;
+            position: relative;
         }
 
-        .left {
-            width: 45%;
+        .photo-side {
+            width: 50%;
             height: 100%;
-            background: #fdf6e3;
-            /* Cream background to match the photo */
+            background: var(--bg-left);
             position: relative;
             overflow: hidden;
         }
 
         .user-photo {
-            width: 130%;
-            /* Zoom in slightly */
+            width: 140%;
+            /* Zoomed in for the "closer" feel */
             height: auto;
             position: absolute;
-            bottom: -50px;
-            /* Lower the face significantly */
+            top: 20%;
+            /* Lowered from the top to prevent hair cropping */
             left: 50%;
             transform: translateX(-50%);
+            display: block;
         }
 
-        .right {
-            width: 55%;
+        .gradient-blend {
+            position: absolute;
+            left: 40%;
+            top: 0;
+            width: 25%;
             height: 100%;
-            background: linear-gradient(135deg, #111111 0%, #000000 100%);
+            background: linear-gradient(to right, rgba(253, 246, 227, 1) 0%, rgba(17, 17, 17, 0.5) 50%, rgba(17, 17, 17, 1) 100%);
+            z-index: 2;
+        }
+
+        .text-side {
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--bg-right-start) 0%, var(--bg-right-end) 100%);
+            position: absolute;
+            right: 0;
+            top: 0;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            /* Push text to the bottom area */
-            padding: 80px 60px;
+            padding: 100px 60px;
             box-sizing: border-box;
-            color: var(--white);
-            border-left: 2px solid var(--gold);
+            z-index: 1;
         }
 
         .name {
-            font-size: 80px;
+            font-size: 76px;
             font-weight: 800;
             color: var(--gold);
             margin: 0;
-            letter-spacing: -2px;
+            line-height: 1.1;
         }
 
-        .title {
-            font-size: 32px;
-            font-weight: 400;
-            margin: 10px 0 40px 0;
+        .tagline {
+            font-size: 30px;
+            color: var(--white);
             opacity: 0.9;
+            margin: 15px 0 40px 0;
+            font-weight: 400;
         }
 
         .icons {
             display: flex;
             gap: 25px;
-            align-items: center;
         }
 
         .icon {
-            width: 50px;
-            height: 50px;
-            filter: grayscale(1) brightness(2) sepia(1) hue-rotate(5deg) saturate(2);
+            width: 44px;
+            height: 44px;
+            filter: invert(86%) sepia(21%) saturate(760%) hue-rotate(345deg) brightness(101%) contrast(101%);
             opacity: 0.8;
-        }
-
-        /* Decoration */
-        .glow {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 219, 112, 0.05) 0%, rgba(255, 219, 112, 0) 70%);
-            top: 20%;
-            right: 0;
         }
     </style>
 </head>
 
 <body>
-    <div class="banner">
-        <div class="left">
-            <!-- Using the uploaded photo path -->
+    <div class="container">
+        <div class="photo-side">
+            <!-- Using the ACTUAL photo uploaded by the user -->
             <img src="C:/Users/bemne/.gemini/antigravity/brain/d267ebdc-a920-4bde-b65a-560dc6d539b6/uploaded_image_1768848286699.jpg"
                 class="user-photo">
         </div>
-        <div class="right">
-            <div class="glow"></div>
+        <div class="gradient-blend"></div>
+        <div class="text-side">
             <h1 class="name">Bemnet Kibret</h1>
-            <p class="title">Full-Stack Engineer | Curating Soundscapes</p>
+            <p class="tagline">Full-Stack Engineer | Curating Soundscapes</p>
             <div class="icons">
-                <!-- Using CDN icons for reliability in the generator -->
                 <img src="https://simpleicons.org/icons/nextdotjs.svg" class="icon">
                 <img src="https://simpleicons.org/icons/react.svg" class="icon">
                 <img src="https://simpleicons.org/icons/typescript.svg" class="icon">
