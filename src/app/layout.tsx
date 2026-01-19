@@ -10,13 +10,13 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://my-portfolio-theta-flame-45.vercel.app/"),
-  title: "Bemnet Kibret | Full Stack Web Developer",
-  description: "Professional Portfolio of Bemnet Kibret, a Full Stack Developer specializing in React, Next.js, and Node.js.",
+  title: "Bemnet Kibret | Full Stack Web Developer & Professional DJ",
+  description: "Professional Portfolio of Bemnet Kibret, a Full Stack Developer specializing in React, Next.js, and Node.js. Explore enterprise-grade projects including Senselet Inventory Intelligence with Telegram Mini App, Trainer CRM with Mobile App, and FormCheck AI computer vision platform.",
   keywords: ["Bemnet Kibret", "Full Stack Developer", "Portfolio", "React", "Next.js", "Node.js", "Web Development"],
   authors: [{ name: "Bemnet Kibret" }],
   openGraph: {
-    title: "Bemnet Kibret | Full Stack Web Developer",
-    description: "Discover the professional portfolio and projects of Bemnet Kibret.",
+    title: "Bemnet Kibret | Full Stack Web Developer & Professional DJ",
+    description: "Professional Portfolio of Bemnet Kibret, a Full Stack Developer specializing in React, Next.js, and Node.js. Explore enterprise-grade projects including Senselet Inventory Intelligence with Telegram Mini App, Trainer CRM with Mobile App, and FormCheck AI computer vision platform.",
     url: "https://my-portfolio-theta-flame-45.vercel.app/",
     siteName: "Bemnet Kibret Portfolio",
     images: [
@@ -30,9 +30,8 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Bemnet Kibret | Full Stack Web Developer",
-    description: "Professional Portfolio of Bemnet Kibret.",
+    title: "Bemnet Kibret | Full Stack Web Developer & Professional DJ",
+    description: "Professional Portfolio of Bemnet Kibret, a Full Stack Developer specializing in React, Next.js, and Node.js. Explore enterprise-grade projects including Senselet Inventory Intelligence with Telegram Mini App, Trainer CRM with Mobile App, and FormCheck AI computer vision platform.",
     images: ["/images/og-banner.png"],
   },
 };
