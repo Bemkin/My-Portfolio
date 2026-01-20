@@ -1,11 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { trackButtonClick } from '@/lib/analytics';
 import GitHubActivity from './GitHubActivity';
+import Modal from '../shared/Modal';
 
 interface ResumeProps {
     active: boolean;
+    onCertClick?: () => void;
 }
 
 const containerVariants = {
@@ -23,7 +26,7 @@ const itemVariants = {
     show: { opacity: 1, y: 0, transition: { duration: 0.4 } }
 };
 
-const Resume = ({ active }: ResumeProps) => {
+const Resume = ({ active, onCertClick }: ResumeProps) => {
     return (
         <article className={`resume ${active ? 'active' : ''}`} data-page="resume">
             <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
@@ -116,12 +119,12 @@ const Resume = ({ active }: ResumeProps) => {
                             {
                                 title: 'Freelancer',
                                 date: '2024 — Present',
-                                text: "As a junior freelancer specializing in web development, I've worked on a variety of exciting projects."
+                                text: "Architecting and deploying full-stack solutions for startups and local businesses. Focused on building scalable systems like Senselet using Next.js, Supabase, and custom API integrations to solve complex business problems."
                             },
                             {
                                 title: 'MARVELS CREATIVE TECHNOLOGY',
                                 date: 'March — June 2025',
-                                text: 'Completed a backend developer internship building scalable systems with TypeScript and Next.js, gaining valuable industry experience in modern web development practices.'
+                                text: "Completed a backend developer internship building scalable systems with TypeScript and Next.js, gaining valuable industry experience in modern web development practices."
                             }
                         ].map((item, i) => (
                             <li key={i} className="timeline-item" style={{ position: 'relative', paddingLeft: '30px', marginBottom: '25px' }}>
@@ -144,6 +147,56 @@ const Resume = ({ active }: ResumeProps) => {
                 </section>
             </div>
 
+            {/* Certifications */}
+            <section className="timeline" style={{ marginBottom: '40px' }}>
+                <div className="title-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '25px' }}>
+                    <div className="icon-box">
+                        {/* @ts-ignore */}
+                        <ion-icon name="ribbon-outline"></ion-icon>
+                    </div>
+                    <h3 className="h3">Certifications</h3>
+                </div>
+
+                <div className="cert-list" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
+                    <motion.div
+                        className="content-card"
+                        variants={itemVariants}
+                        whileHover={{ y: -5 }}
+                        style={{
+                            padding: '25px',
+                            display: 'flex',
+                            gap: '20px',
+                            alignItems: 'center',
+                            cursor: 'pointer',
+                            border: '1px solid var(--jet)',
+                            transition: 'var(--transition-1)'
+                        }}
+                        onClick={onCertClick}
+                    >
+                        <div className="icon-box" style={{ flexShrink: 0, width: '60px', height: '60px', background: 'var(--onyx)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <Image
+                                unoptimized
+                                src="https://cdn.simpleicons.org/mongodb/47A248"
+                                alt="Evangadi"
+                                width={35}
+                                height={35}
+                            />
+                        </div>
+                        <div style={{ flexGrow: 1 }}>
+                            <h4 className="h4" style={{ fontSize: 'var(--fs-6)', marginBottom: '5px', textTransform: 'none' }}>Full Stack Web Development (MERN)</h4>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <span style={{ color: 'var(--vegas-gold)', fontSize: 'var(--fs-7)' }}>Evangadi Technologies</span>
+                                <span style={{ color: 'var(--light-gray-70)', fontSize: 'var(--fs-8)' }}>Sept 2025</span>
+                            </div>
+                        </div>
+                        <div style={{ color: 'var(--vegas-gold)', fontSize: '20px' }}>
+                            {/* @ts-ignore */}
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
             {/* GitHub Activity */}
             <GitHubActivity username="Bemkin" />
 
@@ -158,11 +211,11 @@ const Resume = ({ active }: ResumeProps) => {
                     style={{ marginBottom: '40px', cursor: 'default' }}
                 >
                     {[
-                        { name: 'Full-Stack Architecture', level: 95 },
-                        { name: 'API Design & Database Management', level: 90 },
-                        { name: 'Frontend Engineering (React/Next.js)', level: 85 },
-                        { name: 'UI/UX & Interactive Design', level: 80 },
-                        { name: 'Brand Strategy & Visual Design', level: 75 }
+                        { name: 'Startup-Focused Architecture (Next.js/Supabase)', level: 95 },
+                        { name: 'Retail Intelligence & Inventory Logic', level: 90 },
+                        { name: 'AI-Powered Motion Analysis (MediaPipe)', level: 85 },
+                        { name: 'Full-Stack E-commerce Systems (Chapa)', level: 80 },
+                        { name: 'UI/UX Engineering & 3D Web', level: 75 }
                     ].map((skill) => (
                         <motion.li key={skill.name} className="skills-item" variants={itemVariants} style={{ marginBottom: '20px' }}>
                             <div className="title-wrapper" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
@@ -209,8 +262,8 @@ const Resume = ({ active }: ResumeProps) => {
                         { name: 'TypeScript', icon: 'code-slash-outline' },
                         { name: 'Tailwind', icon: 'color-palette-outline' },
                         { name: 'MySQL', icon: 'server-outline' },
-                        { name: 'Firebase', icon: 'flame-outline' },
-                        { name: 'Stripe', icon: 'card-outline' },
+                        { name: 'Supabase', icon: 'server-outline' },
+                        { name: 'Chapa', icon: 'card-outline' },
                         { name: 'Python', icon: 'logo-python' },
                         { name: 'Git', icon: 'logo-github' },
                         { name: 'Three.js', icon: 'cube-outline' },

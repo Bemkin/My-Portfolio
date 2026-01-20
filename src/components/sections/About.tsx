@@ -42,13 +42,13 @@ const About = ({ active, testimonials, onTestimonialClick }: AboutProps) => {
                     Hello! I'm Bemnet Kibret, a passionate full-stack web developer from Addis Ababa, Ethiopia. My journey into the world of technology began with a solid education at Addis Ababa Science and Technology University, where I developed a keen interest in building innovative digital solutions. This passion led me to Evangadi Technologies in 2024, where I underwent intensive full-stack web development training that transformed me from an enthusiast into a professional developer.
                 </p>
                 <p>
-                    Currently, I work as a freelance developer, taking on diverse projects that challenge me to create modern, user-friendly web applications. Beyond client work, I've also built and launched several of my own startups, applying my technical skills to create solutions that solve real-world problems. My technical expertise was further honed during my Backend Developer Internship at MARVELS CREATIVE TECHNOLOGY (March - June 2025), where I worked with cutting-edge technologies like TypeScript and Next.js to build scalable systems. My technical stack includes React, Next.js, Node.js, TypeScript, and various databases, allowing me to deliver end-to-end solutions from concept to deployment.
+                    Currently, I work as a freelance developer and am an active builder in the ecosystem, maintaining **daily GitHub activity** across various production-ready projects. Beyond client work, I've launched several startups, applying my technical skills to create solutions that solve real-world problems. My technical expertise was further honed during my Backend Developer Internship at **MARVELS CREATIVE TECHNOLOGY** (March - June 2025), where I worked with cutting-edge technologies like TypeScript and Next.js to build scalable systems. My technical stack includes React, Next.js, Node.js, TypeScript, and high-performance databases like Supabase and PostgreSQL.
                 </p>
                 <p>
                     Beyond coding, I have a creative side as a professional DJ, where I curate soundscapes and create memorable experiences through music. This unique combination of technical precision and artistic creativity gives me a distinctive perspective on user experience design—I understand that great products should not only function flawlessly but also evoke emotion and delight.
                 </p>
                 <p>
-                    I'm driven by the desire to build impactful web applications that solve real problems and make a difference in people's lives. Whether it's developing a complex inventory management system like Senselet or creating intuitive AI-powered tools like FormCheck AI, I approach each project with meticulous attention to detail, a commitment to clean code, and a focus on creating exceptional user experiences. I'm always eager to collaborate on innovative projects that push the boundaries of what's possible on the web.
+                    I'm driven by the desire to build impactful web applications that solve real problems. Whether it's developing a complex inventory management system like **Senselet** (integrated with Chapa payments and Supabase) or creating intuitive AI-powered tools like **FormCheck AI** (leveraging MediaPipe AI), I approach each project with meticulous attention to detail, a commitment to clean code, and a focus on creating exceptional user experiences.
                 </p>
             </section>
 
@@ -114,7 +114,7 @@ const About = ({ active, testimonials, onTestimonialClick }: AboutProps) => {
 
             {/* Collaborations & Technology */}
             <section className="clients">
-                <h3 className="h3 clients-title">Collaborations & Tech</h3>
+                <h3 className="h3 clients-title">Technologies I Love</h3>
                 <motion.ul
                     className="clients-list has-scrollbar"
                     variants={containerVariants}
@@ -123,14 +123,14 @@ const About = ({ active, testimonials, onTestimonialClick }: AboutProps) => {
                     style={{ paddingBottom: '20px' }}
                 >
                     {[
-                        { name: 'Marvel', src: '/images/white primary whith purple logo.svg' },
                         { name: 'Next.js', src: 'https://cdn.simpleicons.org/nextdotjs/white' },
                         { name: 'React', src: 'https://cdn.simpleicons.org/react/61DAFB' },
                         { name: 'TypeScript', src: 'https://cdn.simpleicons.org/typescript/3178C6' },
                         { name: 'Node.js', src: 'https://cdn.simpleicons.org/nodedotjs/339933' },
+                        { name: 'Supabase', src: 'https://cdn.simpleicons.org/supabase/3ECF8E' },
                         { name: 'Tailwind CSS', src: 'https://cdn.simpleicons.org/tailwindcss/06B6D4' }
                     ].map((tech, i) => (
-                        <motion.li key={i} className="clients-item" variants={itemVariants} style={{ minWidth: tech.name === 'Marvel' ? '120px' : '80px' }}>
+                        <motion.li key={i} className="clients-item" variants={itemVariants} style={{ minWidth: '80px' }}>
                             <div style={{
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -142,10 +142,10 @@ const About = ({ active, testimonials, onTestimonialClick }: AboutProps) => {
                                 <Image
                                     src={tech.src}
                                     alt={tech.name}
-                                    width={tech.name === 'Marvel' ? 120 : 40}
-                                    height={tech.name === 'Marvel' ? 30 : 40}
+                                    width={40}
+                                    height={40}
                                     style={{
-                                        height: tech.name === 'Marvel' ? '30px' : '40px',
+                                        height: '40px',
                                         width: 'auto',
                                         objectFit: 'contain'
                                     }}

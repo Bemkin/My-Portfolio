@@ -182,6 +182,20 @@ export default function ResumePage() {
                     </div>
                 </section>
 
+                {/* Certifications */}
+                <section style={{ marginBottom: '35px' }}>
+                    <h2 style={{ fontSize: '24px', color: '#1a1a1a', marginBottom: '20px', borderBottom: '2px solid #ffdb70', paddingBottom: '8px', fontWeight: '600' }}>
+                        Certifications
+                    </h2>
+                    <div style={{ marginBottom: '15px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                            <h3 style={{ fontSize: '17px', fontWeight: '600', margin: 0, color: '#1a1a1a' }}>Full Stack Web Development (MERN)</h3>
+                            <span style={{ fontSize: '14px', color: '#666', fontWeight: '500' }}>Sept 2025</span>
+                        </div>
+                        <p style={{ fontSize: '14px', color: '#444', marginTop: '5px' }}>Evangadi Technologies • Verified Credential</p>
+                    </div>
+                </section>
+
                 {/* Technical Skills */}
                 <section style={{ marginBottom: '35px' }}>
                     <h2 style={{ fontSize: '24px', color: '#1a1a1a', marginBottom: '20px', borderBottom: '2px solid #ffdb70', paddingBottom: '8px', fontWeight: '600' }}>
@@ -202,7 +216,7 @@ export default function ResumePage() {
                         </div>
                         <div>
                             <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Additional Skills</h4>
-                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Responsive Design, API Integration, Payment Integration (Stripe), UI/UX Design</p>
+                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Responsive Design, API Integration, Payment Integration (Chapa), UI/UX Design</p>
                         </div>
                     </div>
                 </section>
@@ -216,17 +230,17 @@ export default function ResumePage() {
                     <div style={{ marginBottom: '20px' }}>
                         <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Senselet - Inventory Intelligence</h3>
                         <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
-                            Full-stack inventory management system with real-time tracking, low-stock alerts, and comprehensive reporting. Built with Next.js, TypeScript, Supabase, and Stripe integration.
+                            Full-stack inventory management system with real-time tracking, low-stock alerts, and comprehensive reporting. Built with Next.js, TypeScript, Supabase, and Chapa integration.
                         </p>
-                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, TypeScript, Supabase, Stripe, Tailwind CSS</p>
+                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, TypeScript, Supabase, Chapa, Tailwind CSS</p>
                     </div>
 
                     <div style={{ marginBottom: '20px' }}>
                         <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>FormCheck AI</h3>
                         <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
-                            AI-powered form validation tool that provides intelligent feedback and suggestions for form submissions. Features real-time validation and custom rule configuration.
+                            AI-powered form validation tool featuring MediaPipe AI for intelligent input processing and real-time feedback.
                         </p>
-                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> React, Node.js, OpenAI API, MongoDB</p>
+                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> React, Node.js, MediaPipe AI, MongoDB</p>
                     </div>
 
                     <div style={{ marginBottom: '20px' }}>
@@ -234,7 +248,7 @@ export default function ResumePage() {
                         <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
                             Customer relationship management system for personal trainers featuring client management, session scheduling, and progress tracking.
                         </p>
-                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, Firebase, React, TypeScript</p>
+                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, Supabase, React, TypeScript</p>
                     </div>
                 </section>
 

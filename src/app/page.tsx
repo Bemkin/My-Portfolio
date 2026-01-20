@@ -24,6 +24,7 @@ export default function Home() {
   const [selectedTestimonial, setSelectedTestimonial] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedPhoto, setSelectedPhoto] = useState<LifePhoto | null>(null);
+  const [isCertModalOpen, setIsCertModalOpen] = useState(false);
   const [portfolioFilter, setPortfolioFilter] = useState('all');
   const [isFilterActive, setIsFilterActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -131,7 +132,10 @@ export default function Home() {
 
           {activePage === 'resume' && (
             <motion.div key="resume" {...sectionVariants}>
-              <Resume active={true} />
+              <Resume
+                active={true}
+                onCertClick={() => setIsCertModalOpen(true)}
+              />
             </motion.div>
           )}
 
@@ -382,6 +386,28 @@ export default function Home() {
             </div>
           </div>
         )}
+      </Modal>
+
+      {/* Certificate Modal */}
+      <Modal
+        isOpen={isCertModalOpen}
+        onClose={() => setIsCertModalOpen(false)}
+      >
+        <div style={{ textAlign: 'center' }}>
+          <h3 className="h3 modal-title" style={{ marginBottom: '20px' }}>Full Stack Web Development Certificate</h3>
+          <figure style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--jet)', lineHeight: 0 }}>
+            <Image
+              src="/images/cert-evangadi.jpg"
+              alt="Evangadi Certificate"
+              width={1200}
+              height={900}
+              style={{ width: '100%', height: 'auto' }}
+            />
+          </figure>
+          <div style={{ marginTop: '20px', color: 'var(--light-gray)', fontSize: 'var(--fs-7)' }}>
+            Issued by Evangadi Technologies • September 2025
+          </div>
+        </div>
       </Modal>
 
       {/* Toast Notification */}
