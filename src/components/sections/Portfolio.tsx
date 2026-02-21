@@ -47,7 +47,7 @@ const Portfolio = ({
 
             <section className="projects">
                 <ul className="filter-list">
-                    {['All', 'Web development', 'Applications'].map((filter) => (
+                    {['All', 'Frontend', 'Fullstack', 'Mobile', 'AI'].map((filter) => (
                         <li key={filter} className="filter-item">
                             <button
                                 className={portfolioFilter === filter.toLowerCase() ? 'active' : ''}
@@ -68,7 +68,7 @@ const Portfolio = ({
                         </div>
                     </button>
                     <ul className="select-list">
-                        {['All', 'Web development', 'Applications'].map((filter) => (
+                        {['All', 'Frontend', 'Fullstack', 'Mobile', 'AI'].map((filter) => (
                             <li key={filter} className="select-item">
                                 <button onClick={() => { setPortfolioFilter(filter.toLowerCase()); setIsFilterActive(false); }}>{filter}</button>
                             </li>
@@ -88,7 +88,7 @@ const Portfolio = ({
                             key={index}
                             className="project-item active"
                             data-filter-item
-                            data-category={project.category}
+                            data-category={Array.isArray(project.category) ? project.category.join(',') : project.category}
                             variants={itemVariants}
                             onClick={() => handleProjectClick(project)}
                             style={{ cursor: 'pointer' }}
@@ -130,7 +130,9 @@ const Portfolio = ({
                                 </figure>
                                 <div style={{ padding: '20px' }}>
                                     <h3 className="project-title" style={{ fontSize: 'var(--fs-5)', marginBottom: '5px' }}>{project.title}</h3>
-                                    <p className="project-category" style={{ fontSize: 'var(--fs-7)', color: 'var(--light-gray-70)' }}>{project.category}</p>
+                                    <p className="project-category" style={{ fontSize: 'var(--fs-7)', color: 'var(--light-gray-70)', textTransform: 'capitalize' }}>
+                                        {Array.isArray(project.category) ? project.category.join(' • ') : project.category}
+                                    </p>
 
                                     {project.tech && (
                                         <div className="tech-stack" style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '12px' }}>

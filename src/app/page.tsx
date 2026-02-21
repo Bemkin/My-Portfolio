@@ -45,7 +45,10 @@ export default function Home() {
 
   const filteredProjects = portfolioFilter === 'all'
     ? projects
-    : projects.filter(p => p.category === portfolioFilter);
+    : projects.filter(p => {
+      const categories = Array.isArray(p.category) ? p.category : [p.category];
+      return categories.some(cat => cat.toLowerCase() === portfolioFilter.toLowerCase());
+    });
 
   const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -234,7 +237,7 @@ export default function Home() {
                 marginBottom: '15px',
                 textTransform: 'capitalize'
               }}>
-                {selectedProject.category}
+                {Array.isArray(selectedProject.category) ? selectedProject.category.join(' • ') : selectedProject.category}
               </p>
 
               <div style={{ marginBottom: '20px' }}>

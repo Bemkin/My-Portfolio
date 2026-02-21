@@ -10,15 +10,38 @@ export const testimonials = [
 
 export const projects: Project[] = [
     {
+        title: 'ShopHub - Modern eCommerce',
+        category: ['frontend'],
+        slug: 'shophub',
+        image: '/images/shophub-banner.png',
+        link: 'https://ecommerce-shop-psi-umber.vercel.app/',
+        tech: ['Next.js', 'TypeScript', 'Tailwind', 'Shadcn UI', 'Redux Toolkit'],
+        description: 'A modern e-commerce experience featuring a product catalog with search and filter, a favorites management system, and full CRUD operations for products. Built with a robust modern stack for performance and scalability.',
+        problem: 'Many e-commerce templates are either too complex to customize or lack essential modern features like Redux-managed state and seamless dark mode transitions, leading to poor user experiences and slow performance.',
+        solution: 'ShopHub provides a streamlined, high-performance shopping interface. It leverages Redux Toolkit for efficient state management (Cart, Favorites) and Shadcn UI for a premium, accessible component architecture, ensuring a smooth transition between themes and responsive product interactions.',
+        features: [
+            'Modern Product Catalog',
+            'Search & Filtering',
+            'Favorites Management',
+            'Full CRUD Functionality',
+            'Dynamic Dark Mode'
+        ],
+        metrics: [
+            { label: 'Performance Score', value: '98/100' },
+            { label: 'State Management', value: 'Redux RTK' },
+            { label: 'Typescript', value: '100%' }
+        ]
+    },
+    {
         title: 'Senselet - Inventory Intelligence',
-        category: 'applications',
+        category: ['fullstack', 'mobile', 'ai'],
         slug: 'senselet',
         image: '/images/senselet-banner.png',
         link: 'https://www.senselet.store/',
         tech: ['Next.js', 'React', 'Tailwind', 'Supabase', 'Chapa'],
         description: 'A high-performance Retail Inventory Intelligence Platform featuring a Telegram Mini App for on-the-go management. Includes cognitive sales forecasting, digital twins for real-time tracking, and multi-warehouse global synchronization.',
         problem: 'Small and medium retail businesses in emerging markets struggle with fragmented inventory tracking, leading to frequent stockouts, overstocking, and a lack of real-time insights into their multi-warehouse operations.',
-        solution: 'Senselet provides a unified "Digital Twin" of the business, combining a powerful web dashboard with a lightweight Telegram Mini App. It utilizes cognitive forecasting to predict stock needs and ensures seamless synchronization across multiple locations.',
+        solution: 'Senselet provides a unified "Digital twin" of the business, combining a powerful web dashboard with a lightweight Telegram Mini App. It utilizes cognitive forecasting to predict stock needs and ensures seamless synchronization across multiple locations.',
         features: [
             'Real-time Multi-warehouse Sync',
             'Cognitive Sales Forecasting',
@@ -34,7 +57,7 @@ export const projects: Project[] = [
     },
     {
         title: 'Trainer CRM - Fitness Management',
-        category: 'applications',
+        category: ['fullstack', 'mobile'],
         slug: 'trainer-crm',
         image: '/images/trainer-crm-banner.png',
         link: 'https://trainer-crm-amber.vercel.app/',
@@ -57,7 +80,7 @@ export const projects: Project[] = [
     },
     {
         title: 'FormCheck AI - Workout Assistant',
-        category: 'applications',
+        category: ['ai', 'frontend'],
         slug: 'formcheck-ai',
         image: '/images/formcheck-hero.png',
         link: 'https://form-wiz-79.vercel.app/',
@@ -80,7 +103,7 @@ export const projects: Project[] = [
     },
     {
         title: 'Netflix Clone',
-        category: 'web development',
+        category: ['frontend'],
         slug: 'netflix-clone',
         image: '/images/Screenshot 2025-01-12 181420.webp',
         link: 'https://kino-clone.netlify.app/',
@@ -90,7 +113,7 @@ export const projects: Project[] = [
     },
     {
         title: 'Amazon Clone',
-        category: 'web development',
+        category: ['fullstack'],
         slug: 'amazon-clone',
         image: '/images/Screenshot 2025-01-12 181738.webp',
         link: 'https://melodious-cuchufli-da626d.netlify.app/',
@@ -100,7 +123,7 @@ export const projects: Project[] = [
     },
     {
         title: 'Forum Page for Evangadi Tech',
-        category: 'web development',
+        category: ['fullstack'],
         slug: 'evangadi-forum',
         image: '/images/Screenshot 2025-01-21 140027.webp',
         link: 'https://evangadiforumclient2.netlify.app',
@@ -110,7 +133,7 @@ export const projects: Project[] = [
     },
     {
         title: 'Apple Clone',
-        category: 'applications',
+        category: ['frontend'],
         slug: 'apple-clone',
         image: '/images/Screenshot 2025-01-12 220551.webp',
         link: 'https://lighthearted-squirrel-57b7a4.netlify.app/',
