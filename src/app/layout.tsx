@@ -38,6 +38,8 @@ export const metadata: Metadata = {
 
 import StructuredData from "@/components/shared/StructuredData";
 import GoogleAnalytics from "@/components/shared/GoogleAnalytics";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import ThemeToggle from "@/components/theme/ThemeToggle";
 
 export default function RootLayout({
   children,
@@ -47,9 +49,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={outfit.variable} suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <GoogleAnalytics />
-        <StructuredData />
-        {children}
+        <ThemeProvider>
+          <GoogleAnalytics />
+          <StructuredData />
+          <ThemeToggle />
+          {children}
+        </ThemeProvider>
         <Script
           type="module"
           src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"

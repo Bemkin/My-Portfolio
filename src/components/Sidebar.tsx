@@ -16,7 +16,13 @@ const Sidebar = ({ active, onToggle }: SidebarProps) => {
 
     return (
         <>
-            <aside className={`sidebar ${active ? 'active' : ''}`} data-sidebar>
+            <motion.aside
+                initial={{ x: -50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+                className={`sidebar ${active ? 'active' : ''}`}
+                data-sidebar
+            >
                 <div className="sidebar-info">
                     <figure
                         className="avatar-box cursor-zoom-in"
@@ -122,7 +128,7 @@ const Sidebar = ({ active, onToggle }: SidebarProps) => {
                         ))}
                     </ul>
                 </div>
-            </aside>
+            </motion.aside>
 
             <Modal
                 isOpen={isImageModalOpen}

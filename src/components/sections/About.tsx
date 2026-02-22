@@ -149,7 +149,7 @@ const About = ({ active, testimonials, onTestimonialClick }: AboutProps) => {
                                         width: 'auto',
                                         objectFit: 'contain'
                                     }}
-                                    className="tech-logo"
+                                    className={`tech-logo ${tech.name === 'Next.js' ? 'invert-on-light' : ''}`}
                                     unoptimized={tech.src.startsWith('http')}
                                 />
                                 <span style={{

@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { blogPosts } from '@/lib/constants';
+import { getPostBySlug, getPosts } from '@/lib/mdx';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import { Metadata } from 'next';
 
 interface BlogPostPageProps {
     params: Promise<{
@@ -9,15 +11,64 @@ interface BlogPostPageProps {
     }>;
 }
 
+export async function generateMetadata(props: BlogPostPageProps): Promise<Metadata> {
+    const params = await props.params;
+    try {
+        const post = await getPostBySlug('blog', params.slug) as any;
+        const ogUrl = new URL('https://my-portfolio-theta-flame-45.vercel.app/api/og');
+        ogUrl.searchParams.set('title', post.title);
+        ogUrl.searchParams.set('type', 'Blog');
+        ogUrl.searchParams.set('category', post.category);
+
+        return {
+            title: `${post.title} | Bemnet Kibret`,
+            description: post.excerpt,
+            openGraph: {
+                title: post.title,
+                description: post.excerpt,
+                images: [ogUrl.toString()],
+                type: 'article',
+            },
+            twitter: {
+                card: 'summary_large_image',
+                title: post.title,
+                description: post.excerpt,
+                images: [ogUrl.toString()],
+            },
+        };
+    } catch (e) {
+        return {
+            title: 'Not Found',
+        };
+    }
+}
+
+interface Post {
+    title: string;
+    category: string;
+    date: string;
+    dateTime: string;
+    image: string;
+    excerpt: string;
+    content: string;
+}
+
 export async function generateStaticParams() {
-    return blogPosts.map((post) => ({
+    const posts = await getPosts('blog');
+    return posts.map((post: any) => ({
         slug: post.slug,
     }));
 }
 
 export default async function BlogPostPage(props: BlogPostPageProps) {
     const params = await props.params;
-    const post = blogPosts.find((p) => p.slug === params.slug);
+    let post: Post;
+
+    try {
+        post = await getPostBySlug('blog', params.slug) as unknown as Post;
+    } catch (e) {
+        notFound();
+    }
 
     if (!post) {
         notFound();
@@ -46,8 +97,8 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                 </Link>
 
                 <Image
-                    src={post.image}
-                    alt={post.title}
+                    src={post.image as string}
+                    alt={post.title as string}
                     width={900}
                     height={500}
                     style={{
@@ -73,7 +124,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                         display: 'inline-block',
                         marginBottom: '15px'
                     }}>
-                        {post.category}
+                        {post.category as string}
                     </span>
 
                     <h1 style={{
@@ -83,7 +134,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                         fontWeight: '600',
                         lineHeight: '1.3'
                     }}>
-                        {post.title}
+                        {post.title as string}
                     </h1>
 
                     <p style={{
@@ -92,50 +143,20 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                         marginBottom: '30px',
                         lineHeight: '1.6'
                     }}>
-                        {post.excerpt}
+                        {post.excerpt as string}
                     </p>
 
-                    <div style={{ color: '#d1d1d1', fontSize: '16px', lineHeight: '1.8' }}>
-                        {post.content.split('\n\n').map((para, i) => {
-                            para = para.trim();
-                            if (!para) return null;
-
-                            if (para.startsWith('## ')) {
-                                return (
-                                    <h2 key={i} style={{
-                                        color: '#fafafa',
-                                        fontSize: '24px',
-                                        margin: '30px 0 15px',
-                                        fontWeight: '600'
-                                    }}>
-                                        {para.replace('## ', '')}
-                                    </h2>
-                                );
-                            }
-
-                            if (para.startsWith('- ')) {
-                                const items = para.split('\n');
-                                return (
-                                    <ul key={i} style={{ margin: '15px 0', paddingLeft: '25px', listStyle: 'disc' }}>
-                                        {items.map((item, j) => (
-                                            <li key={j} style={{ margin: '8px 0', color: '#d1d1d1' }}>
-                                                {item.replace('- ', '').split('**').map((part, k) =>
-                                                    k % 2 === 0 ? part : <strong key={k} style={{ color: '#fafafa' }}>{part}</strong>
-                                                )}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                );
-                            }
-
-                            return (
-                                <p key={i} style={{ margin: '15px 0', color: '#d1d1d1' }}>
-                                    {para.split('**').map((part, k) =>
-                                        k % 2 === 0 ? part : <strong key={k} style={{ color: '#fafafa' }}>{part}</strong>
-                                    )}
-                                </p>
-                            );
-                        })}
+                    <div className="mdx-content" style={{ color: '#d1d1d1', fontSize: '16px', lineHeight: '1.8' }}>
+                        <MDXRemote
+                            source={post.content}
+                            components={{
+                                h2: (props) => <h2 {...props} style={{ color: '#fafafa', fontSize: '24px', margin: '30px 0 15px', fontWeight: '600' }} />,
+                                p: (props) => <p {...props} style={{ margin: '15px 0', color: '#d1d1d1' }} />,
+                                ul: (props) => <ul {...props} style={{ margin: '15px 0', paddingLeft: '25px', listStyle: 'disc' }} />,
+                                li: (props) => <li {...props} style={{ margin: '8px 0', color: '#d1d1d1' }} />,
+                                strong: (props) => <strong {...props} style={{ color: '#fafafa' }} />,
+                            }}
+                        />
                     </div>
 
                     <div style={{

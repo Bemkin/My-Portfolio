@@ -75,14 +75,14 @@ const GitHubActivity = ({ username }: GitHubActivityProps) => {
                     {/* Stats Cards using GitHub Readme Stats (External Images) */}
                     <div style={{ borderRadius: '12px', overflow: 'hidden' }}>
                         <img
-                            src={`https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=dark&bg_color=1e1e1f&title_color=ffdb70&icon_color=ffdb70&text_color=d1d1d1&hide_border=true`}
+                            src={`https://github-readme-stats-eight-theta.vercel.app/api?username=${username}&show_icons=true&theme=dark&bg_color=1e1e1f&title_color=ffdb70&icon_color=ffdb70&text_color=d1d1d1&hide_border=true`}
                             alt={`${username}'s GitHub Stats`}
                             style={{ width: '100%', height: 'auto' }}
                         />
                     </div>
                     <div style={{ borderRadius: '12px', overflow: 'hidden' }}>
                         <img
-                            src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=dark&bg_color=1e1e1f&title_color=ffdb70&text_color=d1d1d1&hide_border=true`}
+                            src={`https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=dark&bg_color=1e1e1f&title_color=ffdb70&text_color=d1d1d1&hide_border=true`}
                             alt={`${username}'s Top Languages`}
                             style={{ width: '100%', height: 'auto' }}
                         />

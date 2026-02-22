@@ -83,7 +83,7 @@ const Portfolio = ({
                     animate="show"
                     key={portfolioFilter} // Force re-animation on filter change
                 >
-                    {filteredProjects.map((project, index) => (
+                    {Array.isArray(filteredProjects) && filteredProjects.map((project, index) => (
                         <motion.li
                             key={index}
                             className="project-item active"
@@ -136,16 +136,16 @@ const Portfolio = ({
 
                                     {project.tech && (
                                         <div className="tech-stack" style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '12px' }}>
-                                            {project.tech.map((t) => (
+                                            {project.tech && project.tech.map((t) => (
                                                 <span
                                                     key={t}
                                                     style={{
                                                         fontSize: '10px',
                                                         color: 'var(--orange-yellow-crayola)',
-                                                        background: 'rgba(255, 184, 0, 0.1)',
+                                                        background: 'var(--glass-bg)',
                                                         padding: '2px 8px',
                                                         borderRadius: '4px',
-                                                        border: '1px solid rgba(255, 184, 0, 0.2)',
+                                                        border: '1px solid var(--orange-yellow-crayola)',
                                                     }}
                                                 >
                                                     {t}

@@ -31,28 +31,56 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
         <article className={`resume ${active ? 'active' : ''}`} data-page="resume">
             <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
                 <h2 className="h2 article-title">Resume</h2>
-                <motion.a
-                    whileTap={{ scale: 0.95 }}
-                    href="/Bemnet Kibret _ Full Stack Web Developer & Professional DJ.pdf"
-                    download="Bemnet_Kibret_Resume.pdf"
-                    className="btn-filled"
-                    onClick={() => trackButtonClick('download_cv', 'resume_section')}
-                    style={{
-                        width: 'auto',
-                        padding: '10px 20px',
-                        fontSize: 'var(--fs-6)',
-                        borderRadius: '10px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        textTransform: 'none',
-                        marginTop: '-10px'
-                    }}
-                >
-                    {/* @ts-ignore */}
-                    <ion-icon name="download-outline" style={{ fontSize: '16px' }}></ion-icon>
-                    <span>Download CV</span>
-                </motion.a>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                    <motion.button
+                        whileTap={{ scale: 0.95 }}
+                        className="btn-filled"
+                        onClick={() => {
+                            trackButtonClick('print_cv', 'resume_section');
+                            window.print();
+                        }}
+                        style={{
+                            width: 'auto',
+                            padding: '10px 20px',
+                            fontSize: 'var(--fs-6)',
+                            borderRadius: '10px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            textTransform: 'none',
+                            marginTop: '-10px'
+                        }}
+                    >
+                        {/* @ts-ignore */}
+                        <ion-icon name="print-outline" style={{ fontSize: '16px' }}></ion-icon>
+                        <span>Print CV</span>
+                    </motion.button>
+                    <motion.a
+                        whileTap={{ scale: 0.95 }}
+                        href="/Bemnet Kibret _ Full Stack Web Developer & Professional DJ.pdf"
+                        download="Bemnet_Kibret_Resume.pdf"
+                        className="btn-filled"
+                        onClick={() => trackButtonClick('download_cv', 'resume_section')}
+                        style={{
+                            width: 'auto',
+                            padding: '10px 20px',
+                            fontSize: 'var(--fs-6)',
+                            borderRadius: '10px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            textTransform: 'none',
+                            marginTop: '-10px',
+                            background: 'var(--onyx)',
+                            border: '1px solid var(--jet)',
+                            color: 'var(--white-2)'
+                        }}
+                    >
+                        {/* @ts-ignore */}
+                        <ion-icon name="download-outline" style={{ fontSize: '16px' }}></ion-icon>
+                        <span>Download CV</span>
+                    </motion.a>
+                </div>
             </header>
 
             {/* Timeline Area */}

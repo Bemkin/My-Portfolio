@@ -1,9 +1,14 @@
 import { MetadataRoute } from 'next';
-import { blogPosts, projects } from '@/lib/constants';
+import { getPosts } from '@/lib/mdx';
 import { Project } from '@/types';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://my-portfolio-theta-flame-45.vercel.app';
+
+    const [blogPosts, projects] = await Promise.all([
+        getPosts('blog'),
+        getPosts('projects')
+    ]);
 
     // Static pages
     const staticPages = [
@@ -16,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
 
     // Dynamic blog pages
-    const blogPages = blogPosts.map((post) => ({
+    const blogPages = blogPosts.map((post: any) => ({
         url: `${baseUrl}/blog/${post.slug}`,
         lastModified: new Date(post.dateTime),
         changeFrequency: 'monthly' as const,
@@ -24,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
     // Dynamic case study pages
-    const caseStudyPages = (projects as Project[])
+    const caseStudyPages = (projects as any[])
         .filter((project) => project.problem)
         .map((project) => ({
             url: `${baseUrl}/projects/${project.slug}`,

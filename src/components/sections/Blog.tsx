@@ -1,12 +1,10 @@
-'use client';
-
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { blogPosts } from '@/lib/constants';
 
 interface BlogProps {
     active: boolean;
+    posts: any[];
 }
 
 const containerVariants = {
@@ -24,7 +22,7 @@ const itemVariants = {
     show: { opacity: 1, y: 0, transition: { duration: 0.4 } }
 };
 
-const Blog = ({ active }: BlogProps) => {
+const Blog = ({ active, posts }: BlogProps) => {
     return (
         <article className={`blog ${active ? 'active' : ''}`} data-page="blog">
             <header>
@@ -38,7 +36,7 @@ const Blog = ({ active }: BlogProps) => {
                     animate="show"
                     style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', display: 'grid', gap: '30px' }}
                 >
-                    {blogPosts.map((post, index) => (
+                    {posts.map((post, index) => (
                         <motion.li key={index} className="blog-post-item" variants={itemVariants}>
                             <Link href={`/blog/${post.slug}`} className="content-card" style={{ padding: '0', overflow: 'hidden', height: '100%', display: 'flex', flexDirection: 'column', textDecoration: 'none' }}>
                                 <figure className="blog-banner-box" style={{ margin: '0', borderRadius: '0' }}>

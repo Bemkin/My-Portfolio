@@ -11,7 +11,12 @@ const Navbar = ({ activePage, onPageChange }: NavbarProps) => {
     const pages = ['About', 'Resume', 'Portfolio', 'Blog', 'Life', 'Contact'];
 
     return (
-        <nav className="navbar">
+        <motion.nav
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
+            className="navbar"
+        >
             <ul className="navbar-list">
                 {pages.map((page) => (
                     <li className="navbar-item" key={page}>
@@ -40,7 +45,7 @@ const Navbar = ({ activePage, onPageChange }: NavbarProps) => {
                     </li>
                 ))}
             </ul>
-        </nav>
+        </motion.nav>
     );
 };
 

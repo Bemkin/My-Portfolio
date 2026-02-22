@@ -73,6 +73,56 @@
 
 }
 
+[data-theme='light'] {
+  /* Gradients - pure whites and extremely light grays for clean design */
+  --bg-gradient-onyx: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(0, 0%, 98%) 100%);
+  --bg-gradient-jet: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(0, 0%, 98%) 100%);
+
+  /* Yellow accents remain vibrant */
+  --bg-gradient-yellow-1: linear-gradient(135deg, hsl(35, 90%, 55%) 0%, hsla(30, 80%, 50%, 0) 70%);
+  --bg-gradient-yellow-2: linear-gradient(135deg, hsla(35, 90%, 55%, 0.2) 0%, hsla(30, 80%, 50%, 0) 80%), hsl(0, 0%, 100%);
+  --border-gradient-onyx: linear-gradient(135deg, hsl(0, 0%, 90%) 0%, hsl(0, 0%, 95%) 50%);
+  --text-gradient-yellow: linear-gradient(to right, hsl(35, 90%, 50%), hsl(30, 80%, 45%));
+
+  /* Glassmorphism - brighter, less frosted */
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(0, 0, 0, 0.05);
+
+  /* Solid Colors used for cards, borders, icon backgrounds */
+  /* Previously these were kept dark, causing the "muddy" look */
+  --jet: hsl(0, 0%, 93%);
+  --onyx: hsl(0, 0%, 96%);
+  --eerie-black-1: hsl(0, 0%, 100%);
+  /* Pure white for primary card backgrounds */
+  --eerie-black-2: hsl(0, 0%, 98%);
+  /* Off-white for secondary card backgrounds */
+
+  /* Body Background */
+  --smoky-black: hsl(240, 10%, 98%);
+
+  /* Text Colors - Darkened for contrast against light backgrounds */
+  --white-1: hsl(240, 10%, 10%);
+  /* Very dark slate for primary text */
+  --white-2: hsl(240, 10%, 20%);
+  /* Dark slate for headings */
+  --light-gray: hsl(240, 5%, 40%);
+  /* Medium gray for secondary/body text */
+  --light-gray-70: hsla(240, 5%, 40%, 0.8);
+
+  /* Accent Colors */
+  --orange-yellow-crayola: hsl(35, 95%, 48%);
+  --vegas-gold: hsl(30, 90%, 42%);
+
+  /* Shadows - Layered for depth on light bg */
+  --shadow-1: 0 4px 10px -2px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.02);
+  --shadow-2: 0 10px 20px -3px rgba(0, 0, 0, 0.06), 0 4px 8px -2px rgba(0, 0, 0, 0.04);
+  --shadow-3: 0 20px 30px -5px rgba(0, 0, 0, 0.08), 0 10px 15px -5px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='light'] .invert-on-light {
+  filter: invert(1);
+}
+
 /*-----------------------------------*\
   #RESET
 \*-----------------------------------*/
@@ -108,6 +158,7 @@ button {
   border: none;
   text-align: left;
   cursor: pointer;
+  color: var(--white-1);
 }
 
 input,
@@ -268,7 +319,7 @@ article.active {
 
 .content-card {
   position: relative;
-  background: hsla(240, 2%, 12%, 0.5);
+  background: var(--eerie-black-2);
   padding: 24px;
   border-radius: 18px;
   border: 1px solid var(--glass-border);
@@ -460,9 +511,9 @@ main {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: hsla(240, 1%, 17%, 0.75);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--jet);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: 12px 12px 0 0;
   box-shadow: var(--shadow-2);
   z-index: 5;
@@ -485,11 +536,12 @@ main {
 
 .navbar-link:hover,
 .navbar-link:focus {
-  color: var(--light-gray-70);
+  color: var(--white-1);
 }
 
 .navbar-link.active {
   color: var(--orange-yellow-crayola);
+  font-weight: var(--fw-500);
 }
 
 /*-----------------------------------*\
@@ -777,12 +829,11 @@ main {
 
 .clients-item img {
   width: 100%;
-  filter: grayscale(1);
   transition: var(--transition-1);
 }
 
 .clients-item img:hover {
-  filter: grayscale(0);
+  transform: scale(1.1);
 }
 
 /*-----------------------------------*\
@@ -1214,6 +1265,7 @@ main {
 }
 
 .form-input {
+  background: var(--glass-bg);
   color: var(--white-2);
   font-size: var(--fs-6);
   font-weight: var(--fw-400);
@@ -1750,17 +1802,18 @@ textarea.form-input::-webkit-resizer {
   }
 
   .filter-item button {
-    color: var(--light-gray);
+    color: var(--white-2);
     font-size: var(--fs-5);
     transition: var(--transition-1);
   }
 
   .filter-item button:hover {
-    color: var(--light-gray-70);
+    color: var(--orange-yellow-crayola);
   }
 
   .filter-item button.active {
     color: var(--orange-yellow-crayola);
+    font-weight: var(--fw-500);
   }
 
   /* portfolio and blog grid */
@@ -2035,4 +2088,66 @@ textarea.form-input::-webkit-resizer {
     max-width: 700px;
   }
 
+}
+
+@media print {
+
+  .navbar,
+  .sidebar,
+  .info_more-btn,
+  .btn-filled,
+  button,
+  ion-icon,
+  .theme-toggle {
+    display: none !important;
+  }
+
+  main {
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-content {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  article {
+    display: block !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+  }
+
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h1 {
+    color: black !important;
+  }
+
+  .article-title::after {
+    background: black !important;
+  }
+
+  .timeline-list {
+    border-color: #ddd !important;
+  }
+
+  .timeline-item::before {
+    background: black !important;
+  }
+
+  .content-card {
+    border: 1px solid #ddd !important;
+    background: white !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
 }
