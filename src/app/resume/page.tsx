@@ -123,7 +123,7 @@ export default function ResumePage() {
                         </div>
                         <p style={{ fontSize: '14px', color: '#888', margin: '0 0 10px', fontStyle: 'italic' }}>Self-Employed</p>
                         <ul style={{ margin: '0', paddingLeft: '20px', color: '#444', fontSize: '14px' }}>
-                            <li style={{ marginBottom: '6px' }}>Built and launched several startup applications including Senselet (inventory management system) and FormCheck AI (AI-powered form validation)</li>
+                            <li style={{ marginBottom: '6px' }}>Built and launched several startup applications including Senselet (inventory management system), Kaffa Roasters (premium e-commerce), and FormCheck AI (AI-powered form validation)</li>
                             <li style={{ marginBottom: '6px' }}>Developed modern, responsive web applications for diverse clients using React, Next.js, and TypeScript</li>
                             <li style={{ marginBottom: '6px' }}>Delivered end-to-end solutions from concept to deployment, ensuring exceptional user experiences</li>
                             <li style={{ marginBottom: '6px' }}>Managed project timelines, client communications, and technical implementations independently</li>

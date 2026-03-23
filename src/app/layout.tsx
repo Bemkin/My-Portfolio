@@ -11,12 +11,12 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL("https://my-portfolio-theta-flame-45.vercel.app/"),
   title: "Bemnet Kibret | Full Stack Web Developer & Professional DJ",
-  description: "Bemnet Kibret | Full Stack Developer & DJ. Specialist in React, Next.js, and Node.js. Creator of Senselet, Trainer CRM, and AI-powered FormCheck.",
+  description: "Bemnet Kibret | Full Stack Developer & DJ. Specialist in React, Next.js, and Node.js. Creator of Senselet, Kaffa Roasters, Trainer CRM, and AI-powered FormCheck.",
   keywords: ["Bemnet Kibret", "Full Stack Developer", "Portfolio", "React", "Next.js", "Node.js", "Web Development"],
   authors: [{ name: "Bemnet Kibret" }],
   openGraph: {
     title: "Bemnet Kibret | Full Stack Web Developer & Professional DJ",
-    description: "Bemnet Kibret | Full Stack Developer & DJ. Specialist in React, Next.js, and Node.js. Creator of Senselet, Trainer CRM, and AI-powered FormCheck.",
+    description: "Bemnet Kibret | Full Stack Developer & DJ. Specialist in React, Next.js, and Node.js. Creator of Senselet, Kaffa Roasters, Trainer CRM, and AI-powered FormCheck.",
     url: "https://my-portfolio-theta-flame-45.vercel.app/",
     siteName: "Bemnet Kibret Portfolio",
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Bemnet Kibret | Full Stack Web Developer & Professional DJ",
-    description: "Bemnet Kibret | Full Stack Developer & DJ. Specialist in React, Next.js, and Node.js. Creator of Senselet, Trainer CRM, and AI-powered FormCheck.",
+    description: "Bemnet Kibret | Full Stack Developer & DJ. Specialist in React, Next.js, and Node.js. Creator of Senselet, Kaffa Roasters, Trainer CRM, and AI-powered FormCheck.",
     images: ["/og-image.png"],
   },
 };

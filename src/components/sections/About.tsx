@@ -48,7 +48,7 @@ const About = ({ active, testimonials, onTestimonialClick }: AboutProps) => {
                     Beyond coding, I have a creative side as a professional DJ, where I curate soundscapes and create memorable experiences through music. This unique combination of technical precision and artistic creativity gives me a distinctive perspective on user experience design—I understand that great products should not only function flawlessly but also evoke emotion and delight.
                 </p>
                 <p>
-                    I'm driven by the desire to build impactful web applications that solve real problems. Whether it's developing a complex inventory management system like **Senselet** (integrated with Chapa payments and Supabase) or creating intuitive AI-powered tools like **FormCheck AI** (leveraging MediaPipe AI), I approach each project with meticulous attention to detail, a commitment to clean code, and a focus on creating exceptional user experiences.
+                    I'm driven by the desire to build impactful web applications that solve real problems. Whether it's developing a complex inventory management system like **Senselet** (integrated with Chapa payments and Supabase), creating premium e-commerce experiences like **Kaffa Roasters**, or building intuitive AI-powered tools like **FormCheck AI** (leveraging MediaPipe AI), I approach each project with meticulous attention to detail, a commitment to clean code, and a focus on creating exceptional user experiences.
                 </p>
             </section>
 

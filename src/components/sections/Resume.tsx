@@ -147,7 +147,7 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                             {
                                 title: 'Freelancer',
                                 date: '2024 — Present',
-                                text: "Architecting and deploying full-stack solutions for startups and local businesses. Focused on building scalable systems like Senselet using Next.js, Supabase, and custom API integrations to solve complex business problems."
+                                text: "Architecting and deploying full-stack solutions for startups and local businesses. Focused on building scalable systems like **Senselet** and premium experiences like **Kaffa Roasters** using Next.js, Supabase, and custom API integrations to solve complex business problems."
                             },
                             {
                                 title: 'MARVELS CREATIVE TECHNOLOGY',
