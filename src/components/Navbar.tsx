@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import ThemeToggle from './theme/ThemeToggle';
 
 interface NavbarProps {
     activePage: string;
@@ -44,6 +45,9 @@ const Navbar = ({ activePage, onPageChange }: NavbarProps) => {
                         </button>
                     </li>
                 ))}
+                <li className="navbar-item">
+                    <ThemeToggle />
+                </li>
             </ul>
         </motion.nav>
     );

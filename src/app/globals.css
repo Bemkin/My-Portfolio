@@ -2151,3 +2151,27 @@ textarea.form-input::-webkit-resizer {
     print-color-adjust: exact !important;
   }
 }
+
+@media (max-width: 580px) {
+  .theme-toggle {
+    right: 80px; /* Shift left to avoid sidebar toggle */
+  }
+}
+
+/* Theme Toggle Navbar Styles */
+.navbar-item .theme-toggle {
+  color: var(--light-gray);
+  font-size: 20px;
+  padding: 15px 5px;
+  transition: color var(--transition-1);
+}
+
+.navbar-item .theme-toggle:hover {
+  color: var(--white-1);
+}
+
+@media (min-width: 580px) {
+  .navbar-item .theme-toggle {
+    font-size: 22px;
+  }
+}

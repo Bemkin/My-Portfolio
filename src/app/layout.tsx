@@ -39,7 +39,6 @@ export const metadata: Metadata = {
 import StructuredData from "@/components/shared/StructuredData";
 import GoogleAnalytics from "@/components/shared/GoogleAnalytics";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import ThemeToggle from "@/components/theme/ThemeToggle";
 
 export default function RootLayout({
   children,
@@ -52,7 +51,6 @@ export default function RootLayout({
         <ThemeProvider>
           <GoogleAnalytics />
           <StructuredData />
-          <ThemeToggle />
           {children}
         </ThemeProvider>
         <Script
