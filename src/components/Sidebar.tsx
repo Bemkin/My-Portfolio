@@ -30,7 +30,7 @@ const Sidebar = ({ active, onToggle }: SidebarProps) => {
                         style={{ cursor: 'zoom-in' }}
                     >
                         <Image
-                            src="/images/bemnet-avatar.jpg"
+                            src="/images/pfp.jpg"
                             alt="Bemnet Kibret"
                             width={150}
                             height={150}
@@ -143,7 +143,7 @@ const Sidebar = ({ active, onToggle }: SidebarProps) => {
                     maxHeight: '85vh'
                 }}>
                     <Image
-                        src="/images/bemnet-avatar.jpg"
+                        src="/images/pfp.jpg"
                         alt="Bemnet Kibret"
                         width={800}
                         height={800}
