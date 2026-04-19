@@ -106,7 +106,7 @@ export default function ResumePage() {
                         Professional Summary
                     </h2>
                     <p style={{ color: '#444', fontSize: '15px', lineHeight: '1.7' }}>
-                        Passionate full-stack web developer with expertise in building modern, scalable web applications using React, Next.js, TypeScript, and Node.js. Proven track record as a freelancer and entrepreneur, having built and launched several startups while delivering high-quality solutions for clients. Completed intensive training at Evangadi Technologies and gained valuable industry experience through a backend development internship at MARVELS CREATIVE TECHNOLOGY. Combines technical precision with creative artistry as a professional DJ, bringing a unique perspective to user experience design.
+                        Results-driven Full Stack Engineer and Performance Architect specializing in high-fidelity, cinematic web experiences. Expert in bridging 3D visualization (Three.js) and complex scrollytelling with robust, scalable backend systems. Proven track record of architecting mission-critical platforms like Ahun Watches and FitEthio, delivering software that prioritizes both technical precision and aesthetic excellence. Combines a deep engineering foundation with a unique perspective as a professional artist to build products that flow intuitively and perform flawlessly.
                     </p>
                 </section>
 
@@ -123,10 +123,10 @@ export default function ResumePage() {
                         </div>
                         <p style={{ fontSize: '14px', color: '#888', margin: '0 0 10px', fontStyle: 'italic' }}>Self-Employed</p>
                         <ul style={{ margin: '0', paddingLeft: '20px', color: '#444', fontSize: '14px' }}>
-                            <li style={{ marginBottom: '6px' }}>Built and launched several startup applications including Senselet (inventory management system), Kaffa Roasters (premium e-commerce), and FormCheck AI (AI-powered form validation)</li>
-                            <li style={{ marginBottom: '6px' }}>Developed modern, responsive web applications for diverse clients using React, Next.js, and TypeScript</li>
-                            <li style={{ marginBottom: '6px' }}>Delivered end-to-end solutions from concept to deployment, ensuring exceptional user experiences</li>
-                            <li style={{ marginBottom: '6px' }}>Managed project timelines, client communications, and technical implementations independently</li>
+                            <li style={{ marginBottom: '6px' }}>Architecting and deploying high-performance full-stack solutions for elite clients and startups.</li>
+                            <li style={{ marginBottom: '6px' }}>Successfully launched **Ahun Watches**, a premium horological platform featuring cinematic scrollytelling and high-fidelity asset rendering.</li>
+                            <li style={{ marginBottom: '6px' }}>Developed **FitEthio**, a comprehensive CRM and landing experience for high-ticket fitness coaches with 3D anatomical visualizations.</li>
+                            <li style={{ marginBottom: '6px' }}>Scaled **Senselet** from concept to a production-ready inventory intelligence system with real-time tracking and automated reporting.</li>
                         </ul>
                     </div>
 
@@ -190,9 +190,9 @@ export default function ResumePage() {
                     <div style={{ marginBottom: '15px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                             <h3 style={{ fontSize: '17px', fontWeight: '600', margin: 0, color: '#1a1a1a' }}>Full Stack Web Development (MERN)</h3>
-                            <span style={{ fontSize: '14px', color: '#666', fontWeight: '500' }}>Sept 2025</span>
+                            <span style={{ fontSize: '14px', color: '#666', fontWeight: '500' }}>2025</span>
                         </div>
-                        <p style={{ fontSize: '14px', color: '#444', marginTop: '5px' }}>Evangadi Technologies • Verified Credential</p>
+                        <p style={{ fontSize: '14px', color: '#444', marginTop: '5px' }}>Evangadi Technologies • Certified Full Stack Engineer</p>
                     </div>
                 </section>
 
@@ -203,20 +203,20 @@ export default function ResumePage() {
                     </h2>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '15px' }}>
                         <div>
-                            <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Frontend Development</h4>
-                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>React, Next.js, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS, Framer Motion</p>
+                            <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Frontend Engineering</h4>
+                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>React, Next.js, TypeScript, Framer Motion, GSAP, 3D Web (Three.js), Tailwind CSS</p>
                         </div>
                         <div>
-                            <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Backend Development</h4>
-                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Node.js, Express.js, REST APIs, Authentication, Server-Side Rendering</p>
+                            <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Backend & Infrastructure</h4>
+                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Node.js, Supabase, PostgreSQL, REST/GraphQL APIs, Performance Analysis, Edge Functions</p>
                         </div>
                         <div>
-                            <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Database & Tools</h4>
-                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>MySQL, PostgreSQL, Supabase, Firebase, Git, GitHub</p>
+                            <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Niche Specializations</h4>
+                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Cinematic Scrollytelling, Responsive Layouts, 3D Asset Optimization, Payment Systems (Chapa)</p>
                         </div>
                         <div>
-                            <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Additional Skills</h4>
-                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Responsive Design, API Integration, Payment Integration (Chapa), UI/UX Design</p>
+                            <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Tools & Workflow</h4>
+                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Git/GitHub, CI/CD, AI-Driven Development, High-Fidelity Design Systems</p>
                         </div>
                     </div>
                 </section>
@@ -228,27 +228,27 @@ export default function ResumePage() {
                     </h2>
 
                     <div style={{ marginBottom: '20px' }}>
-                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Senselet - Inventory Intelligence</h3>
+                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Ahun Watches — Premium Horology Platform</h3>
                         <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
-                            Full-stack inventory management system with real-time tracking, low-stock alerts, and comprehensive reporting. Built with Next.js, TypeScript, Supabase, and Chapa integration.
+                            A high-end e-commerce experience for premium watches, featuring advanced scrollytelling, high-fidelity asset rendering, and a custom configuration engine.
+                        </p>
+                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, Framer Motion, GSAP, TypeScript, Supabase</p>
+                    </div>
+
+                    <div style={{ marginBottom: '20px' }}>
+                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>FitEthio — Elite Fitness CRM</h3>
+                        <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
+                            The operating system for elite fitness coaches, featuring 3D anatomy visualizations, hyper-accurate biometrics tracking, and a "Command Center" dashboard.
+                        </p>
+                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, Three.js, TypeScript, Supabase, Framer Motion</p>
+                    </div>
+
+                    <div style={{ marginBottom: '20px' }}>
+                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Senselet — Inventory Intelligence</h3>
+                        <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
+                            Full-stack inventory management system with real-time tracking, low-stock alerts, and comprehensive reporting. Built with Next.js, Supabase, and Chapa integration.
                         </p>
                         <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, TypeScript, Supabase, Chapa, Tailwind CSS</p>
-                    </div>
-
-                    <div style={{ marginBottom: '20px' }}>
-                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>FormCheck AI</h3>
-                        <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
-                            AI-powered form validation tool featuring MediaPipe AI for intelligent input processing and real-time feedback.
-                        </p>
-                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> React, Node.js, MediaPipe AI, MongoDB</p>
-                    </div>
-
-                    <div style={{ marginBottom: '20px' }}>
-                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Trainer CRM</h3>
-                        <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
-                            Customer relationship management system for personal trainers featuring client management, session scheduling, and progress tracking.
-                        </p>
-                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, Supabase, React, TypeScript</p>
                     </div>
                 </section>
 

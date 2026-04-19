@@ -39,16 +39,16 @@ const About = ({ active, testimonials, onTestimonialClick }: AboutProps) => {
 
             <section className="about-text">
                 <p>
-                    Hello! I'm Bemnet Kibret, a passionate full-stack web developer and entrepreneur based in Addis Ababa, Ethiopia. My journey into tech began at **Addis Ababa Science and Technology University** and accelerated through intensive training at **Evangadi Technologies**, transforming my curiosity into a career building scalable, innovative digital solutions.
+                    Hello! I'm Bemnet Kibret, a Full Stack Engineer and Performance Architect based in Addis Ababa. My journey into technology was born at **Addis Ababa Science and Technology University** and forged through intensive training at **Evangadi Technologies**, where I transitioned from a curious builder into a technical leader focused on high-fidelity, mission-critical digital solutions.
                 </p>
                 <p>
-                    Today, I work as a freelance developer and an active builder in the startup ecosystem. My technical foundation is built on React, Next.js, Node.js, TypeScript, and high-performance databases like Supabase and PostgreSQL. I honed these skills practically during my Backend Developer Internship at **MARVELS CREATIVE TECHNOLOGY**, and I maintain **daily GitHub activity** pushing production-ready code.
+                    Today, I operate at the intersection of performance engineering and cinematic UI/UX. My technical foundation spans React, Next.js, and TypeScript, supported by high-performance infrastructures like Supabase and PostgreSQL. Having honed my skills through a Backend Engineering internship at **MARVELS CREATIVE TECHNOLOGY**, I now architect high-stakes platforms for elite clients and startups, maintaining **daily GitHub activity** to push the boundaries of what is possible on the web.
                 </p>
                 <p>
-                    I am driven by building impactful web applications that solve real, complex problems. Whether I am developing **Senselet**—a robust SaaS inventory management system integrated with Chapa payments—creating premium e-commerce platforms like **Kaffa Roasters**, or engineering **FitEthio**—a premium 3D fitness CRM for elite coaches—I focus on clean architecture and meticulous attention to detail. I also build for the domains I live in; my dedication to bodybuilding directly inspired **FormCheck AI**, leveraging MediaPipe AI to solve real fitness challenges.
+                    I am driven by solving complex structural problems through clean architecture and meticulous design. Whether I am developing **Ahun Watches**—a flagship horological platform featuring cinematic scrollytelling and high-fidelity 3D rendering—or engineering **FitEthio**, the "Command Center" for elite fitness coaches, I focus on creating software that feels alive. My dedication to performance extends into fitness tech with **FormCheck AI**, where I leverage MediaPipe AI to deliver real-time biomechanical analysis.
                 </p>
                 <p>
-                    Beyond the terminal, I am a professional DJ performing under the name **kinkin**. Curating immersive Afro House and Techno soundscapes has given me a distinctive perspective on user experience design. I understand that just as a great DJ set controls the energy of a room, a great digital product should not only function flawlessly but evoke emotion, flow intuitively, and deliver absolute delight.
+                    Beyond the terminal, I am a professional DJ performing as **kinkin**. My experience curating immersive Techno and Afro House sets has profoundly shaped my approach to software. I believe a great digital product is like a flawless DJ set: it must have a perfect flow, intuitive transitions, and a technical precision that fades into the background to let the experience take center stage.
                 </p>
             </section>
 

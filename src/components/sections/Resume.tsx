@@ -57,10 +57,9 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                     </motion.button>
                     <motion.a
                         whileTap={{ scale: 0.95 }}
-                        href="/Bemnet Kibret _ Full Stack Web Developer & Professional DJ.pdf"
-                        download="Bemnet_Kibret_Resume.pdf"
+                        href="/resume"
                         className="btn-filled"
-                        onClick={() => trackButtonClick('download_cv', 'resume_section')}
+                        onClick={() => trackButtonClick('view_live_cv', 'resume_section')}
                         style={{
                             width: 'auto',
                             padding: '10px 20px',
@@ -77,8 +76,8 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                         }}
                     >
                         {/* @ts-ignore */}
-                        <ion-icon name="download-outline" style={{ fontSize: '16px' }}></ion-icon>
-                        <span>Download CV</span>
+                        <ion-icon name="document-text-outline" style={{ fontSize: '16px' }}></ion-icon>
+                        <span>View Live CV</span>
                     </motion.a>
                 </div>
             </header>
@@ -147,7 +146,7 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                             {
                                 title: 'Freelancer',
                                 date: '2024 — Present',
-                                text: "Architecting and deploying full-stack solutions for startups and local businesses. Focused on building scalable systems like **Senselet** and premium experiences like **Kaffa Roasters** using Next.js, Supabase, and custom API integrations to solve complex business problems."
+                                text: "Architecting and deploying high-performance full-stack solutions. Highlights include **FitEthio** (Elite Trainer CRM), **Ahun Watches** (Premium E-commerce), and **Senselet** (Inventory Intelligence), leveraging Next.js, Supabase, and Three.js to deliver cinematic user experiences and scalable backend architectures."
                             },
                             {
                                 title: 'MARVELS CREATIVE TECHNOLOGY',
@@ -239,11 +238,11 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                     style={{ marginBottom: '40px', cursor: 'default' }}
                 >
                     {[
-                        { name: 'Startup-Focused Architecture (Next.js/Supabase)', level: 95 },
-                        { name: 'Retail Intelligence & Inventory Logic', level: 90 },
-                        { name: 'AI-Powered Motion Analysis (MediaPipe)', level: 85 },
-                        { name: 'Full-Stack E-commerce Systems (Chapa)', level: 80 },
-                        { name: 'UI/UX Engineering & 3D Web', level: 75 }
+                        { name: 'Full-Stack Performance Engineering (Next.js/Supabase)', level: 98 },
+                        { name: 'Cinematic UI/UX & 3D Web (Three.js/Framer)', level: 95 },
+                        { name: 'Startup-Focused Architecture & API Logic', level: 92 },
+                        { name: 'AI Motion Analysis & Machine Learning Integration', level: 88 },
+                        { name: 'Secure Payment Systems (Chapa/Stripe)', level: 85 }
                     ].map((skill) => (
                         <motion.li key={skill.name} className="skills-item" variants={itemVariants} style={{ marginBottom: '20px' }}>
                             <div className="title-wrapper" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
