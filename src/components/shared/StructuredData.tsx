@@ -10,12 +10,12 @@ export default function StructuredData() {
             "https://github.com/Bemkin",
             "https://www.linkedin.com/in/bemnet-kibret-054a792a9/"
         ],
-        "jobTitle": "Full Stack Web Developer",
+        "jobTitle": "Fullstack Software Engineer",
         "worksFor": {
             "@type": "Organization",
             "name": "Freelance"
         },
-        "description": "Professional Portfolio of Bemnet Kibret, a Full Stack Developer specializing in React, Next.js, and Node.js.",
+        "description": "Professional Portfolio of Bemnet Kibret, a Fullstack Software Engineer specializing in end-to-end SaaS platforms and high-performance backend systems.",
         "knowsAbout": [
             "Full Stack Development",
             "Web Design",

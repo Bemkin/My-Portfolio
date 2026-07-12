@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { trackButtonClick } from '@/lib/analytics';
 import GitHubActivity from './GitHubActivity';
-import Modal from '../shared/Modal';
 
 interface ResumeProps {
     active: boolean;
@@ -51,7 +50,7 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                             marginTop: '-10px'
                         }}
                     >
-                        {/* @ts-ignore */}
+                        {/* @ts-expect-error: ion-icon custom element */}
                         <ion-icon name="print-outline" style={{ fontSize: '16px' }}></ion-icon>
                         <span>Print CV</span>
                     </motion.button>
@@ -75,7 +74,7 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                             color: 'var(--white-2)'
                         }}
                     >
-                        {/* @ts-ignore */}
+                        {/* @ts-expect-error: ion-icon custom element */}
                         <ion-icon name="document-text-outline" style={{ fontSize: '16px' }}></ion-icon>
                         <span>View Live CV</span>
                     </motion.a>
@@ -88,7 +87,7 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                 <section className="timeline">
                     <div className="title-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '25px' }}>
                         <div className="icon-box">
-                            {/* @ts-ignore */}
+                            {/* @ts-expect-error: ion-icon custom element */}
                             <ion-icon name="book-outline"></ion-icon>
                         </div>
                         <h3 className="h3">Education</h3>
@@ -97,19 +96,19 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                     <ol className="timeline-list" style={{ marginLeft: '17px', borderLeft: '1px solid var(--jet)' }}>
                         {[
                             {
-                                title: 'Evangadi Technologies',
+                                institution: 'Evangadi Technologies',
                                 date: '2024 — 2025',
-                                text: 'I want to express my deepest gratitude to Evangadi Tech for providing me with the invaluable opportunity to learn full-stack web development.'
+                                degree: 'Full Stack Web Development (MERN)'
                             },
                             {
-                                title: 'Addis Ababa Science and Technology University',
+                                institution: 'Addis Ababa Science and Technology University',
                                 date: '2021 — 2023',
-                                text: 'AASTU offers a solid education in science and technology, and I gained valuable knowledge during my time there.'
+                                degree: 'Science and Technology'
                             },
                             {
-                                title: 'Ethio Parents School',
+                                institution: 'Ethio Parents School',
                                 date: '2006 — 2021',
-                                text: "The school's commitment to academic excellence and holistic development has truly shaped my journey."
+                                degree: 'Primary & Secondary Education'
                             }
                         ].map((item, i) => (
                             <li key={i} className="timeline-item" style={{ position: 'relative', paddingLeft: '30px', marginBottom: '25px' }}>
@@ -123,9 +122,9 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                                     borderRadius: '50%',
                                     boxShadow: '0 0 0 4px var(--eerie-black-1)'
                                 }}></div>
-                                <h4 className="h4 timeline-item-title" style={{ fontSize: 'var(--fs-6)', textTransform: 'none', marginBottom: '5px' }}>{item.title}</h4>
-                                <span style={{ color: 'var(--vegas-gold)', fontWeight: 'var(--fw-400)', fontSize: 'var(--fs-7)' }}>{item.date}</span>
-                                <p className="timeline-text" style={{ color: 'var(--light-gray)', fontSize: 'var(--fs-7)', marginTop: '8px', lineHeight: '1.6' }}>{item.text}</p>
+                                <h4 className="h4 timeline-item-title" style={{ fontSize: 'var(--fs-6)', textTransform: 'none', marginBottom: '3px' }}>{item.institution}</h4>
+                                <span style={{ color: 'var(--vegas-gold)', fontWeight: 'var(--fw-400)', fontSize: 'var(--fs-7)', display: 'block', marginBottom: '3px' }}>{item.degree}</span>
+                                <span style={{ color: 'var(--light-gray-70)', fontSize: 'var(--fs-8)' }}>{item.date}</span>
                             </li>
                         ))}
                     </ol>
@@ -135,7 +134,7 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                 <section className="timeline">
                     <div className="title-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '25px' }}>
                         <div className="icon-box">
-                            {/* @ts-ignore */}
+                            {/* @ts-expect-error: ion-icon custom element */}
                             <ion-icon name="briefcase-outline"></ion-icon>
                         </div>
                         <h3 className="h3">Experience</h3>
@@ -146,12 +145,12 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                             {
                                 title: 'Freelancer',
                                 date: '2024 — Present',
-                                text: "Architecting and deploying high-performance full-stack solutions. Highlights include **FitEthio** (Elite Trainer CRM), **Ahun Watches** (Premium E-commerce), and **Senselet** (Inventory Intelligence), leveraging Next.js, Supabase, and Three.js to deliver cinematic user experiences and scalable backend architectures."
+                                text: "Architect and deploy production-ready fullstack applications for diverse clients, managing the entire software lifecycle from requirement gathering to cloud deployment. Engineered scalable backend architectures and relational databases using PostgreSQL and Supabase, ensuring data integrity for high-volume transactions and inventory updates. Integrated secure local and international payment gateways (Chapa, Stripe) into premium e-commerce and CRM platforms. Optimized frontend performance and state management using Next.js and TypeScript, delivering highly responsive, cinematic UIs that drive user engagement."
                             },
                             {
                                 title: 'MARVELS CREATIVE TECHNOLOGY',
                                 date: 'March — June 2025',
-                                text: "Completed a backend developer internship building scalable systems with TypeScript and Next.js, gaining valuable industry experience in modern web development practices."
+                                text: "Engineered and optimized scalable backend systems using TypeScript and Next.js within a fast-paced, production-grade environment. Collaborated with senior engineering teams to design RESTful API endpoints, refine server-side logic, and improve overall system reliability by contributing to core data pipelines."
                             }
                         ].map((item, i) => (
                             <li key={i} className="timeline-item" style={{ position: 'relative', paddingLeft: '30px', marginBottom: '25px' }}>
@@ -178,7 +177,7 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
             <section className="timeline" style={{ marginBottom: '40px' }}>
                 <div className="title-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '25px' }}>
                     <div className="icon-box">
-                        {/* @ts-ignore */}
+                        {/* @ts-expect-error: ion-icon custom element */}
                         <ion-icon name="ribbon-outline"></ion-icon>
                     </div>
                     <h3 className="h3">Certifications</h3>
@@ -217,7 +216,7 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                             </div>
                         </div>
                         <div style={{ color: 'var(--vegas-gold)', fontSize: '20px' }}>
-                            {/* @ts-ignore */}
+                            {/* @ts-expect-error: ion-icon custom element */}
                             <ion-icon name="eye-outline"></ion-icon>
                         </div>
                     </motion.div>
@@ -227,41 +226,7 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
             {/* GitHub Activity */}
             <GitHubActivity username="Bemkin" />
 
-            {/* Skills */}
-            <section className="skill">
-                <h3 className="h3 skills-title">My skills</h3>
-                <motion.ul
-                    className="skills-list content-card"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="show"
-                    style={{ marginBottom: '40px', cursor: 'default' }}
-                >
-                    {[
-                        { name: 'Full-Stack Performance Engineering (Next.js/Supabase)', level: 98 },
-                        { name: 'Cinematic UI/UX & 3D Web (Three.js/Framer)', level: 95 },
-                        { name: 'Startup-Focused Architecture & API Logic', level: 92 },
-                        { name: 'AI Motion Analysis & Machine Learning Integration', level: 88 },
-                        { name: 'Secure Payment Systems (Chapa/Stripe)', level: 85 }
-                    ].map((skill) => (
-                        <motion.li key={skill.name} className="skills-item" variants={itemVariants} style={{ marginBottom: '20px' }}>
-                            <div className="title-wrapper" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                                <h5 className="h5">{skill.name}</h5>
-                                <data value={skill.level} style={{ color: 'var(--light-gray)', fontSize: 'var(--fs-7)' }}>{skill.level}%</data>
-                            </div>
-                            <div className="skill-progress-bg" style={{ background: 'var(--jet)', height: '8px', borderRadius: '10px', overflow: 'hidden' }}>
-                                <motion.div
-                                    className="skill-progress-fill"
-                                    initial={{ width: 0 }}
-                                    animate={{ width: `${skill.level}%` }}
-                                    transition={{ duration: 1, ease: "easeOut" }}
-                                    style={{ background: 'var(--text-gradient-yellow)', height: '100%', borderRadius: 'inherit' }}
-                                ></motion.div>
-                            </div>
-                        </motion.li>
-                    ))}
-                </motion.ul>
-            </section>
+
 
             {/* Tech Stack Grid */}
             <section className="skill">
@@ -280,21 +245,21 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                     }}
                 >
                     {[
-                        { name: 'HTML5', icon: 'logo-html5' },
-                        { name: 'CSS3', icon: 'logo-css3' },
-                        { name: 'JavaScript', icon: 'logo-javascript' },
                         { name: 'React', icon: 'logo-react' },
                         { name: 'Next.js', icon: 'terminal-outline' },
-                        { name: 'Node.js', icon: 'logo-nodejs' },
                         { name: 'TypeScript', icon: 'code-slash-outline' },
-                        { name: 'Tailwind', icon: 'color-palette-outline' },
-                        { name: 'MySQL', icon: 'server-outline' },
-                        { name: 'Supabase', icon: 'server-outline' },
-                        { name: 'Chapa', icon: 'card-outline' },
+                        { name: 'Node.js', icon: 'logo-nodejs' },
+                        { name: 'NestJS', icon: 'terminal-outline' },
                         { name: 'Python', icon: 'logo-python' },
+                        { name: 'AWS', icon: 'cloud-outline' },
+                        { name: 'PostgreSQL', icon: 'server-outline' },
+                        { name: 'Supabase', icon: 'server-outline' },
+                        { name: 'Redis', icon: 'cube-outline' },
                         { name: 'Git', icon: 'logo-github' },
                         { name: 'Three.js', icon: 'cube-outline' },
-                        { name: 'Animation', icon: 'move-outline' }
+                        { name: 'Tailwind', icon: 'color-palette-outline' },
+                        { name: 'Chapa', icon: 'card-outline' },
+                        { name: 'JavaScript', icon: 'logo-javascript' }
                     ].map((tech) => (
                         <motion.li
                             key={tech.name}
@@ -319,7 +284,7 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                             }}
                         >
                             <div style={{ fontSize: '28px', color: 'inherit' }}>
-                                {/* @ts-ignore */}
+                                {/* @ts-expect-error: ion-icon custom element */}
                                 <ion-icon name={tech.icon}></ion-icon>
                             </div>
                             <span style={{ fontSize: 'var(--fs-8)', fontWeight: 'var(--fw-500)', color: 'inherit' }}>{tech.name}</span>

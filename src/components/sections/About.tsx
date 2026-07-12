@@ -39,22 +39,19 @@ const About = ({ active, testimonials, onTestimonialClick }: AboutProps) => {
 
             <section className="about-text">
                 <p>
-                    Hello! I'm Bemnet Kibret, a Full Stack Engineer and Performance Architect based in Addis Ababa. My journey into technology was born at **Addis Ababa Science and Technology University** and forged through intensive training at **Evangadi Technologies**, where I transitioned from a curious builder into a technical leader focused on high-fidelity, mission-critical digital solutions.
+                    Hello! I&apos;m Bemnet Kibret, a Fullstack Software Engineer specializing in architecting end-to-end SaaS platforms and high-performance web applications. My journey into technology was born at **Addis Ababa Science and Technology University** and forged through intensive training at **Evangadi Technologies**, where I transitioned from a curious builder into a software engineer focused on robust, production-ready digital solutions.
                 </p>
                 <p>
-                    Today, I operate at the intersection of performance engineering and cinematic UI/UX. My technical foundation spans React, Next.js, and TypeScript, supported by high-performance infrastructures like Supabase and PostgreSQL. Having honed my skills through a Backend Engineering internship at **MARVELS CREATIVE TECHNOLOGY**, I now architect high-stakes platforms for elite clients and startups, maintaining **daily GitHub activity** to push the boundaries of what is possible on the web.
+                    Today, I operate at the intersection of robust server-side logic and scalable, interactive frontends. My technical foundation spans React, Next.js, and TypeScript, supported by databases like PostgreSQL and Supabase. Having honed my skills through a Backend Engineering internship at **MARVELS CREATIVE TECHNOLOGY**, I now architect high-stakes platforms for clients and startups, maintaining a high standard of code quality and API performance.
                 </p>
                 <p>
-                    I am driven by solving complex structural problems through clean architecture and meticulous design. Whether I am developing **Ahun Watches**—a flagship horological platform featuring cinematic scrollytelling and high-fidelity 3D rendering—or engineering **FitEthio**, the "Command Center" for elite fitness coaches, I focus on creating software that feels alive. My dedication to performance extends into fitness tech with **FormCheck AI**, where I leverage MediaPipe AI to deliver real-time biomechanical analysis.
-                </p>
-                <p>
-                    Beyond the terminal, I am a professional DJ performing as **kinkin**. My experience curating immersive Techno and Afro House sets has profoundly shaped my approach to software. I believe a great digital product is like a flawless DJ set: it must have a perfect flow, intuitive transitions, and a technical precision that fades into the background to let the experience take center stage.
+                    I am driven by solving complex structural problems through clean architecture, database optimization, and secure integrations. Whether I am developing **Senselet**—a retail inventory SaaS with complex relational data models—or engineering **FitEthio**, a comprehensive client CRM, I focus on creating software that prioritizes data integrity, performance, and flawless user experiences.
                 </p>
             </section>
 
             {/* Service */}
             <section className="service">
-                <h3 className="h3 service-title">What I'm doing</h3>
+                <h3 className="h3 service-title">What I&apos;m doing</h3>
                 <motion.ul
                     className="service-list"
                     variants={containerVariants}
@@ -65,7 +62,7 @@ const About = ({ active, testimonials, onTestimonialClick }: AboutProps) => {
                     {[
                         { title: 'Web Development', text: 'Modern, scalable web applications built with cutting-edge technologies like React and Next.js.', icon: '/images/icon-dev.svg' },
                         { title: 'Mobile Apps', text: 'Cross-platform mobile applications delivering seamless performance and native-like experiences.', icon: '/images/icon-app.svg' },
-                        { title: 'Professional DJ', text: 'Professional Disk Jockey services, delivering curated soundscapes and high-energy music experiences.', icon: '/images/icon-music.svg' }
+                        { title: 'Systems Architecture', text: 'Designing scalable, high-performance backend infrastructures, robust API logic, and secure database schemas.', icon: '/images/icon-design.svg' }
                     ].map((service, i) => (
                         <motion.li key={i} className="service-item content-card" variants={itemVariants} style={{ display: 'flex', textAlign: 'left', alignItems: 'flex-start', gap: '20px' }}>
                             <div className="service-icon-box" style={{ flexShrink: 0, marginTop: '5px' }}>

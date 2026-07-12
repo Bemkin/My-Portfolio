@@ -52,7 +52,7 @@ const Contact = ({ active, onSubmit, isSubmitting }: ContactProps) => {
                         }}
                         onClick={() => setIsMapLoaded(true)}
                     >
-                        {/* @ts-ignore */}
+                        {/* @ts-expect-error: ion-icon custom element */}
                         <ion-icon name="map-outline" style={{ fontSize: '40px', color: 'var(--orange-yellow-crayola)', opacity: 0.6 }}></ion-icon>
                         <button
                             className="btn-filled"
@@ -186,14 +186,14 @@ const Contact = ({ active, onSubmit, isSubmitting }: ContactProps) => {
                                     transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                                     style={{ fontSize: '18px', display: 'flex' }}
                                 >
-                                    {/* @ts-ignore */}
+                                    {/* @ts-expect-error: ion-icon custom element */}
                                     <ion-icon name="sync-outline"></ion-icon>
                                 </motion.div>
                                 <span>Sending...</span>
                             </>
                         ) : (
                             <>
-                                {/* @ts-ignore */}
+                                {/* @ts-expect-error: ion-icon custom element */}
                                 <ion-icon name="paper-plane" style={{ fontSize: '18px' }}></ion-icon>
                                 <span>Send Message</span>
                             </>

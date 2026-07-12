@@ -1,4 +1,3 @@
-import { Project } from "@/types";
 
 export const testimonials = [
     {
@@ -50,4 +49,4 @@ export const spotifyPlaylists = [
     }
 ];
 
-export const resumePdf = '/Bemnet Kibret _ Full Stack Web Developer & Professional DJ.pdf';
+export const resumePdf = '/Bemnet Kibret _ Fullstack Software Engineer.pdf';

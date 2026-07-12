@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ResumePage() {
     useEffect(() => {
@@ -52,7 +52,7 @@ export default function ResumePage() {
                 >
                     📄 Download PDF
                 </button>
-                <a
+                <Link
                     href="/"
                     style={{
                         background: '#2d2d2e',
@@ -68,7 +68,7 @@ export default function ResumePage() {
                     }}
                 >
                     ← Back to Portfolio
-                </a>
+                </Link>
             </div>
 
             <div className="resume-container" style={{
@@ -87,7 +87,7 @@ export default function ResumePage() {
                         Bemnet Kibret
                     </h1>
                     <p style={{ fontSize: '18px', color: '#666', margin: '0 0 15px', fontWeight: '500' }}>
-                        Full Stack Web Developer
+                        Fullstack Software Engineer
                     </p>
                     <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap', fontSize: '14px', color: '#666' }}>
                         <span>📧 bemnetkibret4@gmail.com</span>
@@ -106,7 +106,7 @@ export default function ResumePage() {
                         Professional Summary
                     </h2>
                     <p style={{ color: '#444', fontSize: '15px', lineHeight: '1.7' }}>
-                        Results-driven Full Stack Engineer and Performance Architect specializing in high-fidelity, cinematic web experiences. Expert in bridging 3D visualization (Three.js) and complex scrollytelling with robust, scalable backend systems. Proven track record of architecting mission-critical platforms like Ahun Watches and FitEthio, delivering software that prioritizes both technical precision and aesthetic excellence. Combines a deep engineering foundation with a unique perspective as a professional artist to build products that flow intuitively and perform flawlessly.
+                        Results-driven Fullstack Software Engineer specializing in architecting end-to-end SaaS platforms and high-performance web applications. Expert in bridging robust server-side logic (Node.js, PostgreSQL) with scalable, interactive frontends (React, Next.js, TypeScript). Proven track record of owning the full development lifecycle—from relational database design and secure payment integration to deploying production-ready infrastructure. Passionate about writing clean, maintainable code that solves complex business problems and delivers flawless user experiences.
                     </p>
                 </section>
 
@@ -123,10 +123,10 @@ export default function ResumePage() {
                         </div>
                         <p style={{ fontSize: '14px', color: '#888', margin: '0 0 10px', fontStyle: 'italic' }}>Self-Employed</p>
                         <ul style={{ margin: '0', paddingLeft: '20px', color: '#444', fontSize: '14px' }}>
-                            <li style={{ marginBottom: '6px' }}>Architecting and deploying high-performance full-stack solutions for elite clients and startups.</li>
-                            <li style={{ marginBottom: '6px' }}>Successfully launched **Ahun Watches**, a premium horological platform featuring cinematic scrollytelling and high-fidelity asset rendering.</li>
-                            <li style={{ marginBottom: '6px' }}>Developed **FitEthio**, a comprehensive CRM and landing experience for high-ticket fitness coaches with 3D anatomical visualizations.</li>
-                            <li style={{ marginBottom: '6px' }}>Scaled **Senselet** from concept to a production-ready inventory intelligence system with real-time tracking and automated reporting.</li>
+                            <li style={{ marginBottom: '6px' }}>Architect and deploy production-ready fullstack applications for diverse clients, managing the entire software lifecycle from requirement gathering to cloud deployment.</li>
+                            <li style={{ marginBottom: '6px' }}>Engineered scalable backend architectures and relational databases using PostgreSQL and Supabase, ensuring data integrity for high-volume transactions and inventory updates.</li>
+                            <li style={{ marginBottom: '6px' }}>Integrated secure local and international payment gateways (Chapa, Stripe) into premium e-commerce and CRM platforms.</li>
+                            <li style={{ marginBottom: '6px' }}>Optimized frontend performance and state management using Next.js and TypeScript, delivering highly responsive, cinematic UIs that drive user engagement.</li>
                         </ul>
                     </div>
 
@@ -137,24 +137,13 @@ export default function ResumePage() {
                         </div>
                         <p style={{ fontSize: '14px', color: '#888', margin: '0 0 10px', fontStyle: 'italic' }}>MARVELS CREATIVE TECHNOLOGY, Addis Ababa</p>
                         <ul style={{ margin: '0', paddingLeft: '20px', color: '#444', fontSize: '14px' }}>
-                            <li style={{ marginBottom: '6px' }}>Built scalable backend systems using TypeScript and Next.js following modern development practices</li>
-                            <li style={{ marginBottom: '6px' }}>Collaborated with senior developers on production-level applications</li>
-                            <li style={{ marginBottom: '6px' }}>Gained hands-on experience with API design, database management, and system architecture</li>
-                            <li style={{ marginBottom: '6px' }}>Contributed to code reviews and agile development workflows</li>
+                            <li style={{ marginBottom: '6px' }}>Engineered and optimized scalable backend systems using TypeScript and Next.js within a fast-paced, production-grade environment.</li>
+                            <li style={{ marginBottom: '6px' }}>Collaborated with senior engineering teams to design RESTful API endpoints and refine server-side logic.</li>
+                            <li style={{ marginBottom: '6px' }}>Improved overall system reliability by contributing to core data pipelines and participating in rigorous code reviews.</li>
                         </ul>
                     </div>
 
-                    <div style={{ marginBottom: '25px' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px' }}>
-                            <h3 style={{ fontSize: '18px', fontWeight: '600', margin: 0, color: '#1a1a1a' }}>Professional DJ</h3>
-                            <span style={{ fontSize: '14px', color: '#666', fontWeight: '500' }}>2020 — Present</span>
-                        </div>
-                        <p style={{ fontSize: '14px', color: '#888', margin: '0 0 10px', fontStyle: 'italic' }}>Events & Entertainment</p>
-                        <ul style={{ margin: '0', paddingLeft: '20px', color: '#444', fontSize: '14px' }}>
-                            <li style={{ marginBottom: '6px' }}>Curate soundscapes and create memorable experiences for various events and venues</li>
-                            <li style={{ marginBottom: '6px' }}>Developed creative perspective that enhances UX design approach in web development</li>
-                        </ul>
-                    </div>
+
                 </section>
 
                 {/* Education */}
@@ -208,7 +197,7 @@ export default function ResumePage() {
                         </div>
                         <div>
                             <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Backend & Infrastructure</h4>
-                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Node.js, Supabase, PostgreSQL, REST/GraphQL APIs, Performance Analysis, Edge Functions</p>
+                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Node.js, NestJS, AWS (S3, EC2), PostgreSQL, Supabase, Redis, REST/GraphQL APIs, Microservices Architecture</p>
                         </div>
                         <div>
                             <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Niche Specializations</h4>
@@ -228,27 +217,30 @@ export default function ResumePage() {
                     </h2>
 
                     <div style={{ marginBottom: '20px' }}>
-                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Ahun Watches — Premium Horology Platform</h3>
+                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Senselet – Retail Inventory SaaS</h3>
                         <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
-                            A high-end e-commerce experience for premium watches, featuring advanced scrollytelling, high-fidelity asset rendering, and a custom configuration engine.
+                            An enterprise-grade inventory intelligence platform designed for retail management.
                         </p>
-                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, Framer Motion, GSAP, TypeScript, Supabase</p>
+                        <p style={{ fontSize: '13px', color: '#666', margin: '0 0 8px' }}><strong>Impact:</strong> Architected complex relational data models for real-time stock tracking, automated reporting, and secure payment processing.</p>
+                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, TypeScript, Supabase, PostgreSQL, Chapa</p>
                     </div>
 
                     <div style={{ marginBottom: '20px' }}>
-                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>FitEthio — Elite Fitness CRM</h3>
+                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Automated Lead Enrichment Pipeline</h3>
                         <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
-                            The operating system for elite fitness coaches, featuring 3D anatomy visualizations, hyper-accurate biometrics tracking, and a "Command Center" dashboard.
+                            A production-ready microservice designed to automate data collection and enrichment.
                         </p>
-                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, Three.js, TypeScript, Supabase, Framer Motion</p>
+                        <p style={{ fontSize: '13px', color: '#666', margin: '0 0 8px' }}><strong>Impact:</strong> Built, secured, and deployed an automated data pipeline to production, managing parallel pilot testing schedules and ensuring high-availability webhooks.</p>
+                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Node.js, REST APIs, Webhooks, Render</p>
                     </div>
 
                     <div style={{ marginBottom: '20px' }}>
-                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Senselet — Inventory Intelligence</h3>
+                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>FitEthio – Elite Fitness CRM</h3>
                         <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
-                            Full-stack inventory management system with real-time tracking, low-stock alerts, and comprehensive reporting. Built with Next.js, Supabase, and Chapa integration.
+                            A comprehensive management dashboard and client portal for high-ticket fitness coaches.
                         </p>
-                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, TypeScript, Supabase, Chapa, Tailwind CSS</p>
+                        <p style={{ fontSize: '13px', color: '#666', margin: '0 0 8px' }}><strong>Impact:</strong> Combined complex user state management with high-fidelity anatomical visualizations and hyper-accurate biomechanics tracking.</p>
+                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, TypeScript, Three.js, Framer Motion</p>
                     </div>
                 </section>
 

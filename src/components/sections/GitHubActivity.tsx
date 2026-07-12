@@ -32,7 +32,7 @@ const GitHubActivity = ({ username }: GitHubActivityProps) => {
         <section className="github-activity" style={{ marginTop: '40px' }}>
             <div className="title-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '25px' }}>
                 <div className="icon-box">
-                    {/* @ts-ignore */}
+                    {/* @ts-expect-error: ion-icon custom element */}
                     <ion-icon name="logo-github"></ion-icon>
                 </div>
                 <h3 className="h3">GitHub Activity</h3>
@@ -52,7 +52,7 @@ const GitHubActivity = ({ username }: GitHubActivityProps) => {
                         color: 'var(--light-gray)',
                         fontSize: 'var(--fs-7)',
                         overflowX: 'auto',
-                        paddingBottom: '15px'
+                        paddingBottom: '5px'
                     }}
                 >
                     <div style={{ minWidth: 'max-content', margin: '0 auto' }}>
@@ -62,29 +62,6 @@ const GitHubActivity = ({ username }: GitHubActivityProps) => {
                             blockMargin={4}
                             fontSize={14}
                             theme={theme}
-                        />
-                    </div>
-                </div>
-
-                <div style={{
-                    marginTop: '25px',
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                    gap: '20px'
-                }}>
-                    {/* Stats Cards using GitHub Readme Stats (External Images) */}
-                    <div style={{ borderRadius: '12px', overflow: 'hidden' }}>
-                        <img
-                            src={`https://github-readme-stats-eight-theta.vercel.app/api?username=${username}&show_icons=true&theme=dark&bg_color=1e1e1f&title_color=ffdb70&icon_color=ffdb70&text_color=d1d1d1&hide_border=true`}
-                            alt={`${username}'s GitHub Stats`}
-                            style={{ width: '100%', height: 'auto' }}
-                        />
-                    </div>
-                    <div style={{ borderRadius: '12px', overflow: 'hidden' }}>
-                        <img
-                            src={`https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=dark&bg_color=1e1e1f&title_color=ffdb70&text_color=d1d1d1&hide_border=true`}
-                            alt={`${username}'s Top Languages`}
-                            style={{ width: '100%', height: 'auto' }}
                         />
                     </div>
                 </div>

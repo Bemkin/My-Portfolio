@@ -10,13 +10,13 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://my-portfolio-theta-flame-45.vercel.app/"),
-  title: "Bemnet Kibret | Full Stack Web Developer & Professional DJ",
-  description: "Bemnet Kibret | Full Stack Developer & DJ. Specialist in React, Next.js, and Node.js. Creator of Senselet, Kaffa Roasters, Trainer CRM, and AI-powered FormCheck.",
-  keywords: ["Bemnet Kibret", "Full Stack Developer", "Portfolio", "React", "Next.js", "Node.js", "Web Development"],
+  title: "Bemnet Kibret | Fullstack Software Engineer",
+  description: "Bemnet Kibret | Fullstack Software Engineer specializing in end-to-end SaaS platforms and high-performance backend systems. Expert in Node.js, PostgreSQL, React, and Next.js.",
+  keywords: ["Bemnet Kibret", "Fullstack Software Engineer", "Portfolio", "React", "Next.js", "Node.js", "Web Development", "PostgreSQL", "SaaS"],
   authors: [{ name: "Bemnet Kibret" }],
   openGraph: {
-    title: "Bemnet Kibret | Full Stack Web Developer & Professional DJ",
-    description: "Bemnet Kibret | Full Stack Developer & DJ. Specialist in React, Next.js, and Node.js. Creator of Senselet, Kaffa Roasters, Trainer CRM, and AI-powered FormCheck.",
+    title: "Bemnet Kibret | Fullstack Software Engineer",
+    description: "Bemnet Kibret | Fullstack Software Engineer specializing in end-to-end SaaS platforms and high-performance backend systems. Expert in Node.js, PostgreSQL, React, and Next.js.",
     url: "https://my-portfolio-theta-flame-45.vercel.app/",
     siteName: "Bemnet Kibret Portfolio",
     images: [
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    title: "Bemnet Kibret | Full Stack Web Developer & Professional DJ",
-    description: "Bemnet Kibret | Full Stack Developer & DJ. Specialist in React, Next.js, and Node.js. Creator of Senselet, Kaffa Roasters, Trainer CRM, and AI-powered FormCheck.",
+    title: "Bemnet Kibret | Fullstack Software Engineer",
+    description: "Bemnet Kibret | Fullstack Software Engineer specializing in end-to-end SaaS platforms and high-performance backend systems. Expert in Node.js, PostgreSQL, React, and Next.js.",
     images: ["/og-image.png"],
   },
 };

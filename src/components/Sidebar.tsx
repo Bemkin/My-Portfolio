@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { trackExternalLink } from '@/lib/analytics';
 import Modal from './shared/Modal';
 
@@ -41,7 +41,7 @@ const Sidebar = ({ active, onToggle }: SidebarProps) => {
 
                     <div className="info-content">
                         <h1 className="name" title="Bemnet Kibret">Bemnet Kibret</h1>
-                        <p className="title">Full Stack Web developer</p>
+                        <p className="title">Fullstack Software Engineer</p>
                     </div>
 
                     <motion.button
@@ -55,7 +55,7 @@ const Sidebar = ({ active, onToggle }: SidebarProps) => {
                             animate={{ rotate: active ? 180 : 0 }}
                             transition={{ duration: 0.4 }}
                         >
-                            {/* @ts-ignore */}
+                            {/* @ts-expect-error: ion-icon custom element */}
                             <ion-icon name="chevron-down"></ion-icon>
                         </motion.div>
                     </motion.button>
@@ -74,7 +74,6 @@ const Sidebar = ({ active, onToggle }: SidebarProps) => {
                         {[
                             { title: 'Email', value: 'bemnetkibret4@gmail.com', href: 'mailto:bemnetkibret4@gmail.com', icon: 'mail-outline' },
                             { title: 'Phone', value: '+251929177999', href: 'tel:+251929177999', icon: 'phone-portrait-outline' },
-                            { title: 'Birthday', value: 'August 27, 2003', icon: 'calendar-outline' },
                             { title: 'Location', value: 'Addis Ababa, Ethiopia', icon: 'location-outline' }
                         ].map((contact, i) => (
                             <motion.li
@@ -84,7 +83,7 @@ const Sidebar = ({ active, onToggle }: SidebarProps) => {
                                 animate={active ? { x: 0, opacity: 1 } : {}}
                             >
                                 <div className="icon-box">
-                                    {/* @ts-ignore */}
+                                    {/* @ts-expect-error: ion-icon custom element */}
                                     <ion-icon name={contact.icon}></ion-icon>
                                 </div>
                                 <div className="contact-info">
@@ -121,7 +120,7 @@ const Sidebar = ({ active, onToggle }: SidebarProps) => {
                                     rel="noopener noreferrer"
                                     onClick={() => trackExternalLink(social.href, `social_${social.name}`)}
                                 >
-                                    {/* @ts-ignore */}
+                                    {/* @ts-expect-error: ion-icon custom element */}
                                     <ion-icon name={social.icon}></ion-icon>
                                 </a>
                             </motion.li>
