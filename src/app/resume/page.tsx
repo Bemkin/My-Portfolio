@@ -87,7 +87,7 @@ export default function ResumePage() {
                         Bemnet Kibret
                     </h1>
                     <p style={{ fontSize: '18px', color: '#666', margin: '0 0 15px', fontWeight: '500' }}>
-                        Fullstack Software Engineer
+                        Founder & Lead Full-Stack Engineer
                     </p>
                     <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap', fontSize: '14px', color: '#666' }}>
                         <span>📧 bemnetkibret4@gmail.com</span>
@@ -106,7 +106,7 @@ export default function ResumePage() {
                         Professional Summary
                     </h2>
                     <p style={{ color: '#444', fontSize: '15px', lineHeight: '1.7' }}>
-                        Results-driven Fullstack Software Engineer specializing in architecting end-to-end SaaS platforms and high-performance web applications. Expert in bridging robust server-side logic (Node.js, PostgreSQL) with scalable, interactive frontends (React, Next.js, TypeScript). Proven track record of owning the full development lifecycle—from relational database design and secure payment integration to deploying production-ready infrastructure. Passionate about writing clean, maintainable code that solves complex business problems and delivers flawless user experiences.
+                        Results-driven Founder and Lead Full-Stack Engineer specializing in architecting end-to-end SaaS platforms and data-intensive applications. Expert in bridging scalable server-side infrastructure (PostgreSQL, Supabase, Node.js) with high-performance frontends (Next.js, TypeScript). Proven track record of designing complex relational databases, offline-first architectures, and automated data pipelines—the exact foundational layers required to deploy, scale, and collaborate with autonomous AI agents. Passionate about leveraging high-agency engineering to build products that globally elevate how individuals and teams work.
                     </p>
                 </section>
 
@@ -118,15 +118,15 @@ export default function ResumePage() {
 
                     <div style={{ marginBottom: '25px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px' }}>
-                            <h3 style={{ fontSize: '18px', fontWeight: '600', margin: 0, color: '#1a1a1a' }}>Freelance Full Stack Developer</h3>
+                            <h3 style={{ fontSize: '18px', fontWeight: '600', margin: 0, color: '#1a1a1a' }}>Founder & Lead Engineer</h3>
                             <span style={{ fontSize: '14px', color: '#666', fontWeight: '500' }}>2024 — Present</span>
                         </div>
-                        <p style={{ fontSize: '14px', color: '#888', margin: '0 0 10px', fontStyle: 'italic' }}>Self-Employed</p>
+                        <p style={{ fontSize: '14px', color: '#888', margin: '0 0 10px', fontStyle: 'italic' }}>Senselet & Independent Solutions</p>
                         <ul style={{ margin: '0', paddingLeft: '20px', color: '#444', fontSize: '14px' }}>
-                            <li style={{ marginBottom: '6px' }}>Architect and deploy production-ready fullstack applications for diverse clients, managing the entire software lifecycle from requirement gathering to cloud deployment.</li>
-                            <li style={{ marginBottom: '6px' }}>Engineered scalable backend architectures and relational databases using PostgreSQL and Supabase, ensuring data integrity for high-volume transactions and inventory updates.</li>
-                            <li style={{ marginBottom: '6px' }}>Integrated secure local and international payment gateways (Chapa, Stripe) into premium e-commerce and CRM platforms.</li>
-                            <li style={{ marginBottom: '6px' }}>Optimized frontend performance and state management using Next.js and TypeScript, delivering highly responsive, cinematic UIs that drive user engagement.</li>
+                            <li style={{ marginBottom: '6px' }}>Architected and deployed a production-ready, AI-enabled enterprise ERP (Senselet) from the ground up, managing the entire software lifecycle and product roadmap.</li>
+                            <li style={{ marginBottom: '6px' }}>Engineered an offline-first architecture utilizing a Dual-ID resolution layer via PostgreSQL and Supabase, ensuring absolute data integrity across complex syncs and variant matrices.</li>
+                            <li style={{ marginBottom: '6px' }}>Built and deployed automated microservices and high-availability webhook pipelines, establishing robust infrastructure for programmatic workflows and real-time data enrichment.</li>
+                            <li style={{ marginBottom: '6px' }}>Integrated secure local and international payment gateways (Chapa, Stripe) into scalable, multi-tenant e-commerce and SaaS architectures.</li>
                         </ul>
                     </div>
 
@@ -158,7 +158,6 @@ export default function ResumePage() {
                             <span style={{ fontSize: '14px', color: '#666', fontWeight: '500' }}>2024 — 2025</span>
                         </div>
                         <p style={{ fontSize: '14px', color: '#888', margin: '0', fontStyle: 'italic' }}>Evangadi Technologies</p>
-                        <p style={{ fontSize: '14px', color: '#444', margin: '8px 0 0' }}>Intensive training in modern web development technologies and best practices</p>
                     </div>
 
                     <div style={{ marginBottom: '20px' }}>
@@ -167,7 +166,6 @@ export default function ResumePage() {
                             <span style={{ fontSize: '14px', color: '#666', fontWeight: '500' }}>2021 — 2023</span>
                         </div>
                         <p style={{ fontSize: '14px', color: '#888', margin: '0', fontStyle: 'italic' }}>Addis Ababa Science and Technology University</p>
-                        <p style={{ fontSize: '14px', color: '#444', margin: '8px 0 0' }}>Foundation in science and technology principles</p>
                     </div>
                 </section>
 
@@ -178,10 +176,10 @@ export default function ResumePage() {
                     </h2>
                     <div style={{ marginBottom: '15px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                            <h3 style={{ fontSize: '17px', fontWeight: '600', margin: 0, color: '#1a1a1a' }}>Full Stack Web Development (MERN)</h3>
+                            <h3 style={{ fontSize: '17px', fontWeight: '600', margin: 0, color: '#1a1a1a' }}>Certified Full Stack Engineer</h3>
                             <span style={{ fontSize: '14px', color: '#666', fontWeight: '500' }}>2025</span>
                         </div>
-                        <p style={{ fontSize: '14px', color: '#444', marginTop: '5px' }}>Evangadi Technologies • Certified Full Stack Engineer</p>
+                        <p style={{ fontSize: '14px', color: '#444', marginTop: '5px' }}>Evangadi Technologies</p>
                     </div>
                 </section>
 
@@ -193,19 +191,19 @@ export default function ResumePage() {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '15px' }}>
                         <div>
                             <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Frontend Engineering</h4>
-                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>React, Next.js, TypeScript, Framer Motion, GSAP, 3D Web (Three.js), Tailwind CSS</p>
+                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>React, Next.js, TypeScript, Tailwind CSS, State Management</p>
                         </div>
                         <div>
                             <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Backend & Infrastructure</h4>
-                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Node.js, NestJS, AWS (S3, EC2), PostgreSQL, Supabase, Redis, REST/GraphQL APIs, Microservices Architecture</p>
-                        </div>
-                        <div>
-                            <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Niche Specializations</h4>
-                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Cinematic Scrollytelling, Responsive Layouts, 3D Asset Optimization, Payment Systems (Chapa)</p>
+                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Node.js, PostgreSQL, Supabase, REST/GraphQL APIs, Microservices Architecture, Webhooks, Data Pipelines</p>
                         </div>
                         <div>
                             <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Tools & Workflow</h4>
-                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Git/GitHub, CI/CD, AI-Driven Development, High-Fidelity Design Systems</p>
+                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Git/GitHub, CI/CD, High-Fidelity System Design, AI-Driven Development</p>
+                        </div>
+                        <div>
+                            <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Niche Specializations</h4>
+                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Relational Database Design, Offline-First Architecture, Automated Workflows, Secure Payment Systems</p>
                         </div>
                     </div>
                 </section>
@@ -217,29 +215,20 @@ export default function ResumePage() {
                     </h2>
 
                     <div style={{ marginBottom: '20px' }}>
-                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Senselet – Retail Inventory SaaS</h3>
-                        <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
-                            An enterprise-grade inventory intelligence platform designed for retail management.
-                        </p>
-                        <p style={{ fontSize: '13px', color: '#666', margin: '0 0 8px' }}><strong>Impact:</strong> Architected complex relational data models for real-time stock tracking, automated reporting, and secure payment processing.</p>
+                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Senselet - AI-Ready Enterprise ERP</h3>
+                        <p style={{ fontSize: '13px', color: '#666', margin: '0 0 8px' }}><strong>Impact:</strong> Architected a multi-location inventory intelligence platform handling complex multi-dimensional tracking (variants, sizes). Engineered robust backend database triggers and offline queues to ensure zero data loss—laying the scalable groundwork required for seamless AI agent integration and automation.</p>
                         <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, TypeScript, Supabase, PostgreSQL, Chapa</p>
                     </div>
 
                     <div style={{ marginBottom: '20px' }}>
-                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Automated Lead Enrichment Pipeline</h3>
-                        <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
-                            A production-ready microservice designed to automate data collection and enrichment.
-                        </p>
-                        <p style={{ fontSize: '13px', color: '#666', margin: '0 0 8px' }}><strong>Impact:</strong> Built, secured, and deployed an automated data pipeline to production, managing parallel pilot testing schedules and ensuring high-availability webhooks.</p>
+                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Automated Data Enrichment Pipeline</h3>
+                        <p style={{ fontSize: '13px', color: '#666', margin: '0 0 8px' }}><strong>Impact:</strong> Built, secured, and deployed a production-ready microservice to automate data collection and processing. Managed parallel pilot testing schedules and ensured high-availability webhooks for continuous, agent-like automated workflows.</p>
                         <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Node.js, REST APIs, Webhooks, Render</p>
                     </div>
 
                     <div style={{ marginBottom: '20px' }}>
-                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>FitEthio – Elite Fitness CRM</h3>
-                        <p style={{ fontSize: '14px', color: '#444', margin: '0 0 8px', lineHeight: '1.6' }}>
-                            A comprehensive management dashboard and client portal for high-ticket fitness coaches.
-                        </p>
-                        <p style={{ fontSize: '13px', color: '#666', margin: '0 0 8px' }}><strong>Impact:</strong> Combined complex user state management with high-fidelity anatomical visualizations and hyper-accurate biomechanics tracking.</p>
+                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>FitEthio - Elite CRM Dashboard</h3>
+                        <p style={{ fontSize: '13px', color: '#666', margin: '0 0 8px' }}><strong>Impact:</strong> Combined complex user state management with high-performance frontends to deliver a comprehensive management dashboard and client portal for elite fitness coaches.</p>
                         <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, TypeScript, Three.js, Framer Motion</p>
                     </div>
                 </section>
