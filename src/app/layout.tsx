@@ -34,6 +34,11 @@ export const metadata: Metadata = {
     description: "Bemnet Kibret | Fullstack Software Engineer specializing in end-to-end SaaS platforms and high-performance backend systems. Expert in Node.js, PostgreSQL, React, and Next.js.",
     images: ["/og-image.png"],
   },
+  icons: {
+    icon: [{ url: '/icon.png', type: 'image/png' }],
+    shortcut: '/icon.png',
+    apple: '/icon.png',
+  },
 };
 
 import StructuredData from "@/components/shared/StructuredData";
