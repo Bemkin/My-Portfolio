@@ -1,1 +1,1 @@
-/// <reference path="./types/ionicons.d.ts" />
+import './types/ionicons.d.ts';

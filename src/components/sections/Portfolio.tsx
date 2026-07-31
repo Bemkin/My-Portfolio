@@ -63,7 +63,7 @@ const Portfolio = ({
                     <button className={`filter-select ${isFilterActive ? 'active' : ''}`} onClick={() => setIsFilterActive(!isFilterActive)}>
                         <div className="select-value">{portfolioFilter === 'all' ? 'Select category' : portfolioFilter}</div>
                         <div className="select-icon">
-                            {/* @ts-ignore */}
+                            {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                             <ion-icon name="chevron-down"></ion-icon>
                         </div>
                     </button>
@@ -96,15 +96,15 @@ const Portfolio = ({
                             <div className="content-card" style={{ position: 'relative', padding: '0', overflow: 'hidden' }}>
                                 <figure className="project-img" style={{ margin: '0', borderRadius: '0', position: 'relative' }}>
                                     <div className="project-item-icon-box">
-                                        {/* @ts-ignore */}
+                                        {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                                         <ion-icon name="eye-outline"></ion-icon>
                                     </div>
                                     <Image
                                         src={project.image}
                                         alt={project.title}
-                                        width={300}
-                                        height={200}
-                                        style={{ width: '100%', height: 'auto' }}
+                                        width={400}
+                                        height={225}
+                                        style={{ width: '100%', aspectRatio: '16 / 9', objectFit: 'cover', objectPosition: 'center' }}
                                         loading={index < 3 ? 'eager' : 'lazy'}
                                         priority={index === 0}
                                     />
@@ -182,7 +182,7 @@ const Portfolio = ({
                                             border: '1px solid var(--glass-border)',
                                         }}
                                     >
-                                        {/* @ts-ignore */}
+                                        {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                                         <ion-icon name="logo-github"></ion-icon>
                                     </motion.a>
                                 )}

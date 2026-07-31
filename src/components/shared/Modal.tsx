@@ -6,9 +6,10 @@ interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
     children: React.ReactNode;
+    maxWidth?: string;
 }
 
-const Modal = ({ isOpen, onClose, children }: ModalProps) => {
+const Modal = ({ isOpen, onClose, children, maxWidth }: ModalProps) => {
     return (
         <AnimatePresence>
             {isOpen && (
@@ -24,13 +25,14 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
 
                     <motion.section
                         className="testimonials-modal"
+                        style={maxWidth ? { maxWidth, width: '100%' } : undefined}
                         initial={{ opacity: 0, scale: 0.8, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.8, y: 20 }}
                         transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 25 }}
                     >
                         <button className="modal-close-btn" data-modal-close-btn onClick={onClose}>
-                            {/* @ts-ignore */}
+                            {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                             <ion-icon name="close"></ion-icon>
                         </button>
                         {children}

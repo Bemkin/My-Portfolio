@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     try {
-        const project = await getPostBySlug('projects', slug) as any;
+        const project = await getPostBySlug('projects', slug) as unknown as Project;
         const ogUrl = new URL('https://my-portfolio-theta-flame-45.vercel.app/api/og');
         ogUrl.searchParams.set('title', project.title);
         ogUrl.searchParams.set('type', 'Case Study');
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
                 images: [ogUrl.toString()],
             },
         };
-    } catch (e) {
+    } catch {
         return {
             title: 'Not Found',
         };
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export async function generateStaticParams() {
     const projects = await getPosts('projects');
-    return projects.map((project: any) => ({
+    return projects.map((project: { slug: string }) => ({
         slug: project.slug,
     }));
 }
@@ -49,7 +49,7 @@ export default async function ProjectCaseStudy({ params }: { params: Promise<{ s
 
     try {
         project = await getPostBySlug('projects', slug) as unknown as Project;
-    } catch (e) {
+    } catch {
         notFound();
     }
 

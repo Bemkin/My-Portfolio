@@ -175,15 +175,26 @@ textarea {
 }
 
 :focus {
-  outline-color: var(--orange-yellow-crayola);
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--orange-yellow-crayola);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 html {
   font-family: var(--ff-outfit);
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--smoky-black);
+  color: var(--light-gray);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /*-----------------------------------*\
@@ -194,11 +205,13 @@ body {
 article {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
   border-radius: 24px;
-  padding: 25px;
+  padding: 28px;
   box-shadow: var(--shadow-3);
   z-index: 1;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .separator {
@@ -206,21 +219,23 @@ article {
   height: 1px;
   background: var(--jet);
   margin: 16px 0;
+  opacity: 0.8;
 }
 
 .icon-box {
   position: relative;
   background: var(--border-gradient-onyx);
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--orange-yellow-crayola);
   box-shadow: var(--shadow-1);
   z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .icon-box::before {
@@ -230,6 +245,7 @@ article {
   background: var(--eerie-black-1);
   border-radius: inherit;
   z-index: -1;
+  transition: background 0.3s ease;
 }
 
 .icon-box ion-icon {
@@ -242,16 +258,18 @@ article {
 
 article.active {
   display: block;
-  animation: fade 0.5s ease backwards;
+  animation: fade 0.5s cubic-bezier(0.25, 1, 0.5, 1) backwards;
 }
 
 @keyframes fade {
   0% {
     opacity: 0;
+    transform: translateY(8px);
   }
 
   100% {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -261,28 +279,33 @@ article.active {
 .h5 {
   color: var(--white-2);
   text-transform: capitalize;
+  letter-spacing: -0.01em;
 }
 
 .h2 {
   font-size: var(--fs-1);
+  font-weight: 700;
 }
 
 .h3 {
   font-size: var(--fs-2);
+  font-weight: 600;
 }
 
 .h4 {
   font-size: var(--fs-4);
+  font-weight: 600;
 }
 
 .h5 {
   font-size: var(--fs-7);
-  font-weight: var(--fw-500);
+  font-weight: 500;
 }
 
 .article-title {
   position: relative;
-  padding-bottom: 7px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .article-title::after {
@@ -290,27 +313,26 @@ article.active {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 30px;
-  height: 3px;
+  width: 40px;
+  height: 4px;
   background: var(--text-gradient-yellow);
-  border-radius: 3px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px hsla(45, 100%, 72%, 0.4);
 }
 
 .has-scrollbar::-webkit-scrollbar {
-  width: 5px;
-  /* for vertical scrollbar */
-  height: 5px;
-  /* for horizontal scrollbar */
+  width: 6px;
+  height: 6px;
 }
 
 .has-scrollbar::-webkit-scrollbar-track {
   background: var(--onyx);
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
 .has-scrollbar::-webkit-scrollbar-thumb {
   background: var(--orange-yellow-crayola);
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
 .has-scrollbar::-webkit-scrollbar-button {
@@ -326,13 +348,16 @@ article.active {
   box-shadow: var(--shadow-2);
   cursor: pointer;
   z-index: 1;
-  transition: var(--transition-1);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+              box-shadow 0.3s ease, 
+              border-color 0.3s ease,
+              background-color 0.3s ease;
 }
 
 .content-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-3);
-  border-color: hsla(45, 100%, 72%, 0.3);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--shadow-3), 0 0 20px rgba(255, 185, 50, 0.08);
+  border-color: hsla(45, 100%, 72%, 0.35);
 }
 
 /*-----------------------------------*\

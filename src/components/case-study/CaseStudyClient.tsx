@@ -98,7 +98,7 @@ export default function CaseStudyClient({ project }: CaseStudyClientProps) {
                                 border: '1px solid var(--jet)',
                                 color: 'var(--white-2)'
                             }}>
-                                {/* @ts-expect-error */}
+                                {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                                 <ion-icon name="chevron-back-outline"></ion-icon>
                                 Back to Portfolio
                             </Link>
@@ -234,7 +234,7 @@ export default function CaseStudyClient({ project }: CaseStudyClientProps) {
                                 gap: '24px',
                                 marginBottom: '40px'
                             }}>
-                                {project.metrics.map((m, i) => (
+                                {project.metrics.map((m) => (
                                     <motion.div
                                         key={m.label}
                                         whileHover={{ y: -5, borderColor: 'var(--orange-yellow-crayola)' }}
@@ -298,7 +298,7 @@ export default function CaseStudyClient({ project }: CaseStudyClientProps) {
                                     alignItems: 'center',
                                     marginBottom: '20px'
                                 }}>
-                                    {/* @ts-expect-error */}
+                                    {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                                     <ion-icon name="help-circle-outline" style={{ color: 'var(--orange-yellow-crayola)', fontSize: '24px' }}></ion-icon>
                                 </div>
                                 <h3 className="h3" style={{ marginBottom: '20px', fontWeight: '700' }}>The Challenge</h3>
@@ -316,7 +316,7 @@ export default function CaseStudyClient({ project }: CaseStudyClientProps) {
                                     alignItems: 'center',
                                     marginBottom: '20px'
                                 }}>
-                                    {/* @ts-expect-error */}
+                                    {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                                     <ion-icon name="bulb-outline" style={{ color: 'var(--orange-yellow-crayola)', fontSize: '24px' }}></ion-icon>
                                 </div>
                                 <h3 className="h3" style={{ marginBottom: '20px', fontWeight: '700' }}>The Solution</h3>
@@ -348,7 +348,7 @@ export default function CaseStudyClient({ project }: CaseStudyClientProps) {
                                             borderRadius: '12px',
                                             border: '1px solid rgba(255,255,255,0.05)'
                                         }}>
-                                            {/* @ts-expect-error */}
+                                            {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                                             <ion-icon name="checkmark-done-outline" style={{ color: 'var(--orange-yellow-crayola)', fontSize: '22px' }}></ion-icon>
                                             <span style={{ fontSize: '15px', fontWeight: '500' }}>{f}</span>
                                         </div>
@@ -389,28 +389,30 @@ export default function CaseStudyClient({ project }: CaseStudyClientProps) {
                                 </p>
 
                                 <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                                    <motion.a
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        href={project.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="form-btn"
-                                        style={{
-                                            padding: '16px 40px',
-                                            borderRadius: '14px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '12px',
-                                            fontSize: '16px',
-                                            fontWeight: '700',
-                                            boxShadow: '0 10px 30px rgba(255, 184, 0, 0.2)'
-                                        }}
-                                    >
-                                        {/* @ts-expect-error */}
-                                        <ion-icon name="rocket-outline"></ion-icon>
-                                        Launch Project
-                                    </motion.a>
+                                    {project.link && (
+                                        <motion.a
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            href={project.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="form-btn"
+                                            style={{
+                                                padding: '16px 40px',
+                                                borderRadius: '14px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '12px',
+                                                fontSize: '16px',
+                                                fontWeight: '700',
+                                                boxShadow: '0 10px 30px rgba(255, 184, 0, 0.2)'
+                                            }}
+                                        >
+                                            {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
+                                            <ion-icon name="rocket-outline"></ion-icon>
+                                            Launch Project
+                                        </motion.a>
+                                    )}
 
                                     {project.github && (
                                         <motion.a
@@ -433,10 +435,29 @@ export default function CaseStudyClient({ project }: CaseStudyClientProps) {
                                                 fontWeight: '600'
                                             }}
                                         >
-                                            {/* @ts-expect-error */}
+                                            {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                                             <ion-icon name="logo-github"></ion-icon>
                                             Inspect Source
                                         </motion.a>
+                                    )}
+
+                                    {!project.link && !project.github && (
+                                        <div style={{
+                                            padding: '16px 30px',
+                                            borderRadius: '14px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '12px',
+                                            background: 'var(--onyx)',
+                                            border: '1px solid var(--jet)',
+                                            color: 'var(--light-gray-70)',
+                                            fontSize: '15px',
+                                            fontWeight: '600'
+                                        }}>
+                                            {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
+                                            <ion-icon name="lock-closed-outline" style={{ color: 'var(--orange-yellow-crayola)', fontSize: '20px' }}></ion-icon>
+                                            Private Enterprise B2B Solution (Proprietary)
+                                        </div>
                                     )}
                                 </div>
                             </div>

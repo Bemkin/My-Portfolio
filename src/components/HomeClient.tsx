@@ -16,9 +16,9 @@ import Modal from '@/components/shared/Modal';
 import Toast from '@/components/shared/Toast';
 import { testimonials } from '@/lib/constants';
 import { trackTabChange, trackProjectView, trackFormSubmit, trackExternalLink } from '@/lib/analytics';
-import type { Project, LifePhoto } from '@/types';
+import type { Project, LifePhoto, BlogPost } from '@/types';
 
-export default function HomeClient({ allProjects, posts }: { allProjects: Project[], posts: any[] }) {
+export default function HomeClient({ allProjects, posts }: { allProjects: Project[], posts: BlogPost[] }) {
   const [activePage, setActivePage] = useState('about');
   const [sidebarActive, setSidebarActive] = useState(false);
   const [selectedTestimonial, setSelectedTestimonial] = useState<number | null>(null);
@@ -96,10 +96,11 @@ export default function HomeClient({ allProjects, posts }: { allProjects: Projec
     }
   };
 
-  const handleProjectSelect = (project: any) => {
+  const handleProjectSelect = (project: Project) => {
     setSelectedProject(project);
     if (project) {
-      trackProjectView(project.title, project.category);
+      const categoryStr = Array.isArray(project.category) ? project.category.join(', ') : project.category;
+      trackProjectView(project.title, categoryStr);
     }
   };
 
@@ -211,22 +212,25 @@ export default function HomeClient({ allProjects, posts }: { allProjects: Projec
       <Modal
         isOpen={selectedProject !== null}
         onClose={() => setSelectedProject(null)}
+        maxWidth="720px"
       >
         {selectedProject && (
-          <div className="project-modal-content" style={{ textAlign: 'left' }}>
+          <div className="project-modal-content" style={{ textAlign: 'left', width: '100%' }}>
             <figure style={{
               borderRadius: '12px',
               overflow: 'hidden',
               marginBottom: '20px',
               border: '1px solid var(--jet)',
-              lineHeight: 0
+              lineHeight: 0,
+              aspectRatio: '16 / 9',
+              maxHeight: '340px'
             }}>
               <Image
                 src={selectedProject.image}
                 alt={selectedProject.title}
-                width={600}
-                height={400}
-                style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                width={800}
+                height={450}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
               />
             </figure>
 
@@ -289,35 +293,37 @@ export default function HomeClient({ allProjects, posts }: { allProjects: Projec
                     }}
                     onClick={() => setSelectedProject(null)}
                   >
-                    {/* @ts-expect-error */}
+                    {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                     <ion-icon name="document-text-outline"></ion-icon>
                     View Full Case Study
                   </Link>
                 </div>
               )}
 
-              <div style={{ display: 'flex', gap: '15px', marginTop: 'auto' }}>
-                <a
-                  href={selectedProject.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-filled"
-                  onClick={() => trackExternalLink(selectedProject.link, 'project_live_demo')}
-                  style={{
-                    padding: '12px 25px',
-                    borderRadius: '8px',
-                    fontSize: 'var(--fs-7)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    flex: 1,
-                    justifyContent: 'center'
-                  }}
-                >
-                  {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
-                  <ion-icon name="eye-outline"></ion-icon>
-                  Live Demo
-                </a>
+              <div style={{ display: 'flex', gap: '15px', marginTop: 'auto', flexWrap: 'wrap' }}>
+                {selectedProject.link && (
+                  <a
+                    href={selectedProject.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-filled"
+                    onClick={() => trackExternalLink(selectedProject.link, 'project_live_demo')}
+                    style={{
+                      padding: '12px 25px',
+                      borderRadius: '8px',
+                      fontSize: 'var(--fs-7)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      flex: 1,
+                      justifyContent: 'center'
+                    }}
+                  >
+                    {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
+                    <ion-icon name="eye-outline"></ion-icon>
+                    Live Demo
+                  </a>
+                )}
 
                 {selectedProject.github && (
                   <a
@@ -344,6 +350,26 @@ export default function HomeClient({ allProjects, posts }: { allProjects: Projec
                     <ion-icon name="logo-github"></ion-icon>
                     Source Code
                   </a>
+                )}
+
+                {!selectedProject.link && !selectedProject.github && (
+                  <div style={{
+                    padding: '12px 20px',
+                    borderRadius: '8px',
+                    fontSize: 'var(--fs-7)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    justifyContent: 'center',
+                    width: '100%',
+                    background: 'var(--onyx)',
+                    border: '1px solid var(--jet)',
+                    color: 'var(--light-gray-70)'
+                  }}>
+                    {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    Private Enterprise B2B Solution (Proprietary)
+                  </div>
                 )}
               </div>
             </div>

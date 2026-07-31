@@ -3,10 +3,11 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { lifePhotos, spotifyPlaylists } from '@/lib/constants';
+import { LifePhoto, SpotifyPlaylist } from '@/types';
 
 interface LifeProps {
     active: boolean;
-    onPhotoClick: (photo: any) => void;
+    onPhotoClick: (photo: LifePhoto) => void;
 }
 
 const containerVariants = {
@@ -50,7 +51,7 @@ const Life = ({ active, onPhotoClick }: LifeProps) => {
             <header>
                 <h2 className="h2 article-title">Life Beyond Code</h2>
                 <p style={{ color: 'var(--light-gray-70)', marginBottom: '30px', fontSize: 'var(--fs-6)' }}>
-                    When I'm not architecting systems, I'm curating soundscapes. A professional DJ journey blending precision with creative energy.
+                    When I&apos;m not architecting systems, I&apos;m curating soundscapes. A professional DJ journey blending precision with creative energy.
                 </p>
             </header>
 
@@ -126,7 +127,7 @@ const Life = ({ active, onPhotoClick }: LifeProps) => {
                 style={{ marginTop: '20px' }}
             >
                 <h3 className="h3" style={{ marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    {/* @ts-ignore */}
+                    {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                     <ion-icon name="musical-notes-outline" style={{ color: 'var(--orange-yellow-crayola)' }}></ion-icon>
                     Curated Soundscapes
                 </h3>
@@ -136,7 +137,7 @@ const Life = ({ active, onPhotoClick }: LifeProps) => {
                     gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
                     gap: '20px'
                 }}>
-                    {spotifyPlaylists.map((playlist: any) => (
+                    {spotifyPlaylists.map((playlist: SpotifyPlaylist) => (
                         <motion.div
                             key={playlist.id}
                             variants={itemVariants}

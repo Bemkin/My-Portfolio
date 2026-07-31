@@ -23,7 +23,7 @@ const ThemeToggle = () => {
             }}
             title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
         >
-            {/* @ts-ignore */}
+            {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
             <ion-icon name={theme === 'dark' ? 'sunny-outline' : 'moon-outline'}></ion-icon>
         </motion.button>
     );

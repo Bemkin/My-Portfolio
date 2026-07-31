@@ -28,12 +28,14 @@ export async function getPosts(type: 'blog' | 'projects') {
             };
         });
 
-    return posts.sort((a: any, b: any) => {
-        if (a.date && b.date) {
-            return new Date(b.date).getTime() - new Date(a.date).getTime();
+    return posts.sort((a: Record<string, unknown>, b: Record<string, unknown>) => {
+        const aDate = typeof a.date === 'string' ? a.date : undefined;
+        const bDate = typeof b.date === 'string' ? b.date : undefined;
+        if (aDate && bDate) {
+            return new Date(bDate).getTime() - new Date(aDate).getTime();
         }
-        if (a.date) return -1;
-        if (b.date) return 1;
+        if (aDate) return -1;
+        if (bDate) return 1;
         return 0;
     });
 }

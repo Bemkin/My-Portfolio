@@ -35,7 +35,7 @@ export default function Error({
                     justifyContent: 'center',
                     margin: '0 auto 20px auto'
                 }}>
-                    {/* @ts-ignore */}
+                    {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                     <ion-icon name="alert-circle-outline" style={{ fontSize: '40px', color: '#ff5a5a' }}></ion-icon>
                 </div>
 
@@ -51,14 +51,14 @@ export default function Error({
                         style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'var(--onyx)', color: 'var(--white-2)' }}
                     >
                         <span>Try Again</span>
-                        {/* @ts-ignore */}
+                        {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                         <ion-icon name="refresh-outline"></ion-icon>
                     </button>
 
                     <Link href="/">
                         <button className="form-btn" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                             <span>Return Home</span>
-                            {/* @ts-ignore */}
+                            {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                             <ion-icon name="home-outline"></ion-icon>
                         </button>
                     </Link>

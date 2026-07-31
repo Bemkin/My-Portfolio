@@ -116,7 +116,7 @@ const Contact = ({ active, onSubmit, isSubmitting }: ContactProps) => {
                                 borderRadius: '12px',
                                 padding: '15px 20px',
                                 color: 'var(--white-2)',
-                                outline: 'none'
+                                transition: 'all 0.3s ease'
                             }}
                         />
                         <motion.input
@@ -133,7 +133,7 @@ const Contact = ({ active, onSubmit, isSubmitting }: ContactProps) => {
                                 borderRadius: '12px',
                                 padding: '15px 20px',
                                 color: 'var(--white-2)',
-                                outline: 'none'
+                                transition: 'all 0.3s ease'
                             }}
                         />
                     </div>
@@ -152,13 +152,14 @@ const Contact = ({ active, onSubmit, isSubmitting }: ContactProps) => {
                             padding: '15px 20px',
                             minHeight: '150px',
                             color: 'var(--white-2)',
-                            outline: 'none',
-                            resize: 'none'
+                            resize: 'none',
+                            transition: 'all 0.3s ease'
                         }}
                     ></motion.textarea>
 
                     <motion.button
                         variants={itemVariants}
+                        whileHover={{ scale: isSubmitting ? 1 : 1.02, y: isSubmitting ? 0 : -2 }}
                         whileTap={{ scale: 0.98 }}
                         className="btn-filled"
                         type="submit"
@@ -176,7 +177,8 @@ const Contact = ({ active, onSubmit, isSubmitting }: ContactProps) => {
                             alignSelf: 'flex-end',
                             textTransform: 'none',
                             opacity: isSubmitting ? 0.7 : 1,
-                            cursor: isSubmitting ? 'not-allowed' : 'pointer'
+                            cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                            boxShadow: '0 4px 15px rgba(255, 185, 50, 0.2)'
                         }}
                     >
                         {isSubmitting ? (

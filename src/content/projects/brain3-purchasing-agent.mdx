@@ -1,0 +1,53 @@
+---
+title: 'Brain3 - Autonomous AI Purchasing Agent'
+date: '2026-07-26'
+category: ['ai', 'fullstack']
+image: '/images/brain3-hero.png'
+link: 'https://brain3-purchasing-agent.vercel.app/'
+github: 'https://github.com/Bemkin/brain3-purchasing-agent.git'
+tech: ['Next.js 16', 'TypeScript', 'Gemini 3.5 Flash Lite', 'Supabase', 'Resend', 'Zod', 'Tailwind']
+excerpt: 'An enterprise-grade, zero-touch autonomous purchasing agent that audits inventory, predicts stock depletion, generates AI purchase orders, and dispatches supplier emails.'
+problem: 'Manual stock auditing and traditional procurement workflows suffer from stockouts, human error, delayed reordering, and administrative overhead, causing business disruption.'
+solution: 'Brain3 provides a dual-node OS (Auto-Pilot & Approval mode) powered by Gemini 3.5 Flash Lite parallel batch analysis, Zod schema validation, fail-safe mathematical fallback engineering, and automated vendor email dispatch.'
+features:
+  - 'Dual-Node Operating System (Auto-Pilot & Approval Mode)'
+  - 'Gemini 3.5 Flash Lite Parallel Batch Analysis'
+  - 'Zod Strict JSON Schema Output Validation'
+  - 'Fail-Safe Mathematical Reorder Fallback Engineering'
+  - 'Executive Donezo Light SaaS Dashboard UI'
+  - 'Automated Vendor PO Email Dispatch via Resend'
+  - 'Real-Time Stock Depletion & Demand Simulation'
+metrics:
+  - label: 'Automation Level'
+    value: 'Zero-Touch'
+  - label: 'AI Audit Batch Speed'
+    value: '< 500ms'
+  - label: 'System Continuity'
+    value: '100% Fail-Safe'
+---
+
+### 🤖 Brain3 — Autonomous AI Purchasing Agent
+
+**Brain3** is an enterprise-grade autonomous procurement agent designed to continuously audit inventory levels, predict stock depletion, generate AI-optimized purchase orders, and dispatch supplier emails without human intervention.
+
+---
+
+### 🌟 Key Architecture & Capabilities
+
+1. **Dual-Node Operating System**:
+   - **Auto-Pilot Mode (Zero Touch)**: Fully autonomous procurement. The AI agent audits stock, calculates optimal reorder quantities, generates POs, approves orders within threshold ceiling, and dispatches supplier emails automatically.
+   - **Approval Mode (Human-in-the-Loop)**: AI generates draft PO recommendations with detailed reasoning, queuing them for human operator sign-off before dispatch.
+
+2. **Gemini 3.5 Flash Lite + Zod Schema Validation**:
+   - Consolidates low-stock inventory audit items into a single parallel batch request to Gemini `gemini-3.5-flash-lite`.
+   - Enforces strict JSON schema validation via **Zod** (`BatchReorderResponseSchema`).
+
+3. **Fail-Safe Mathematical Engineering**:
+   - If Gemini API quota or network errors occur, the pipeline gracefully falls back to deterministic mathematical reorder engineering:
+     $$ \text{Reorder Quantity} = \min\left((\text{Reorder Point} \times 2) - \text{Current Stock}, \, \text{Max Capacity} - \text{Current Stock}\right) $$
+   - Guarantees zero system downtime and continuous business continuity.
+
+4. **Executive Light Dashboard Aesthetic**:
+   - Modern executive UI inspired by the Donezo Light SaaS dashboard.
+   - Solid Forest Green (`#064e3b`), Emerald Green (`#059669`), Off-White canvas (`#f3f4f6`), and crisp white card containers.
+   - `⌘F` / `Ctrl+F` global search shortcut, live instant search dropdown, supplier email logs popover, and system alerts notification drawer.

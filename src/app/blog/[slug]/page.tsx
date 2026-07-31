@@ -14,7 +14,7 @@ interface BlogPostPageProps {
 export async function generateMetadata(props: BlogPostPageProps): Promise<Metadata> {
     const params = await props.params;
     try {
-        const post = await getPostBySlug('blog', params.slug) as any;
+        const post = await getPostBySlug('blog', params.slug) as unknown as Post;
         const ogUrl = new URL('https://my-portfolio-theta-flame-45.vercel.app/api/og');
         ogUrl.searchParams.set('title', post.title);
         ogUrl.searchParams.set('type', 'Blog');
@@ -36,7 +36,7 @@ export async function generateMetadata(props: BlogPostPageProps): Promise<Metada
                 images: [ogUrl.toString()],
             },
         };
-    } catch (e) {
+    } catch {
         return {
             title: 'Not Found',
         };
@@ -55,7 +55,7 @@ interface Post {
 
 export async function generateStaticParams() {
     const posts = await getPosts('blog');
-    return posts.map((post: any) => ({
+    return posts.map((post: { slug: string }) => ({
         slug: post.slug,
     }));
 }
@@ -66,7 +66,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 
     try {
         post = await getPostBySlug('blog', params.slug) as unknown as Post;
-    } catch (e) {
+    } catch {
         notFound();
     }
 

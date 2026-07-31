@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { BlogPost } from '@/types';
 
 interface BlogProps {
     active: boolean;
-    posts: any[];
+    posts: BlogPost[];
 }
 
 const containerVariants = {

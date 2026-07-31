@@ -55,7 +55,7 @@ const Toast = ({ message, type, isVisible, onClose }: ToastProps) => {
                     }}
                 >
                     <div style={{ fontSize: '24px', flexShrink: 0 }}>
-                        {/* @ts-ignore */}
+                        {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                         <ion-icon name={icon}></ion-icon>
                     </div>
                     <div style={{
@@ -82,7 +82,7 @@ const Toast = ({ message, type, isVisible, onClose }: ToastProps) => {
                             opacity: 0.8
                         }}
                     >
-                        {/* @ts-ignore */}
+                        {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                         <ion-icon name="close"></ion-icon>
                     </motion.button>
                 </motion.div>

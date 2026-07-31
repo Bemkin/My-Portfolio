@@ -21,7 +21,7 @@ export default function NotFound() {
                 <Link href="/">
                     <button className="form-btn" style={{ margin: '0 auto', display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <span>Return Home</span>
-                        {/* @ts-ignore */}
+                        {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
                         <ion-icon name="home-outline"></ion-icon>
                     </button>
                 </Link>
