@@ -39,13 +39,16 @@ const About = ({ active, testimonials, onTestimonialClick }: AboutProps) => {
 
             <section className="about-text">
                 <p>
-                    Hello! I&apos;m Bemnet Kibret, a Fullstack Software Engineer specializing in architecting end-to-end SaaS platforms and high-performance web applications. My journey into technology was born at **Addis Ababa Science and Technology University** and forged through intensive training at **Evangadi Technologies**, where I transitioned from a curious builder into a software engineer focused on robust, production-ready digital solutions.
+                    Hello! I&apos;m Bemnet Kibret, a Fullstack Software Engineer specializing in architecting end-to-end SaaS platforms and high-performance web applications. My journey into technology was born at <strong>Addis Ababa Science and Technology University</strong> and forged through intensive training at <strong>Evangadi Technologies</strong>, where I transitioned from a curious builder into a software engineer focused on robust, production-ready digital solutions.
                 </p>
                 <p>
-                    Today, I operate at the intersection of robust server-side logic and scalable, interactive frontends. My technical foundation spans React, Next.js, and TypeScript, supported by databases like PostgreSQL and Supabase. Having honed my skills through a Backend Engineering internship at **MARVELS CREATIVE TECHNOLOGY**, I now architect high-stakes platforms for clients and startups, maintaining a high standard of code quality and API performance.
+                    Today, I operate at the intersection of robust server-side logic and scalable, interactive frontends. My technical foundation spans React, Next.js, and TypeScript, supported by databases like PostgreSQL and Supabase. Having honed my skills through a Backend Engineering internship at <strong>MARVELS CREATIVE TECHNOLOGY</strong>, I now architect high-stakes platforms for clients and startups, maintaining a high standard of code quality and API performance.
                 </p>
                 <p>
-                    I am driven by solving complex structural problems through clean architecture, database optimization, and secure integrations. Whether I am developing **Senselet**—a retail inventory SaaS with complex relational data models—or engineering **FitEthio**, a comprehensive client CRM, I focus on creating software that prioritizes data integrity, performance, and flawless user experiences.
+                    I am a strong advocate for <strong>AI-assisted development</strong>. My daily engineering workflow is powered by tools like <strong>Claude</strong>, <strong>GitHub Copilot</strong>, <strong>Cursor</strong>, <strong>Google Antigravity</strong>, and <strong>Trae</strong> — enabling me to rapidly architect, debug, and scale full-stack applications. This AI-augmented approach allows me to ship production-grade software faster while maintaining rigorous code quality.
+                </p>
+                <p>
+                    I am driven by solving complex structural problems through clean architecture, database optimization, and secure integrations. Whether I am developing <strong>Senselet</strong>—a retail inventory SaaS with complex relational data models—or engineering <strong>FitEthio</strong>, a comprehensive client CRM, I focus on creating software that prioritizes data integrity, performance, and flawless user experiences.
                 </p>
             </section>
 
@@ -125,7 +128,10 @@ const About = ({ active, testimonials, onTestimonialClick }: AboutProps) => {
                         { name: 'TypeScript', src: 'https://cdn.simpleicons.org/typescript/3178C6' },
                         { name: 'Node.js', src: 'https://cdn.simpleicons.org/nodedotjs/339933' },
                         { name: 'Supabase', src: 'https://cdn.simpleicons.org/supabase/3ECF8E' },
-                        { name: 'Tailwind CSS', src: 'https://cdn.simpleicons.org/tailwindcss/06B6D4' }
+                        { name: 'Tailwind CSS', src: 'https://cdn.simpleicons.org/tailwindcss/06B6D4' },
+                        { name: 'Claude', src: 'https://cdn.simpleicons.org/anthropic/D4A27F' },
+                        { name: 'Copilot', src: 'https://cdn.simpleicons.org/githubcopilot/white' },
+                        { name: 'Cursor', src: 'https://cdn.simpleicons.org/cursor/white' }
                     ].map((tech, i) => (
                         <motion.li key={i} className="clients-item" variants={itemVariants} style={{ minWidth: '80px' }}>
                             <div style={{
