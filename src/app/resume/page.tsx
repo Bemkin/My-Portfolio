@@ -15,12 +15,26 @@ export default function ResumePage() {
                     max-width: 100% !important; 
                     padding: 0 !important;
                     background: white !important;
+                    box-shadow: none !important;
                 }
             }
         `;
         document.head.appendChild(style);
+
+        // Auto-trigger print if ?print=true parameter is present
+        let printTimer: NodeJS.Timeout | undefined;
+        if (typeof window !== 'undefined') {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('print') === 'true') {
+                printTimer = setTimeout(() => {
+                    window.print();
+                }, 400);
+            }
+        }
+
         return () => {
             document.head.removeChild(style);
+            if (printTimer) clearTimeout(printTimer);
         };
     }, []);
 
@@ -124,6 +138,7 @@ export default function ResumePage() {
                         <p style={{ fontSize: '14px', color: '#888', margin: '0 0 10px', fontStyle: 'italic' }}>Senselet & Independent Solutions</p>
                         <ul style={{ margin: '0', paddingLeft: '20px', color: '#444', fontSize: '14px' }}>
                             <li style={{ marginBottom: '6px' }}>Architected and deployed a production-ready, AI-enabled enterprise ERP (Senselet) from the ground up, managing the entire software lifecycle and product roadmap.</li>
+                            <li style={{ marginBottom: '6px' }}>Leveraged AI-assisted development workflows (Claude, Cursor, GitHub Copilot) to accelerate architecture prototyping, complex database design, and code review cycles.</li>
                             <li style={{ marginBottom: '6px' }}>Engineered an offline-first architecture utilizing a Dual-ID resolution layer via PostgreSQL and Supabase, ensuring absolute data integrity across complex syncs and variant matrices.</li>
                             <li style={{ marginBottom: '6px' }}>Built and deployed automated microservices and high-availability webhook pipelines, establishing robust infrastructure for programmatic workflows and real-time data enrichment.</li>
                             <li style={{ marginBottom: '6px' }}>Integrated secure local and international payment gateways (Chapa, Stripe) into scalable, multi-tenant e-commerce and SaaS architectures.</li>
@@ -199,7 +214,7 @@ export default function ResumePage() {
                         </div>
                         <div>
                             <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Tools & Workflow</h4>
-                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Git/GitHub, CI/CD, High-Fidelity System Design, AI-Driven Development</p>
+                            <p style={{ fontSize: '14px', color: '#444', margin: 0 }}>Claude, GitHub Copilot, Cursor, Google Antigravity, Git/GitHub, CI/CD, System Design, AI-Assisted Development</p>
                         </div>
                         <div>
                             <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '8px', color: '#1a1a1a' }}>Niche Specializations</h4>

@@ -36,7 +36,7 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                         className="btn-filled"
                         onClick={() => {
                             trackButtonClick('print_cv', 'resume_section');
-                            window.print();
+                            window.open('/resume?print=true', '_blank');
                         }}
                         style={{
                             width: 'auto',
@@ -57,6 +57,8 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                     <motion.a
                         whileTap={{ scale: 0.95 }}
                         href="/resume"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="btn-filled"
                         onClick={() => trackButtonClick('view_live_cv', 'resume_section')}
                         style={{
