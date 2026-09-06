@@ -1,0 +1,51 @@
+---
+title: 'AGY Telegram Bot - Mobile AI Agent Cockpit'
+date: '2026-08-30'
+category: ['ai', 'mobile', 'fullstack']
+image: '/images/agy-telegram-bot-hero.png'
+link: 'https://github.com/Bemkin/agy-telegram-bot'
+github: 'https://github.com/Bemkin/agy-telegram-bot.git'
+tech: ['Python 3.12', 'Google Antigravity SDK', 'Gemini 3.7 Flash', 'Telegram Mini App', 'Playwright', 'Cloudflare Tunnels']
+excerpt: 'Control your Google Antigravity AI coding agent from Telegram — brainstorm, explore code, request changes, run commands, start live tunnels, and preview localhost from your phone.'
+problem: 'Developers running local autonomous AI coding agents face a major accessibility barrier: when away from their workstations, they have zero oversight, cannot safely review proposed changes or diffs, and lack mobile dev server preview capabilities.'
+solution: 'AGY Telegram Bot creates a secure, bidirectional bridge between Telegram and Google Antigravity. It features an embedded Telegram Mini App cockpit, safe planning mode, live Cloudflare tunnels for instant localhost preview, Playwright mobile screenshots, dev server lifecycle control, and automated Gemini model failovers.'
+features:
+  - 'Remote AI Coding Agent Control via Google Antigravity SDK'
+  - 'Safe Planning Mode with Pre-Implementation Diffs'
+  - 'Telegram Mini App (Mission Control) Web Cockpit'
+  - 'Live Cloudflare Tunnels for Instant Public HTTPS Previews'
+  - 'Automated Mobile & Desktop Screenshots via Playwright'
+  - 'Dev Server Lifecycle Management (Start, Stop, Tail Logs)'
+  - 'Smart AI Model Failover (Gemini 3.7 Flash to 3.5 Flash Lite)'
+  - 'Zero-Inbound-Port Whitelisted Security Model'
+metrics:
+  - label: 'Security'
+    value: 'Zero Inbound Ports'
+  - label: 'Model Failover'
+    value: '< 1s Seamless'
+  - label: 'Remote Preview'
+    value: 'Instant HTTPS'
+---
+
+### 📱 AGY Telegram Bot — Mobile AI Coding Agent Controller
+
+**AGY Telegram Bot** bridges [Google Antigravity](https://antigravity.google) AI coding agents to Telegram, turning your smartphone into an executive mission control center. It enables software engineers to brainstorm architecture, approve structured plans, execute code modifications, control dev servers, and preview live interfaces from anywhere without exposing incoming firewall ports.
+
+---
+
+### 🌟 Key Architecture & Capabilities
+
+1. **Google Antigravity Bridge & Safe Planning Mode**:
+   - Integrates directly with the `google-antigravity` SDK and Gemini models.
+   - Enforces a rigorous planning protocol: the agent explores codebase dependencies, formulates structured implementation plans, and presents diffs for mobile approval before modifying source code.
+
+2. **Telegram Mini App (Mission Control Cockpit)**:
+   - An embedded web IDE cockpit loaded directly within Telegram (`/app`).
+   - Features real-time task progress tracking, terminal output streaming, active Cloudflare tunnel URLs, and interactive Git controls.
+
+3. **Live Cloudflare Tunnels & Playwright Screenshots**:
+   - Spawns instant, secure HTTPS public preview tunnels (`/tunnel`) on demand.
+   - Uses headless Playwright to capture pixel-perfect mobile and desktop screenshots of the local development server (`/preview`) and pushes them directly into Telegram chat.
+
+4. **Resilient Model Failover**:
+   - Operates with `gemini-3.7-flash` for rapid execution, automatically failing over to `gemini-3.5-flash-lite` if rate limits or quota ceilings are approached, guaranteeing continuous uptime.

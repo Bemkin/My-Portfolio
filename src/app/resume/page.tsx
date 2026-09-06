@@ -230,6 +230,12 @@ export default function ResumePage() {
                     </h2>
 
                     <div style={{ marginBottom: '20px' }}>
+                        <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>AGY Telegram Bot - Mobile AI Agent Cockpit</h3>
+                        <p style={{ fontSize: '13px', color: '#666', margin: '0 0 8px' }}><strong>Impact:</strong> Engineered an open-source mobile cockpit bridging Google Antigravity AI coding agents with Telegram. Implemented safe planning mode protocols with mobile diff approval, dynamic Cloudflare HTTPS tunnels, automated Playwright visual verification, and resilient Gemini model failover.</p>
+                        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Python 3.12, Google Antigravity SDK, Gemini 3.7 Flash, Telegram Mini App, Playwright, Cloudflare Tunnels</p>
+                    </div>
+
+                    <div style={{ marginBottom: '20px' }}>
                         <h3 style={{ fontSize: '17px', fontWeight: '600', margin: '0 0 6px', color: '#1a1a1a' }}>Senselet - AI-Ready Enterprise ERP</h3>
                         <p style={{ fontSize: '13px', color: '#666', margin: '0 0 8px' }}><strong>Impact:</strong> Architected a multi-location inventory intelligence platform handling complex multi-dimensional tracking (variants, sizes). Engineered robust backend database triggers and offline queues to ensure zero data loss—laying the scalable groundwork required for seamless AI agent integration and automation.</p>
                         <p style={{ fontSize: '13px', color: '#666', margin: 0 }}><strong>Tech:</strong> Next.js, TypeScript, Supabase, PostgreSQL, Chapa</p>
