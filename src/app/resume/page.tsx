@@ -260,6 +260,46 @@ export default function ResumePage() {
                     <div style={{ marginBottom: '16px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '3px' }}>
                             <h3 style={{ fontSize: '14.5px', fontWeight: '700', margin: 0, color: '#111827' }}>
+                                Cyborg Job Pipeline – Autonomous Sourcing & 1-Tap Cold Outreach
+                            </h3>
+                        </div>
+                        <ul style={{ margin: '6px 0 0', paddingLeft: '18px', color: '#374151', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                            <li>
+                                <strong>Impact & Outcome:</strong> Architected an autonomous multi-stage job sourcing and cold outreach pipeline; integrates RocketReach API v2 to discover verified founder/CTO emails and synthesizes contextual pitches via Google Gemini with 1-tap mobile Telegram dispatch.
+                            </li>
+                            <li>
+                                <strong>System Design & Delivery:</strong> Implemented SMTP mailbox verification, deduplication caching, and background bot daemon listening for mobile send/edit/skip commands with automated PDF resume delivery via Gmail SMTP.
+                            </li>
+                            <li style={{ color: '#6b7280', fontSize: '12.5px' }}>
+                                <strong>Tech:</strong> Node.js, TypeScript, Google Gemini API, RocketReach API, Telegram Bot API, Nodemailer.
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Project 3 */}
+                    <div style={{ marginBottom: '16px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '3px' }}>
+                            <h3 style={{ fontSize: '14.5px', fontWeight: '700', margin: 0, color: '#111827' }}>
+                                CoachTrack ET – Pitch-Side Soccer Timesheet & Billing TMA
+                            </h3>
+                        </div>
+                        <ul style={{ margin: '6px 0 0', paddingLeft: '18px', color: '#374151', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                            <li>
+                                <strong>Impact & Outcome:</strong> Built and deployed an offline-resilient Telegram Mini App for athletic coaches; automated decimal hour calculation with background persistence, real-time Google Sheets webhook sync, and Ethiopian Birr (Telebirr/CBE) parent billing statements.
+                            </li>
+                            <li>
+                                <strong>Offline-First & Automation:</strong> Engineered 1-tap weather cancellation logging, background timer resilience across incoming phone calls, and automated group chat invoice distribution.
+                            </li>
+                            <li style={{ color: '#6b7280', fontSize: '12.5px' }}>
+                                <strong>Tech:</strong> JavaScript, Telegram Mini App (TMA), Google Apps Script, Telebirr API, PWA.
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Project 4 */}
+                    <div style={{ marginBottom: '16px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '3px' }}>
+                            <h3 style={{ fontSize: '14.5px', fontWeight: '700', margin: 0, color: '#111827' }}>
                                 Automated Data Enrichment & Retrieval Pipeline
                             </h3>
                         </div>

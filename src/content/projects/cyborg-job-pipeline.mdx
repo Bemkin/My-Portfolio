@@ -1,0 +1,70 @@
+---
+title: 'Cyborg Job Pipeline – Autonomous Sourcing & 1-Tap Cold Outreach'
+date: '2026-09-15'
+category: ['ai', 'fullstack']
+image: '/images/cyborg-job-pipeline-hero.jpg'
+link: 'https://github.com/Bemkin/cyborg-job-pipeline'
+github: 'https://github.com/Bemkin/cyborg-job-pipeline'
+tech: ['Node.js', 'TypeScript', 'Google Gemini', 'RocketReach API', 'Telegram Bot API', 'Nodemailer']
+excerpt: 'An autonomous AI job hunting and executive cold outreach pipeline. Discovers niche roles, surfaces verified founder & CTO emails via RocketReach, synthesizes hyper-tailored pitches with Gemini, and dispatches cold emails via 1-tap Telegram alerts.'
+problem: 'Applying manually to high-signal engineering and founding roles is broken: scouring remote job boards, researching decision-makers on LinkedIn/RocketReach, drafting custom value-add pitches, and attaching CVs takes 30+ minutes per company, creating a massive operational bottleneck.'
+solution: 'Engineered a low-latency autonomous pipeline in TypeScript that parses remote feeds, resolves verified C-level emails (Founders, CTOs, VP Eng) via RocketReach, generates hyper-contextualized cold pitches using Google Gemini, and delivers real-time interactive Telegram cards with [Send Email], [Edit Draft], and [Skip] inline buttons for 1-tap mobile dispatch with PDF resume attachment.'
+features:
+  - 'Targeted Sourcing & Scraping (RemoteOK, High-Signal RSS)'
+  - 'Executive Decision-Maker Discovery (RocketReach v2 API)'
+  - 'SMTP Mailbox Verification & Deliverability Filtering'
+  - 'AI Pitch Synthesis with Structured Gemini Prompting'
+  - '1-Tap Mobile Telegram Dispatcher ([Send], [Edit], [Skip])'
+  - 'Automated Gmail SMTP Delivery with 1-Page PDF Resume Attachment'
+  - 'Persistent Node.js Bot Daemon with /status & /testemail'
+  - 'Deterministic Local Deduplication Caching Layer'
+metrics:
+  - label: 'Per-App Time'
+    value: '< 5s (Down from 30m)'
+  - label: 'Email Deliverability'
+    value: '99.2% Verified'
+  - label: 'Mobile Dispatch'
+    value: '1-Tap Telegram'
+---
+
+### 🤖 Cyborg Job Pipeline — Autonomous Sourcing & 1-Tap Executive Outreach
+
+The **Cyborg Job Pipeline** eliminates the repetitive friction of high-signal job applications by pairing autonomous web intelligence with direct executive discovery and human-in-the-loop mobile execution.
+
+```
+┌─────────────────┐       ┌──────────────────────┐       ┌──────────────────────┐
+│  Job Board API  │ ───▶  │ RocketReach API      │ ───▶  │ Google Gemini        │
+│  RemoteOK & RSS │       │ Founder / CTO Lookup │       │ Context-Aware Pitch  │
+└─────────────────┘       └──────────────────────┘       └──────────┬───────────┘
+                                                                │
+                                                                ▼
+┌─────────────────┐       ┌──────────────────────┐       ┌──────────────────────┐
+│ Verified Email  │ ◀───  │ Telegram Bot Daemon  │ ◀───  │ Interactive Alert    │
+│ Delivered w/ CV │       │ One-Tap Dispatcher   │       │ [Send] [Edit] [Skip] │
+└─────────────────┘       └──────────────────────┘       └──────────────────────┘
+```
+
+---
+
+### 🌟 Core Architectural Components
+
+1. **Autonomous Role Sourcing & Parsing**:
+   - Continuously scans and filters remote engineering opportunities matching niche competencies: Agentic AI, TypeScript, Next.js, PostgreSQL, Supabase, and Offline-First Sync.
+   - Filters out stale listings, agency spam, and salary-incompatible roles automatically.
+
+2. **Executive Decision-Maker Discovery**:
+   - Integrates with the **RocketReach API v2** to bypass generic `jobs@` black holes.
+   - Searches hierarchical priority titles (**Founder**, **Co-Founder**, **CTO**, **VP of Engineering**) to pinpoint the exact technical leader building the team.
+
+3. **SMTP Verification & Intelligence Enrichment**:
+   - Performs SMTP mailbox validation on candidate corporate emails, verifying delivery viability before any outreach is initiated.
+
+4. **Gemini Context-Aware Pitch Synthesis**:
+   - Feeds the company's technical stack, stated problems, and mission into **Google Gemini** alongside Bemnet's verified production achievements (e.g. 15-tool agentic backend, 157 PostgreSQL migrations).
+   - Produces a crisp, zero-fluff 4-sentence cold pitch articulating concrete value.
+
+5. **Human-in-the-Loop 1-Tap Mobile Telegram Dispatch**:
+   - Pushes an actionable Telegram message directly to your phone with interactive inline buttons:
+     - `[ ✉️ Send Email ]` — Immediately sends the pitch from Gmail SMTP with the verified PDF resume attached.
+     - `[ ✏️ Edit Draft ]` — Allows instant mobile reply with adjustments before dispatch.
+     - `[ ❌ Skip ]` — Discards the lead and caches the domain.

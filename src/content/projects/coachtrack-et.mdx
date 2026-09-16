@@ -1,0 +1,60 @@
+---
+title: 'CoachTrack ET – Pitch-Side Soccer Timesheet & Billing TMA'
+date: '2026-09-10'
+category: ['mobile', 'frontend', 'fullstack']
+image: '/images/coachtrack-et-hero.jpg'
+link: 'https://github.com/Bemkin/coach-session-tma'
+github: 'https://github.com/Bemkin/coach-session-tma'
+tech: ['JavaScript', 'Telegram Mini App (TMA)', 'Google Apps Script', 'Telebirr', 'HTML5/CSS3', 'PWA']
+excerpt: 'Pitch-side Telegram Mini App built for soccer coaches to replace manual paper spreadsheets, auto-calculate decimal hours with background persistence, track attendance, and automate Ethiopian Birr (ETB) billing statements for parents.'
+problem: 'Grassroots soccer coaches lose hours calculating irregular decimal training times from messy paper sheets, lose track of attendance numbers, struggle with weather cancellations, and spend frustrating evenings manually drafting payment breakdown messages for parents across Telebirr and CBE.'
+solution: 'Built a lightweight, offline-resilient Telegram Mini App (TMA) featuring a pitch-side persistent stopwatch, 1-tap rain cancellation logging, real-time Google Sheets background synchronization via Apps Script webhooks, and automatic ETB billing calculation with 1-tap Telegram group statement dispatch.'
+features:
+  - 'Pitch-Side Live Stopwatch with Background Phone-Call Persistence'
+  - '1-Tap Weather & Rain Cancellation Logger (0-Hour Safe Mode)'
+  - 'Real-Time Google Sheets Sync via Google Apps Script Webhooks'
+  - 'Automated Ethiopian Birr (ETB) Rate × Attendance Calculations'
+  - '1-Tap Official Statement Dispatch to Parent Telegram Groups'
+  - 'Direct Telebirr & Commercial Bank of Ethiopia (CBE) 1-Click Copy'
+  - 'One-Click CSV Export Matching Official League Spreadsheets'
+  - 'Zero-Install Telegram Mini App Cockpit via @BotFather'
+metrics:
+  - label: 'Logging Time'
+    value: '1-Tap Pitch-Side'
+  - label: 'Formula Errors'
+    value: '0% Auto-Calculated'
+  - label: 'Billing Delivery'
+    value: 'Instant Telegram'
+screenshots:
+  - '/images/coachtrack-stopwatch.png'
+  - '/images/coachtrack-timesheet.png'
+  - '/images/coachtrack-earnings.png'
+---
+
+### ⚽ CoachTrack ET — Pitch-Side Telegram Mini App (TMA)
+
+**CoachTrack ET** transforms grassroots sports management by bringing live stopwatch tracking, timesheet aggregation, and automated local currency billing into the app coaches already keep open: **Telegram**.
+
+---
+
+### 🌟 Key Architecture & Highlights
+
+1. **Pitch-Side Live Stopwatch with State Resilience**:
+   - 1-tap `Start Practice` locks in kickoff timestamp.
+   - Built with persistent local timer state: even if the coach takes an incoming phone call, leaves the app, or restarts Telegram, the stopwatch continues seamlessly without losing elapsed training time.
+   - 1-tap `Finish & Log` auto-calculates exact decimal training hours (e.g. `14:20` to `17:50` = `3.50 hrs`).
+
+2. **1-Tap Weather & Rain Cancellation**:
+   - Records a `NO PRACTICE` session flag with reasons (Rain, Pitch Flooded, Public Holiday).
+   - Sets 0 hours without distorting cumulative billing calculations or spreadsheet integrity.
+
+3. **Automated ETB Financials & Parent Invoicing**:
+   - Calculates total dues on the fly: `Completed Sessions × Attendance × Rate/Kid/Session` (e.g. `6 × 4 × 1,000 ETB = 24,000 ETB`).
+   - Generates verified statements with Ethiopian payment methods:
+     - **Telebirr** (with 1-click mobile copy)
+     - **Commercial Bank of Ethiopia (CBE)** account numbers
+   - 1-tap **"Send to Parent Telegram Group"** outputs a cleanly formatted invoice ready for group communication.
+
+4. **Real-Time Google Sheets Sync**:
+   - Webhook bridge built with **Google Apps Script** (`google_sheets_sync.gs`).
+   - Appends verified rows into the coach's remote Google Sheet the moment a session ends.
