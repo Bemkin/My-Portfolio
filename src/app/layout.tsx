@@ -10,13 +10,13 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://my-portfolio-theta-flame-45.vercel.app/"),
-  title: "Bemnet Kibret | Fullstack Software Engineer",
-  description: "Bemnet Kibret | Fullstack Software Engineer specializing in end-to-end SaaS platforms and high-performance backend systems. Expert in Node.js, PostgreSQL, React, and Next.js.",
-  keywords: ["Bemnet Kibret", "Fullstack Software Engineer", "Portfolio", "React", "Next.js", "Node.js", "Web Development", "PostgreSQL", "SaaS"],
+  title: "Bemnet Kibret | Founding Full-Stack & AI Engineer",
+  description: "Bemnet Kibret | Founding Full-Stack & AI Engineer specializing in zero-to-production architectures, agentic AI systems, scalable cloud infrastructure (AWS, Python, Supabase, PostgreSQL), and Next.js frontends.",
+  keywords: ["Bemnet Kibret", "Founding Full-Stack Engineer", "AI Engineer", "Agentic AI", "Portfolio", "React", "Next.js", "Python", "AWS", "Supabase", "PostgreSQL", "SaaS"],
   authors: [{ name: "Bemnet Kibret" }],
   openGraph: {
-    title: "Bemnet Kibret | Fullstack Software Engineer",
-    description: "Bemnet Kibret | Fullstack Software Engineer specializing in end-to-end SaaS platforms and high-performance backend systems. Expert in Node.js, PostgreSQL, React, and Next.js.",
+    title: "Bemnet Kibret | Founding Full-Stack & AI Engineer",
+    description: "Bemnet Kibret | Founding Full-Stack & AI Engineer specializing in zero-to-production architectures, agentic AI systems, scalable cloud infrastructure (AWS, Python, Supabase, PostgreSQL), and Next.js frontends.",
     url: "https://my-portfolio-theta-flame-45.vercel.app/",
     siteName: "Bemnet Kibret Portfolio",
     images: [
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    title: "Bemnet Kibret | Fullstack Software Engineer",
-    description: "Bemnet Kibret | Fullstack Software Engineer specializing in end-to-end SaaS platforms and high-performance backend systems. Expert in Node.js, PostgreSQL, React, and Next.js.",
+    title: "Bemnet Kibret | Founding Full-Stack & AI Engineer",
+    description: "Bemnet Kibret | Founding Full-Stack & AI Engineer specializing in zero-to-production architectures, agentic AI systems, scalable cloud infrastructure (AWS, Python, Supabase, PostgreSQL), and Next.js frontends.",
     images: ["/og-image.png"],
   },
   icons: {

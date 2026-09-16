@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { trackButtonClick } from '@/lib/analytics';
+import { resumePdf, resumeDownloadName } from '@/lib/constants';
 import GitHubActivity from './GitHubActivity';
 
 interface ResumeProps {
@@ -28,16 +29,16 @@ const itemVariants = {
 const Resume = ({ active, onCertClick }: ResumeProps) => {
     return (
         <article className={`resume ${active ? 'active' : ''}`} data-page="resume">
-            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', flexWrap: 'wrap', gap: '15px' }}>
                 <h2 className="h2 article-title">Resume</h2>
-                <div style={{ display: 'flex', gap: '10px' }}>
-                    <motion.button
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                    <motion.a
+                        whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.95 }}
+                        href={resumePdf}
+                        download={resumeDownloadName}
                         className="btn-filled"
-                        onClick={() => {
-                            trackButtonClick('print_cv', 'resume_section');
-                            window.open('/resume?print=true', '_blank');
-                        }}
+                        onClick={() => trackButtonClick('download_cv_pdf', 'resume_section')}
                         style={{
                             width: 'auto',
                             padding: '10px 20px',
@@ -47,14 +48,15 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                             alignItems: 'center',
                             gap: '8px',
                             textTransform: 'none',
-                            marginTop: '-10px'
+                            textDecoration: 'none'
                         }}
                     >
                         {/* @ts-expect-error: ion-icon custom element */}
-                        <ion-icon name="print-outline" style={{ fontSize: '16px' }}></ion-icon>
-                        <span>Print CV</span>
-                    </motion.button>
+                        <ion-icon name="download-outline" style={{ fontSize: '16px' }}></ion-icon>
+                        <span>Download CV</span>
+                    </motion.a>
                     <motion.a
+                        whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.95 }}
                         href="/resume"
                         target="_blank"
@@ -70,16 +72,42 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                             alignItems: 'center',
                             gap: '8px',
                             textTransform: 'none',
-                            marginTop: '-10px',
                             background: 'var(--onyx)',
                             border: '1px solid var(--jet)',
-                            color: 'var(--white-2)'
+                            color: 'var(--white-2)',
+                            textDecoration: 'none'
                         }}
                     >
                         {/* @ts-expect-error: ion-icon custom element */}
                         <ion-icon name="document-text-outline" style={{ fontSize: '16px' }}></ion-icon>
                         <span>View Live CV</span>
                     </motion.a>
+                    <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="btn-filled"
+                        onClick={() => {
+                            trackButtonClick('print_cv', 'resume_section');
+                            window.open('/resume?print=true', '_blank');
+                        }}
+                        style={{
+                            width: 'auto',
+                            padding: '10px 18px',
+                            fontSize: 'var(--fs-6)',
+                            borderRadius: '10px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            textTransform: 'none',
+                            background: 'transparent',
+                            border: '1px solid var(--jet)',
+                            color: 'var(--light-gray-70)'
+                        }}
+                    >
+                        {/* @ts-expect-error: ion-icon custom element */}
+                        <ion-icon name="print-outline" style={{ fontSize: '16px' }}></ion-icon>
+                        <span>Print</span>
+                    </motion.button>
                 </div>
             </header>
 
@@ -145,17 +173,57 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                     <ol className="timeline-list" style={{ marginLeft: '17px', borderLeft: '1px solid var(--jet)' }}>
                         {[
                             {
-                                title: 'Freelancer',
+                                role: 'Founder & Lead Engineer',
+                                company: 'Senselet & Independent Solutions (Startup Venture)',
                                 date: '2024 — Present',
-                                text: "Architect and deploy production-ready fullstack applications for diverse clients, managing the entire software lifecycle from requirement gathering to cloud deployment. Leverage AI-assisted development tools including Claude, Cursor, and GitHub Copilot to accelerate prototyping, debugging, and code review cycles. Engineered scalable backend architectures and relational databases using PostgreSQL and Supabase, ensuring data integrity for high-volume transactions and inventory updates. Integrated secure local and international payment gateways (Chapa, Stripe) into premium e-commerce and CRM platforms. Optimized frontend performance and state management using Next.js and TypeScript, delivering highly responsive, cinematic UIs that drive user engagement."
+                                points: [
+                                    {
+                                        title: 'Zero-to-Production Architecture',
+                                        detail: 'Architected and deployed an AI-native enterprise ERP from the ground up on AWS and Supabase, scaling across 3+ commercial retail clients to eliminate 20+ hours of weekly manual auditing across 10k+ active SKUs.'
+                                    },
+                                    {
+                                        title: 'High-Stakes Decisioning & Agentic AI',
+                                        detail: 'Engineered a proprietary 15-tool agentic backend using native JSON-schema function calling and cascading LLM failover; automated 90%+ of routine reorder and financial allocation decisions, cutting reconciliation turnaround from 45 min to <30 sec.'
+                                    },
+                                    {
+                                        title: 'Mission-Critical Data Integrity',
+                                        detail: 'Designed an offline-first architecture utilizing a Dual-ID resolution layer via PostgreSQL; authored 157 strict migrations with org-scoped RLS to guarantee 0% data loss across 5+ warehouse locations and high-value stock matrices.'
+                                    },
+                                    {
+                                        title: 'Real-Time Data Pipelines & Cloud Infrastructure',
+                                        detail: 'Built containerized Python and Node.js microservices on AWS (ECS/Lambda) with idempotent webhook handlers, maintaining sub-500ms execution latency and 99.9% deduplication reliability.'
+                                    },
+                                    {
+                                        title: 'High-Velocity Engineering Ownership',
+                                        detail: 'Spearheaded rapid zero-to-one product iterations, combining domain-driven system design with modern AI-assisted tooling (Cursor, Claude) to model complex database schemas and ship production features 3x faster.'
+                                    }
+                                ]
                             },
                             {
-                                title: 'MARVELS CREATIVE TECHNOLOGY',
-                                date: 'March — June 2025',
-                                text: "Engineered and optimized scalable backend systems using TypeScript and Next.js within a fast-paced, production-grade environment. Collaborated with senior engineering teams to design RESTful API endpoints, refine server-side logic, and improve overall system reliability by contributing to core data pipelines."
+                                role: 'Backend Developer (Contract)',
+                                company: 'Marvels Creative Technology',
+                                date: 'March 2025 — June 2025',
+                                points: [
+                                    {
+                                        title: 'API & Microservice Architecture',
+                                        detail: 'Architected and optimized 20+ RESTful API endpoints and server-side routes using TypeScript and Next.js, reducing server response times by ~35% for enterprise client applications.'
+                                    },
+                                    {
+                                        title: 'Database & Data Pipelines',
+                                        detail: 'Designed PostgreSQL schemas and query workflows using Prisma, ensuring strict data contracts, foreign key integrity, and sub-100ms average query latency.'
+                                    },
+                                    {
+                                        title: 'Testing & Reliability',
+                                        detail: 'Implemented automated API test suites using Jest and Postman within GitHub Actions CI/CD pipelines, maintaining 99.5%+ deployment stability across production rollouts.'
+                                    },
+                                    {
+                                        title: 'Tech Stack',
+                                        detail: 'TypeScript, Next.js API Routes, PostgreSQL, Prisma ORM, Node.js, Jest, Docker.'
+                                    }
+                                ]
                             }
                         ].map((item, i) => (
-                            <li key={i} className="timeline-item" style={{ position: 'relative', paddingLeft: '30px', marginBottom: '25px' }}>
+                            <li key={i} className="timeline-item" style={{ position: 'relative', paddingLeft: '30px', marginBottom: '30px' }}>
                                 <div style={{
                                     position: 'absolute',
                                     top: '4px',
@@ -166,9 +234,20 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                                     borderRadius: '50%',
                                     boxShadow: '0 0 0 4px var(--eerie-black-1)'
                                 }}></div>
-                                <h4 className="h4 timeline-item-title" style={{ fontSize: 'var(--fs-6)', textTransform: 'none', marginBottom: '5px' }}>{item.title}</h4>
-                                <span style={{ color: 'var(--vegas-gold)', fontWeight: 'var(--fw-400)', fontSize: 'var(--fs-7)' }}>{item.date}</span>
-                                <p className="timeline-text" style={{ color: 'var(--light-gray)', fontSize: 'var(--fs-7)', marginTop: '8px', lineHeight: '1.6' }}>{item.text}</p>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '5px', marginBottom: '4px' }}>
+                                    <h4 className="h4 timeline-item-title" style={{ fontSize: 'var(--fs-6)', textTransform: 'none', margin: 0 }}>{item.role}</h4>
+                                    <span style={{ color: 'var(--vegas-gold)', fontWeight: 'var(--fw-400)', fontSize: 'var(--fs-7)' }}>{item.date}</span>
+                                </div>
+                                <span style={{ color: 'var(--vegas-gold)', fontSize: 'var(--fs-7)', display: 'block', marginBottom: '8px', opacity: 0.9 }}>{item.company}</span>
+                                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                    {item.points.map((pt, idx) => (
+                                        <li key={idx} style={{ color: 'var(--light-gray)', fontSize: 'var(--fs-7)', lineHeight: '1.6', position: 'relative', paddingLeft: '14px' }}>
+                                            <span style={{ position: 'absolute', left: 0, top: '2px', color: 'var(--vegas-gold)' }}>•</span>
+                                            <strong style={{ color: 'var(--white-2)', fontWeight: 'var(--fw-600)' }}>{pt.title}: </strong>
+                                            {pt.detail}
+                                        </li>
+                                    ))}
+                                </ul>
                             </li>
                         ))}
                     </ol>
@@ -228,8 +307,6 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
             {/* GitHub Activity */}
             <GitHubActivity username="Bemkin" />
 
-
-
             {/* Tech Stack Grid */}
             <section className="skill">
                 <h3 className="h3 skills-title">Technical Stack</h3>
@@ -247,21 +324,21 @@ const Resume = ({ active, onCertClick }: ResumeProps) => {
                     }}
                 >
                     {[
-                        { name: 'React', icon: 'logo-react' },
-                        { name: 'Next.js', icon: 'terminal-outline' },
                         { name: 'TypeScript', icon: 'code-slash-outline' },
-                        { name: 'Node.js', icon: 'logo-nodejs' },
-                        { name: 'NestJS', icon: 'terminal-outline' },
                         { name: 'Python', icon: 'logo-python' },
-                        { name: 'AWS', icon: 'cloud-outline' },
+                        { name: 'Next.js', icon: 'terminal-outline' },
+                        { name: 'React', icon: 'logo-react' },
+                        { name: 'Node.js', icon: 'logo-nodejs' },
                         { name: 'PostgreSQL', icon: 'server-outline' },
                         { name: 'Supabase', icon: 'server-outline' },
-                        { name: 'Redis', icon: 'cube-outline' },
-                        { name: 'Git', icon: 'logo-github' },
+                        { name: 'AWS', icon: 'cloud-outline' },
+                        { name: 'Docker', icon: 'cube-outline' },
+                        { name: 'Prisma', icon: 'server-outline' },
+                        { name: 'Jest', icon: 'shield-checkmark-outline' },
+                        { name: 'Fastify', icon: 'flash-outline' },
                         { name: 'Three.js', icon: 'cube-outline' },
-                        { name: 'Tailwind', icon: 'color-palette-outline' },
-                        { name: 'Chapa', icon: 'card-outline' },
-                        { name: 'JavaScript', icon: 'logo-javascript' }
+                        { name: 'Tailwind CSS', icon: 'color-palette-outline' },
+                        { name: 'Git', icon: 'logo-github' }
                     ].map((tech) => (
                         <motion.li
                             key={tech.name}

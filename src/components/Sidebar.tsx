@@ -41,7 +41,7 @@ const Sidebar = ({ active, onToggle }: SidebarProps) => {
 
                     <div className="info-content">
                         <h1 className="name" title="Bemnet Kibret">Bemnet Kibret</h1>
-                        <p className="title">Fullstack Software Engineer</p>
+                        <p className="title">Founding Full-Stack &amp; AI Engineer</p>
                     </div>
 
                     <motion.button

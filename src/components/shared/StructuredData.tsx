@@ -10,23 +10,25 @@ export default function StructuredData() {
             "https://github.com/Bemkin",
             "https://www.linkedin.com/in/bemnet-kibret-054a792a9/"
         ],
-        "jobTitle": "Fullstack Software Engineer",
+        "jobTitle": "Founding Full-Stack & AI Engineer",
         "worksFor": {
             "@type": "Organization",
-            "name": "Freelance"
+            "name": "Senselet & Independent Solutions"
         },
-        "description": "Professional Portfolio of Bemnet Kibret, a Fullstack Software Engineer specializing in end-to-end SaaS platforms and high-performance backend systems.",
+        "description": "Professional Portfolio of Bemnet Kibret, a Founding Full-Stack & AI Engineer specializing in zero-to-production architectures, agentic AI backends, AWS/Supabase cloud infrastructure, and high-performance Next.js frontends.",
         "knowsAbout": [
+            "Agentic AI",
             "Full Stack Development",
-            "Web Design",
-            "Graphic Design",
-            "React",
-            "Next.js",
-            "Node.js",
+            "Python",
             "TypeScript",
-            "Tailwind CSS",
-            "MySQL",
-            "Firebase"
+            "Next.js",
+            "React",
+            "PostgreSQL",
+            "Supabase",
+            "AWS",
+            "Docker",
+            "RAG Pipelines",
+            "System Architecture"
         ],
         "alumniOf": [
             {

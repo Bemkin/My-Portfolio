@@ -49,4 +49,5 @@ export const spotifyPlaylists = [
     }
 ];
 
-export const resumePdf = '/Bemnet Kibret _ Fullstack Software Engineer.pdf';
+export const resumePdf = '/resume.pdf';
+export const resumeDownloadName = 'Bemnet-Kibret-Founding-Full-Stack-AI-Engineer-Resume.pdf';
