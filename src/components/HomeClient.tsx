@@ -247,7 +247,7 @@ export default function HomeClient({ allProjects, posts }: { allProjects: Projec
 
               <div style={{ marginBottom: '20px' }}>
                 <p style={{ color: 'var(--light-gray)', lineHeight: '1.8' }}>
-                  {selectedProject.description}
+                  {selectedProject.description || selectedProject.excerpt}
                 </p>
               </div>
 

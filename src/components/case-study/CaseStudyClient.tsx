@@ -182,7 +182,7 @@ export default function CaseStudyClient({ project }: CaseStudyClientProps) {
                                         }}
                                     >
                                         <span style={{ width: '30px', height: '2px', background: 'var(--orange-yellow-crayola)' }} />
-                                        {project.category}
+                                        {Array.isArray(project.category) ? project.category.join(' • ') : project.category}
                                     </motion.p>
 
                                     <motion.h1
@@ -192,7 +192,7 @@ export default function CaseStudyClient({ project }: CaseStudyClientProps) {
                                         className="h1"
                                         style={{
                                             color: 'white',
-                                            marginBottom: '25px',
+                                            marginBottom: (project.excerpt || project.description) ? '15px' : '25px',
                                             fontSize: 'clamp(28px, 6vw, 56px)',
                                             lineHeight: '1.2',
                                             fontWeight: '800'
@@ -200,6 +200,23 @@ export default function CaseStudyClient({ project }: CaseStudyClientProps) {
                                     >
                                         {project.title}
                                     </motion.h1>
+
+                                    {(project.excerpt || project.description) && (
+                                        <motion.p
+                                            initial={{ opacity: 0, y: 15 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.55 }}
+                                            style={{
+                                                color: 'var(--light-gray)',
+                                                fontSize: 'clamp(14px, 1.8vw, 16px)',
+                                                lineHeight: '1.7',
+                                                maxWidth: '850px',
+                                                marginBottom: '25px'
+                                            }}
+                                        >
+                                            {project.excerpt || project.description}
+                                        </motion.p>
+                                    )}
 
                                     <motion.div
                                         initial={{ opacity: 0 }}
@@ -352,6 +369,62 @@ export default function CaseStudyClient({ project }: CaseStudyClientProps) {
                                             <ion-icon name="checkmark-done-outline" style={{ color: 'var(--orange-yellow-crayola)', fontSize: '22px' }}></ion-icon>
                                             <span style={{ fontSize: '15px', fontWeight: '500' }}>{f}</span>
                                         </div>
+                                    ))}
+                                </div>
+                            </motion.section>
+                        )}
+
+                        {/* Interface & Visual Gallery */}
+                        {project.screenshots && project.screenshots.length > 0 && (
+                            <motion.section variants={itemVariants} className="content-card" style={{
+                                marginBottom: '40px',
+                                background: 'var(--bg-gradient-onyx)',
+                                padding: '35px'
+                            }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '25px', justifyContent: 'center' }}>
+                                    <div style={{
+                                        width: '38px',
+                                        height: '38px',
+                                        borderRadius: '10px',
+                                        background: 'rgba(255, 184, 0, 0.12)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}>
+                                        {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
+                                        <ion-icon name="images-outline" style={{ color: 'var(--orange-yellow-crayola)', fontSize: '22px' }}></ion-icon>
+                                    </div>
+                                    <h3 className="h3" style={{ margin: 0, textAlign: 'center' }}>Interface & Architecture Showcase</h3>
+                                </div>
+
+                                <div style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                                    gap: '24px'
+                                }}>
+                                    {project.screenshots.map((shot, idx) => (
+                                        <motion.div
+                                            key={idx}
+                                            whileHover={{ y: -6, scale: 1.015 }}
+                                            transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                                            style={{
+                                                borderRadius: '14px',
+                                                overflow: 'hidden',
+                                                border: '1px solid rgba(255, 255, 255, 0.08)',
+                                                background: 'var(--eerie-black-1)',
+                                                boxShadow: '0 10px 30px rgba(0,0,0,0.35)',
+                                                position: 'relative'
+                                            }}
+                                        >
+                                            <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9' }}>
+                                                <Image
+                                                    src={shot}
+                                                    alt={`${project.title} Preview ${idx + 1}`}
+                                                    fill
+                                                    style={{ objectFit: 'cover' }}
+                                                />
+                                            </div>
+                                        </motion.div>
                                     ))}
                                 </div>
                             </motion.section>
