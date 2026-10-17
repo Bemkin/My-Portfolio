@@ -1,24 +1,28 @@
 ---
-title: 'Scaling Retail Intelligence: The Journey of Senselet'
+title: 'Building Retail Intelligence Solo: The Journey of Senselet'
 category: 'Startup Insights'
-date: 'Jan 19, 2025'
-dateTime: '2025-01-19'
+date: 'Feb 22, 2026'
+dateTime: '2026-02-22'
 image: '/images/senselet-banner.webp'
-excerpt: 'How I built a solo, enterprise-grade inventory intelligence platform with cognitive forecasting and digital twins.'
+excerpt: 'How I designed and built Senselet alone: a multi-tenant inventory platform with a 33-tool AI agent, row-level security on every table and stockout forecasts from real sales data.'
 ---
 
 ## The Vision Behind Senselet
 
-Senselet was born from a simple observation: retail logistics is often fragmented and reactive. I set out to build a platform that doesn't just track inventory, but predicts its movement.
+Senselet started from a simple observation: small retailers track stock in notebooks, spreadsheets and memory, and only notice a problem when a shelf is already empty. I wanted a tool that records every stock movement and uses that history to warn you before you run out.
 
-### Engineering the Digital Twin
+### One Backend, Many Businesses
 
-The core of Senselet is its "Digital Twin" capability. This isn't just a 3D model—it's a real-time data representation of physical inventory across global warehouses. Synchronizing this data with sub-second latency required a robust architecture using Next.js and high-frequency API endpoints.
+Senselet is multi-tenant from the first migration. Every business is an organisation, and row-level security in PostgreSQL keeps each organisation's products, sales and suppliers separate — today that is 131 policies across all 28 tables, built up through 160 migrations. Businesses can run several branches and transfer stock between them.
 
-### Cognitive Sales Forecasting
+### Forecasting From Real Sales
 
-By implementing weighted moving average algorithms and analyzing historical trends, Senselet provides "Cognitive Forecasting." This helps retailers anticipate stockouts before they happen, effectively democratizing enterprise-grade logistics for smaller businesses.
+Forecasts come from the inventory log, not guesswork. For each product, a Postgres function averages daily consumption over the last 30 days, estimates the days until stockout, and adds a 7-day safety buffer. When stock runs low, an edge function sends an alert to the business's Telegram chat.
+
+### An Agent That Can Actually Do the Work
+
+The part I am proudest of is the assistant: a Gemini function-calling agent with 33 tools. It can check and adjust stock, transfer between branches, propose purchase orders and reconcile invoices, and each role (admin, manager, clerk) only sees the tools it is allowed to use. If one model fails, requests fall through to other Gemini models and then to OpenRouter.
 
 ### The Solo Developer Challenge
 
-Building Senselet as a solo project meant wearing every hat—Architect, Frontend Engineer, and DevOps. From designing the Tailwind-powered glassmorphism UI to integrating the Telegram API for instant stock alerts, every decision was aimed at creating a seamless, automated infrastructure.
+Building Senselet alone meant owning every layer: the React and Vite frontend, 21 TypeScript edge functions, the database, billing through Chapa and the Telegram bot. It also meant I had to be my own QA team, so the platform now has 266 automated tests, and I stress-tested the offline sync queue against a deliberately failing network until it stopped losing or duplicating writes.

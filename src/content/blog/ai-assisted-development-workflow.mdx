@@ -4,12 +4,12 @@ category: 'Engineering & AI'
 date: 'Sep 3, 2026'
 dateTime: '2026-09-03'
 image: '/images/brain3-hero.webp'
-excerpt: 'From skeptic to evangelist — how Claude, GitHub Copilot, Cursor, and Google Antigravity became the backbone of my engineering process.'
+excerpt: 'How Claude, GitHub Copilot, Cursor, Google Antigravity and app builders like Lovable became part of my engineering process — and where I still do the thinking.'
 ---
 
 ## The Shift: From Manual to AI-Augmented
 
-A year ago, my development workflow was entirely manual — writing every line, debugging with console.log chains, and spending hours reading documentation. Today, AI coding tools are woven into every stage of my engineering process, and the results speak for themselves: **625+ GitHub contributions** in the past year, with multiple production SaaS platforms shipped.
+A year ago, my development workflow was entirely manual — writing every line, debugging with console.log chains, and spending hours reading documentation. Today, AI coding tools are woven into every stage of my engineering process, and it shows in my output: **625 GitHub contributions** in the past year, across products like Senselet, Brain3 and the Cyborg Job Pipeline.
 
 ### The Toolkit
 
@@ -20,6 +20,7 @@ My current AI-assisted stack includes:
 - **Cursor**: An AI-native IDE that combines the best of VS Code with deep AI integration. I use it for multi-file refactoring and understanding unfamiliar codebases.
 - **Google Antigravity**: My go-to for complex, multi-step engineering tasks. Its agentic capabilities allow me to describe an entire feature and watch it scaffold the implementation across multiple files.
 - **Trae**: A lightweight AI IDE that I use for quick prototyping and exploratory coding sessions.
+- **Lovable and Bolt**: App builders I use to scaffold a first version fast. FormCheck AI and Senselet started from Lovable and Trainer CRM from a Bolt template, before I took over the architecture, backend and tests by hand.
 
 ### Where AI Shines (And Where It Doesn't)
 
@@ -33,9 +34,9 @@ But they're not a replacement for engineering judgment. I still make every archi
 
 ### Real Impact on My Projects
 
-When building **Brain3** — an autonomous AI purchasing agent — Claude helped me design the fail-safe mathematical fallback system that ensures 100% system continuity even when the Gemini API is unavailable. What might have taken days of research and prototyping was accomplished in hours.
+When building **Brain3** — an AI purchasing agent — Claude helped me design the deterministic fallback: if the Gemini call errors, returns unparseable JSON, fails schema validation or names no supplier, a reorder formula takes over so a purchase order is still drafted. Working through those failure paths with an AI reviewer took hours instead of days.
 
-For **Senselet**, Cursor's multi-file editing capabilities were instrumental in implementing the real-time multi-warehouse sync feature. Refactoring the relational data model across 15+ files was done in a single session.
+For **Senselet**, multi-file AI editing made large refactors practical, such as adding the multi-branch layer with stock transfers across the schema, the edge functions and the UI. AI also helped me write the tests that caught real bugs: a stress test of the offline sync queue exposed a duplicate-write case that I then fixed.
 
 ### The Future of Software Engineering
 

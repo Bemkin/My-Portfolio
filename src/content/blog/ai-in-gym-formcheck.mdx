@@ -1,24 +1,28 @@
 ---
 title: 'AI in the Gym: FormCheck AI & Computer Vision'
 category: 'AI & Innovation'
-date: 'Jan 17, 2025'
-dateTime: '2025-01-17'
+date: 'Feb 22, 2026'
+dateTime: '2026-02-22'
 image: '/images/formcheck-hero.webp'
-excerpt: 'Using computer vision to solve the problem of improper exercise technique in real-time.'
+excerpt: 'Using MediaPipe pose tracking, joint-angle rules and a small trained classifier to give feedback on exercise technique.'
 ---
 
 ## The Problem: Improper Form
 
-In fitness, form is everything. Improper technique leads to injury and stalled progress. FormCheck AI was built to act as a virtual coach that never blinks.
+In fitness, form is everything. Poor technique stalls progress and raises the risk of injury, and most people training alone have no one to tell them what is going wrong. FormCheck AI is my attempt at a virtual coach for the basics.
 
-### Integrating Mediapipe
+### Pose Tracking in the Browser
 
-By leveraging the Mediapipe framework, I implemented real-time body tracking directly in the browser. The application analyzes joint angles and movement planes to provide immediate feedback on squat depth, back posture, and more.
+FormCheck runs MediaPipe Pose directly in the browser and draws a skeleton over the camera feed. Each frame goes to an exercise-specific analyser — squat, plank, push-up, lunge and deadlift — that checks joint angles against target ranges, for example knee angle and depth on a squat, and turns them into a score and a correction.
 
-### Real-Time vs. Asynchronous Feedback
+### Adding a Trained Model
 
-The app supports two modes: live camera analysis for instant correction, and video upload for detailed post-workout review. This flexibility ensures that whether you're at the gym or home, your technique remains flawless.
+Rules only go so far, so for squats I also trained a small RandomForest classifier on MediaPipe keypoints. A Python FastAPI backend streams frames over a WebSocket, combines the classifier's confidence with the rule score, and flags reps that look wrong.
 
-### Future of AI-Driven Fitness
+### Two Ways to Review a Workout
 
-FormCheck AI isn't just a gimmick; it's a look at the future of personalized training. By blending computer vision with a reactive Next.js frontend, I've created a tool that makes high-level coaching accessible to everyone with a smartphone.
+Besides the live camera, you can upload a video. The backend sends it to Gemini 2.5 Flash for a structured technique review, with keyframe and OpenCV fallbacks if that fails. Both the WebSocket and video analysis currently run against a locally hosted backend, so the public demo shows the browser side only.
+
+### What I Learned
+
+The app started from a Lovable scaffold and grew into a React and Vite frontend with a Python backend, English and Amharic translations, and Supabase for accounts. The biggest lesson was that pose estimation is the easy part — deciding what counts as "good form" for each exercise is where the real work is.

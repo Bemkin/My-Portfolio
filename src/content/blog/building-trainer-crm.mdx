@@ -1,24 +1,28 @@
 ---
 title: 'Business Logic in Fitness: Building Trainer CRM'
 category: 'Product Engineering'
-date: 'Jan 18, 2025'
-dateTime: '2025-01-18'
+date: 'Feb 22, 2026'
+dateTime: '2026-02-22'
 image: '/images/trainer-crm-banner.webp'
-excerpt: 'A deep dive into the architecture of a full-stack CRM designed specifically for personal trainers and client tracking.'
+excerpt: 'How I built a CRM for personal trainers: a React web app and an Expo mobile app on one Supabase backend, with Amharic and the Ethiopian calendar built in.'
 ---
 
 ## Solving for Solopreneurs
 
-Personal trainers often struggle with managing disparate data points—workout plans, client payments, and progress metrics. My goal with Trainer CRM was to unify these into a single, intuitive dashboard.
+Personal trainers juggle workout plans, appointments, invoices and client messages across notebooks and chat apps. My goal with Trainer CRM was to put all of that in one place, on the web and on a phone.
 
-### Architecting for Scale
+### One Backend, Two Apps
 
-Using PostgreSQL and a robust backend architecture, I ensured that every piece of client data is secure and instantly accessible. The platform emphasizes "Data-Driven Fitness," allowing trainers to visualize client progress through automated charting and reporting.
+The web app is React with TypeScript and Vite, and the mobile app is built with Expo and React Native. Both talk to the same Supabase Postgres backend, so a trainer can plan a program at a desk and check it at the gym. Each trainer works inside an organisation, and row-level security on every CRM table keeps one business's clients invisible to another.
 
-### Localized Experience
+### The Day-to-Day Tools
 
-One of the standout features of this project was the multilingual support, including full Amharic localization. This ensures that fitness professionals in different regions can manage their businesses in their native language, removing barriers to entry for modern business tools.
+Trainers can keep a client list, build workout programs from ordered exercises (pulled from the ExerciseDB API), schedule appointments, and issue printable invoices with payments recorded against them. A one-click action sends appointment reminders by email through Resend or by SMS through Twilio, and a dashboard charts revenue and client growth.
 
-### Seamless Operations
+### Localised for Ethiopia
 
-From automated workout scheduling to integrated billing flows, Trainer CRM is built to maximize a trainer's time. By automating the "admin" side of fitness, trainers can focus on what they do best: transforming lives.
+One feature I care about is localisation. The whole interface is available in English and Amharic, and dates can be picked in the Ethiopian calendar, so trainers can run their business in the language and calendar they actually use.
+
+### What's Next
+
+Some admin work is still manual — reminders are sent with a click rather than on a schedule, and payments are recorded by hand. Automating those is the next step toward giving trainers more time for their clients.
