@@ -1,73 +1,69 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
-import Script from "next/script";
+import { Inter_Tight } from "next/font/google";
 import "./globals.css";
+import StructuredData from "@/components/shared/StructuredData";
+import GoogleAnalytics from "@/components/shared/GoogleAnalytics";
+import SmoothScroll from "@/components/layout/SmoothScroll";
+import Preloader from "@/components/layout/Preloader";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import { SITE_URL, profile } from "@/lib/site";
 
-const outfit = Outfit({
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: '--font-outfit',
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-inter-tight",
 });
 
+const title = `${profile.name} | ${profile.role}`;
+const description =
+  "Founding Full-Stack & AI Engineer building zero-to-production SaaS platforms, agentic AI systems and cloud infrastructure with Next.js, TypeScript, Python, PostgreSQL, Supabase and AWS.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://my-portfolio-theta-flame-45.vercel.app/"),
-  title: "Bemnet Kibret | Founding Full-Stack & AI Engineer",
-  description: "Bemnet Kibret | Founding Full-Stack & AI Engineer specializing in zero-to-production architectures, agentic AI systems, scalable cloud infrastructure (AWS, Python, Supabase, PostgreSQL), and Next.js frontends.",
-  keywords: ["Bemnet Kibret", "Founding Full-Stack Engineer", "AI Engineer", "Agentic AI", "Portfolio", "React", "Next.js", "Python", "AWS", "Supabase", "PostgreSQL", "SaaS"],
-  authors: [{ name: "Bemnet Kibret" }],
+  metadataBase: new URL(SITE_URL),
+  title: { default: title, template: `%s | ${profile.name}` },
+  description,
+  keywords: ["Bemnet Kibret", "Founding Full-Stack Engineer", "AI Engineer", "Agentic AI", "Portfolio", "Next.js", "TypeScript", "Python", "AWS", "Supabase", "PostgreSQL", "SaaS"],
+  authors: [{ name: profile.name }],
   openGraph: {
-    title: "Bemnet Kibret | Founding Full-Stack & AI Engineer",
-    description: "Bemnet Kibret | Founding Full-Stack & AI Engineer specializing in zero-to-production architectures, agentic AI systems, scalable cloud infrastructure (AWS, Python, Supabase, PostgreSQL), and Next.js frontends.",
-    url: "https://my-portfolio-theta-flame-45.vercel.app/",
-    siteName: "Bemnet Kibret Portfolio",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    title,
+    description,
+    url: SITE_URL,
+    siteName: `${profile.name} Portfolio`,
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
-    title: "Bemnet Kibret | Founding Full-Stack & AI Engineer",
-    description: "Bemnet Kibret | Founding Full-Stack & AI Engineer specializing in zero-to-production architectures, agentic AI systems, scalable cloud infrastructure (AWS, Python, Supabase, PostgreSQL), and Next.js frontends.",
+    card: "summary_large_image",
+    title,
+    description,
     images: ["/og-image.png"],
   },
   icons: {
-    icon: [{ url: '/icon.png', type: 'image/png' }],
-    shortcut: '/icon.png',
-    apple: '/icon.png',
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
 };
 
-import StructuredData from "@/components/shared/StructuredData";
-import GoogleAnalytics from "@/components/shared/GoogleAnalytics";
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
+// Runs before paint so returning visitors never see a flash of the preloader.
+const preloaderGate = `try{if(sessionStorage.getItem('bk_preloader_seen'))document.documentElement.classList.add('no-preloader')}catch(e){}`;
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={outfit.variable} suppressHydrationWarning>
-      <body suppressHydrationWarning>
-        <ThemeProvider>
-          <GoogleAnalytics />
-          <StructuredData />
-          {children}
-        </ThemeProvider>
-        <Script
-          type="module"
-          src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          noModule
-          src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-          strategy="afterInteractive"
-        />
+    <html lang="en" className={interTight.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: preloaderGate }} />
+      </head>
+      <body>
+        <GoogleAnalytics />
+        <StructuredData />
+        <SmoothScroll />
+        <Preloader />
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
   );

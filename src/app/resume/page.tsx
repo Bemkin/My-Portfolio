@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { resumePdf, resumeDownloadName } from '@/lib/constants';
+import { resumePdf, resumeDownloadName } from '@/lib/site';
 
 export default function ResumePage() {
     useEffect(() => {

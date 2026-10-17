@@ -1,69 +1,28 @@
 'use client';
 
 import { useEffect } from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
+import Button from '@/components/ui/Button';
 
-export default function Error({
-    error,
-    reset,
-}: {
-    error: Error & { digest?: string };
-    reset: () => void;
-}) {
+export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
     useEffect(() => {
-        // Log the error to an error reporting service
         console.error(error);
     }, [error]);
 
     return (
-        <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
-            <motion.div
-                className="content-card"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                style={{ textAlign: 'center', maxWidth: '500px', width: '100%', padding: '50px 30px' }}
-            >
-                <div style={{
-                    width: '80px',
-                    height: '80px',
-                    background: 'rgba(255, 90, 90, 0.1)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 20px auto'
-                }}>
-                    {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
-                    <ion-icon name="alert-circle-outline" style={{ fontSize: '40px', color: '#ff5a5a' }}></ion-icon>
-                </div>
-
-                <h2 className="h2" style={{ margin: '0 0 20px 0' }}>Something went wrong!</h2>
-                <p style={{ color: 'var(--light-gray)', marginBottom: '30px', fontSize: 'var(--fs-6)' }}>
-                    An unexpected error occurred. We have been notified and are looking into it.
-                </p>
-
-                <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                    <button
-                        className="form-btn"
-                        onClick={() => reset()}
-                        style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'var(--onyx)', color: 'var(--white-2)' }}
-                    >
-                        <span>Try Again</span>
-                        {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
-                        <ion-icon name="refresh-outline"></ion-icon>
-                    </button>
-
-                    <Link href="/">
-                        <button className="form-btn" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <span>Return Home</span>
-                            {/* @ts-expect-error - ion-icon is a Web Component without TS definitions */}
-                            <ion-icon name="home-outline"></ion-icon>
-                        </button>
-                    </Link>
-                </div>
-            </motion.div>
-        </main>
+        <section className="container medium page-hero" style={{ minHeight: '70vh' }}>
+            <p className="eyebrow">Error</p>
+            <h1 style={{ marginTop: '0.3em' }}>Something went wrong</h1>
+            <p className="lead muted" style={{ marginTop: '0.75em', maxWidth: '28ch' }}>
+                An unexpected error occurred while loading this page.
+            </p>
+            <div style={{ marginTop: '2.5em', display: 'flex', gap: '1em', flexWrap: 'wrap' }}>
+                <Button onClick={reset} magnetic>
+                    Try again
+                </Button>
+                <Button href="/" magnetic>
+                    Back to home
+                </Button>
+            </div>
+        </section>
     );
 }

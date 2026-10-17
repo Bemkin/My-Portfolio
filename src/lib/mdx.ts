@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import type { Project, BlogPost } from '@/types';
 
 const contentDirectory = path.join(process.cwd(), 'src/content');
 
@@ -50,4 +51,12 @@ export async function getPostBySlug(type: 'blog' | 'projects', slug: string) {
         slug,
         content,
     };
+}
+
+export async function getProjects() {
+    return (await getPosts('projects')) as unknown as Project[];
+}
+
+export async function getBlogPosts() {
+    return (await getPosts('blog')) as unknown as BlogPost[];
 }
