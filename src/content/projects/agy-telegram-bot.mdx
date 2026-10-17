@@ -19,13 +19,13 @@ features:
   - '/tunnel opens a Cloudflare quick tunnel to any local port for a public HTTPS preview URL'
   - '/preview sends Playwright screenshots at mobile (390x844) or desktop (1280x800) size'
   - '/git status, diff, log, push and pull with inline buttons'
-  - 'Mission Control Mini App (FastAPI + vanilla JS) with dashboard, chat, plans, history, diff and log tabs'
+  - 'Mission Control Mini App (FastAPI + vanilla JS) with dashboard, chat, plans, history, diff and log tabs, where every API call must carry Telegram-signed initData'
   - 'Voice notes transcribed and forwarded to the agent, plus a Markdown and JSON audit trail of every prompt'
 metrics:
   - label: 'Bot commands'
     value: '16, allowlisted to one user ID'
   - label: 'Automated tests'
-    value: '18 across 5 suites'
+    value: '25 across 5 suites'
   - label: 'Model fallback'
     value: '3.7 Flash to 3.5 Flash Lite on 429'
 ---
@@ -75,10 +75,11 @@ The bot runs on the same laptop as the coding agent. Telegram is reached over lo
 
 - `/app` serves a FastAPI backend and a vanilla JS front end through a Cloudflare tunnel and opens it inside Telegram.
 - Tabs cover a status dashboard, chat, plans and walkthroughs, change history, Git diffs and dev server logs. The page refreshes its status by polling every 3.5 seconds.
+- Because the tunnel URL is public, every `/api` request must carry the Mini App's Telegram-signed `initData`. The server checks its HMAC signature against the bot token, rejects data older than 24 hours and only accepts the configured user. No CORS headers are sent, so other websites cannot call the API, and the live preview image is fetched with the same auth.
 
 ### Engineering notes
 
-- **Access control:** every Telegram command and button handler is wrapped in an `authorized_only` check against one configured user ID, and other users are rejected and logged.
+- **Access control:** every Telegram command and button handler is wrapped in an `authorized_only` check against one configured user ID, and the Mini App API verifies Telegram-signed `initData` for that same user on every request. Anything else is rejected and logged.
 - **Auditability:** prompts, responses and the files they mention are logged to Markdown and `logs/history.json`, and `/audit` shows recent activity.
-- **Quality:** 18 `unittest` tests cover the agent bridge, audit logger, message formatter, plan manager and the FastAPI endpoints, with a single runner script.
+- **Quality:** 25 `unittest` tests cover the agent bridge, audit logger, message formatter, plan manager and the FastAPI endpoints, including missing, forged, expired, tampered and wrong-user `initData`, with a single runner script.
 - **Open source:** MIT licence, a contributing guide, `.env.example`, and start scripts for Windows, macOS and Linux.

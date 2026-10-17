@@ -11,7 +11,7 @@ description: 'A Next.js and Supabase app where a stock check turns low inventory
 problem: 'Reordering by hand means someone has to notice that stock is low, work out how much to buy from each supplier, write up the purchase order and email it. Each step is easy to forget or get wrong, and there is no record of why an order was placed.'
 solution: 'Built a stock-check endpoint that finds every active item at or below its reorder point, groups the items by supplier and sends them to Gemini in a single request with strict prompt rules. The JSON response is validated with Zod and capped at each item''s spare capacity; if the call or the validation fails, a fixed reorder formula is used instead. Each supplier gets a purchase order, which Auto-Pilot mode approves and emails through Resend, and Approval mode queues for a person to sign off. Every step is written to an audit log.'
 features:
-  - 'Two operating modes: Auto-Pilot approves and emails each PO, Approval mode queues it for sign-off'
+  - 'Two operating modes: Auto-Pilot approves and emails POs up to a configurable spending ceiling, Approval mode queues every PO for sign-off'
   - 'One batched Gemini call per stock check, covering every low-stock item across suppliers'
   - 'Prompt guardrails: no orders above spare capacity, only known suppliers, lead-time-based safety buffer'
   - 'Zod validation of the AI response, with quantities capped at max capacity minus current stock'
@@ -74,7 +74,8 @@ reorder quantity = min(reorder_point × 2 − current_stock, max_capacity − cu
 ### 4. Purchase orders and email
 
 - Supplier orders are built in parallel with `Promise.allSettled`, so one failing supplier does not stop the others. PO numbers come from the existing count plus the supplier's position, to avoid clashes within a run.
-- In **Auto-Pilot** mode each PO is created as approved and emailed to the supplier through Resend, then marked as sent.
+- In **Auto-Pilot** mode a PO at or under the spending ceiling is created as approved and emailed to the supplier through Resend, then marked as sent. The ceiling is the stricter of the approval threshold set in Settings and an optional hard cap.
+- A PO over the ceiling falls back to pending approval and is not emailed, and the audit log records that it was held and the ceiling used.
 - In **Approval** mode POs wait as pending; approving one in the Purchase Orders page sends the email.
 
 ### 5. Dashboard

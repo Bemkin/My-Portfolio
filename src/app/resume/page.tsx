@@ -248,7 +248,7 @@ export default function ResumePage() {
                                 <strong>What it does:</strong> Open-source Telegram bot and Mini App that drive a local Google Antigravity coding agent from a phone: plan-and-approve flow, git diffs and push, dev-server control, and a Cloudflare tunnel for previews.
                             </li>
                             <li>
-                                <strong>Engineering:</strong> Playwright mobile (390×844) and desktop (1280×800) screenshots, automatic fallback to a second Gemini model on rate limits, an audit log of every prompt, and 18 automated tests; bot commands are restricted to an allowlisted Telegram user.
+                                <strong>Engineering:</strong> Playwright mobile (390×844) and desktop (1280×800) screenshots, automatic fallback to a second Gemini model on rate limits, an audit log of every prompt, and 25 automated tests; bot commands and the Mini App API only accept the owner's Telegram account, verified by signed initData.
                             </li>
                             <li style={{ color: '#6b7280', fontSize: '12.5px' }}>
                                 <strong>Tech:</strong> Python 3.12, python-telegram-bot, FastAPI, Google Antigravity SDK, Playwright, Cloudflare Tunnel.

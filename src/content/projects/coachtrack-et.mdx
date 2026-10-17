@@ -16,7 +16,7 @@ features:
   - 'Manual entries compute decimal hours from start and end times, including sessions past midnight'
   - 'One-tap NO PRACTICE logging with a reason: Rain, Pitch Flooded, Holiday or Coach Unavailable'
   - 'Timesheet with All, Completed and Cancelled filters, plus edit and delete for every entry'
-  - 'ETB billing summary: completed sessions × attendance × rate per kid'
+  - 'ETB billing summary: each completed session billed at its actual attendance × rate per kid'
   - 'Parent statement with Telebirr and CBE details, shared through Telegram''s share sheet or copied as text'
   - 'CSV export with the same 8 columns as the coach''s original timesheet'
   - 'Optional Google Sheets sync: an Apps Script web app appends each new session as a row'
@@ -67,8 +67,8 @@ CoachTrack ET is a static site (one HTML file, one script, one stylesheet) that 
 
 ### 3. ETB billing and parent statement
 
-- The earnings view totals completed sessions, pitch hours and fees as `sessions × attendance × rate per kid` (for example 6 × 4 × 1,000 ETB = 24,000 ETB). Attendance is the average across completed sessions, rounded to a whole number.
-- The statement lists sessions, rain days, hours, rate and total due, plus the coach's Telebirr number and CBE account from Settings.
+- Fees are summed per completed session as `kids attended × rate per kid` (for example sessions of 3, 5 and 4 kids at 1,000 ETB come to 12,000 ETB). One billing function feeds the earnings view, the invoice card and the parent statement, so they always agree.
+- The statement lists the period (taken from the session dates), sessions, rain days, hours, attendance, rate and total due, plus the coach's Telebirr number and CBE account from Settings. One-tap copy buttons copy those saved payment details.
 - **Share to Telegram** opens Telegram's share sheet with the statement so the coach can pick the parent group, and **Copy Summary Text** puts it on the clipboard.
 
 ### 4. Export and Google Sheets
