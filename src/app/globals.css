@@ -1558,7 +1558,7 @@ button:hover > .roll > span {
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(2.5em);
+  transform: translateY(40px);
 }
 
 [data-reveal].is-revealed {

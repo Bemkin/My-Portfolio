@@ -1,187 +1,70 @@
-import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
-import { getPostBySlug, getPosts } from '@/lib/mdx';
+import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { Metadata } from 'next';
+import Button from '@/components/ui/Button';
+import { getBlogPosts, getPostBySlug } from '@/lib/mdx';
+import { SITE_URL } from '@/lib/site';
+import type { BlogPost } from '@/types';
 
-interface BlogPostPageProps {
-    params: Promise<{
-        slug: string;
-    }>;
-}
+type Params = { params: Promise<{ slug: string }> };
 
-export async function generateMetadata(props: BlogPostPageProps): Promise<Metadata> {
-    const params = await props.params;
+async function loadPost(slug: string) {
     try {
-        const post = await getPostBySlug('blog', params.slug) as unknown as Post;
-        const ogUrl = new URL('https://my-portfolio-theta-flame-45.vercel.app/api/og');
-        ogUrl.searchParams.set('title', post.title);
-        ogUrl.searchParams.set('type', 'Blog');
-        ogUrl.searchParams.set('category', post.category);
-
-        return {
-            title: `${post.title} | Bemnet Kibret`,
-            description: post.excerpt,
-            openGraph: {
-                title: post.title,
-                description: post.excerpt,
-                images: [ogUrl.toString()],
-                type: 'article',
-            },
-            twitter: {
-                card: 'summary_large_image',
-                title: post.title,
-                description: post.excerpt,
-                images: [ogUrl.toString()],
-            },
-        };
+        return (await getPostBySlug('blog', slug)) as unknown as BlogPost;
     } catch {
-        return {
-            title: 'Not Found',
-        };
+        return null;
     }
-}
-
-interface Post {
-    title: string;
-    category: string;
-    date: string;
-    dateTime: string;
-    image: string;
-    excerpt: string;
-    content: string;
 }
 
 export async function generateStaticParams() {
-    const posts = await getPosts('blog');
-    return posts.map((post: { slug: string }) => ({
-        slug: post.slug,
-    }));
+    const posts = await getBlogPosts();
+    return posts.map((p) => ({ slug: p.slug }));
 }
 
-export default async function BlogPostPage(props: BlogPostPageProps) {
-    const params = await props.params;
-    let post: Post;
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+    const { slug } = await params;
+    const post = await loadPost(slug);
+    if (!post) return { title: 'Not Found' };
 
-    try {
-        post = await getPostBySlug('blog', params.slug) as unknown as Post;
-    } catch {
-        notFound();
-    }
+    const og = new URL('/api/og', SITE_URL);
+    og.searchParams.set('title', post.title);
+    og.searchParams.set('type', 'Blog');
+    og.searchParams.set('category', post.category);
 
-    if (!post) {
-        notFound();
-    }
+    return {
+        title: post.title,
+        description: post.excerpt,
+        openGraph: { title: post.title, description: post.excerpt, images: [og.toString()], type: 'article' },
+        twitter: { card: 'summary_large_image', title: post.title, description: post.excerpt, images: [og.toString()] },
+    };
+}
+
+export default async function BlogPostPage({ params }: Params) {
+    const { slug } = await params;
+    const post = await loadPost(slug);
+    if (!post) notFound();
 
     return (
-        <div style={{
-            background: '#0f0f10',
-            minHeight: '100vh',
-            color: '#fafafa',
-            padding: '60px 20px',
-            fontFamily: 'system-ui, -apple-system, sans-serif'
-        }}>
-            <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-                <Link
-                    href="/"
-                    style={{
-                        display: 'inline-block',
-                        color: '#ffdb70',
-                        textDecoration: 'none',
-                        marginBottom: '30px',
-                        fontSize: '14px'
-                    }}
-                >
-                    ← Back to Portfolio
-                </Link>
+        <article>
+            <header className="container small page-hero">
+                <p className="eyebrow" data-reveal>{post.category} · {post.date}</p>
+                <h1 data-reveal style={{ marginTop: '0.3em', maxWidth: '18ch', fontSize: 'clamp(2.4em, 6vw, 5em)' }}>{post.title}</h1>
+                <p className="lead muted" data-reveal style={{ marginTop: '0.8em', maxWidth: '40ch' }}>{post.excerpt}</p>
+            </header>
 
-                <Image
-                    src={post.image as string}
-                    alt={post.title as string}
-                    width={900}
-                    height={500}
-                    style={{
-                        width: '100%',
-                        height: 'auto',
-                        borderRadius: '16px',
-                        marginBottom: '40px'
-                    }}
-                    priority
-                />
-
-                <div style={{
-                    background: '#1e1e1f',
-                    borderRadius: '20px',
-                    padding: '40px'
-                }}>
-                    <span style={{
-                        fontSize: '12px',
-                        color: '#ffdb70',
-                        background: 'rgba(255, 184, 0, 0.1)',
-                        padding: '4px 12px',
-                        borderRadius: '6px',
-                        display: 'inline-block',
-                        marginBottom: '15px'
-                    }}>
-                        {post.category as string}
-                    </span>
-
-                    <h1 style={{
-                        fontSize: '32px',
-                        marginBottom: '15px',
-                        color: '#fafafa',
-                        fontWeight: '600',
-                        lineHeight: '1.3'
-                    }}>
-                        {post.title as string}
-                    </h1>
-
-                    <p style={{
-                        fontSize: '18px',
-                        color: '#d1d1d1',
-                        marginBottom: '30px',
-                        lineHeight: '1.6'
-                    }}>
-                        {post.excerpt as string}
-                    </p>
-
-                    <div className="mdx-content" style={{ color: '#d1d1d1', fontSize: '16px', lineHeight: '1.8' }}>
-                        <MDXRemote
-                            source={post.content}
-                            components={{
-                                h2: (props) => <h2 {...props} style={{ color: '#fafafa', fontSize: '24px', margin: '30px 0 15px', fontWeight: '600' }} />,
-                                p: (props) => <p {...props} style={{ margin: '15px 0', color: '#d1d1d1' }} />,
-                                ul: (props) => <ul {...props} style={{ margin: '15px 0', paddingLeft: '25px', listStyle: 'disc' }} />,
-                                li: (props) => <li {...props} style={{ margin: '8px 0', color: '#d1d1d1' }} />,
-                                strong: (props) => <strong {...props} style={{ color: '#fafafa' }} />,
-                            }}
-                        />
-                    </div>
-
-                    <div style={{
-                        marginTop: '50px',
-                        paddingTop: '30px',
-                        borderTop: '1px solid #383838',
-                        textAlign: 'center'
-                    }}>
-                        <Link
-                            href="/#contact"
-                            style={{
-                                display: 'inline-block',
-                                padding: '14px 30px',
-                                borderRadius: '10px',
-                                textDecoration: 'none',
-                                background: 'linear-gradient(to bottom right, #ffdb70, #e0a800)',
-                                color: '#000',
-                                fontWeight: '600'
-                            }}
-                        >
-                            Let&apos;s Work Together
-                        </Link>
-                    </div>
-                </div>
+            <div className="cs-hero-media" data-reveal>
+                <Image src={post.image} alt="" width={1600} height={1000} priority sizes="(max-width: 1200px) 90vw, 64em" />
             </div>
-        </div>
+
+            <section className="container small section">
+                <div className="prose" style={{ margin: '0 auto' }}>
+                    <MDXRemote source={post.content} options={{ mdxOptions: { format: 'md' } }} />
+                </div>
+                <div className="center-btn">
+                    <Button href="/contact" magnetic className="is-dark">Let&rsquo;s work together</Button>
+                </div>
+            </section>
+        </article>
     );
 }
