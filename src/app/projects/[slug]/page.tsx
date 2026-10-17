@@ -98,14 +98,15 @@ export default async function CaseStudyPage({ params }: Params) {
             {project.video ? (
                 <figure className="cs-hero-media cs-hero-video" style={{ marginTop: '5em' }} data-reveal>
                     <video
-                        src={project.video}
                         poster={project.videoPoster}
                         controls
-                        muted
                         playsInline
                         preload="metadata"
                         aria-label={`${shortTitle(project.title)} demo video`}
-                    />
+                    >
+                        {project.videoWebm && <source src={project.videoWebm} type="video/webm" />}
+                        <source src={project.video} type="video/mp4" />
+                    </video>
                     {project.videoCaption && <figcaption className="muted">{project.videoCaption}</figcaption>}
                 </figure>
             ) : (

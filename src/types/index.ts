@@ -18,6 +18,7 @@ export interface Project {
     metrics?: { label: string; value: string }[];
     screenshots?: string[];
     video?: string;
+    videoWebm?: string;
     videoPoster?: string;
     videoCaption?: string;
 }
