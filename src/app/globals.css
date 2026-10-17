@@ -1726,3 +1726,34 @@ button:hover > .roll > span {
   width: 100%;
   font-size: 0.95em;
 }
+
+/* Grid and flex children default to min-width: auto, so a wide child (e.g. an
+   ASCII diagram in a <pre>) would stretch its column past the viewport. */
+.cs-two-col > *,
+.about-split > *,
+.contact-split > *,
+.timeline > li > *,
+.blog-row > *,
+.meta-row > *,
+.metrics > * {
+  min-width: 0;
+}
+
+.prose {
+  max-width: min(46em, 100%);
+  overflow-wrap: break-word;
+}
+
+.prose pre {
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose table {
+  display: block;
+  overflow-x: auto;
+}
+
+.prose img {
+  height: auto;
+}
