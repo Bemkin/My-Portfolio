@@ -18,7 +18,17 @@ export function projectHref(p: Project) {
     return p.problem ? `/projects/${p.slug}` : p.link || p.github || '/work';
 }
 
-export default function WorkCard({ project, priority = false, reveal = true }: { project: Project; priority?: boolean; reveal?: boolean }) {
+export default function WorkCard({
+    project,
+    priority = false,
+    reveal = true,
+    wide = false,
+}: {
+    project: Project;
+    priority?: boolean;
+    reveal?: boolean;
+    wide?: boolean;
+}) {
     const href = projectHref(project);
     const external = !project.problem;
     const roles = categoriesOf(project.category).slice(0, 2).map(categoryLabel).join(' & ');
@@ -26,7 +36,7 @@ export default function WorkCard({ project, priority = false, reveal = true }: {
     return (
         <Link
             href={href}
-            className="work-card"
+            className={`work-card${wide ? ' is-wide' : ''}`}
             data-reveal={reveal ? '' : undefined}
             {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         >
@@ -36,11 +46,13 @@ export default function WorkCard({ project, priority = false, reveal = true }: {
                     alt=""
                     width={1200}
                     height={750}
-                    sizes="(max-width: 760px) 80vw, 40vw"
+                    sizes={wide ? '(max-width: 760px) 80vw, 70vw' : '(max-width: 760px) 80vw, 40vw'}
                     priority={priority}
                 />
             </div>
+            {wide && <p className="eyebrow work-card-kicker">Lead case study</p>}
             <h3 className="work-card-title">{shortTitle(project.title)}</h3>
+            {wide && project.excerpt && <p className="work-card-excerpt muted">{project.excerpt}</p>}
             <div className="work-card-meta">
                 <span>{roles}</span>
                 <span>{projectYear(project)}</span>

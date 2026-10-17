@@ -775,6 +775,63 @@ button:hover > .roll > span {
   transform: scale(1.04);
 }
 
+.work-card.is-wide {
+  grid-column: 1 / -1;
+}
+
+.work-card.is-wide .work-card-media {
+  aspect-ratio: 16 / 8;
+}
+
+.work-card.is-wide .work-card-media img {
+  width: 70%;
+}
+
+.work-card-kicker {
+  margin-top: 1.4em;
+}
+
+.work-card.is-wide .work-card-title {
+  margin-top: 0.25em;
+  font-size: clamp(2.2em, 4.5vw, 4em);
+}
+
+.work-card-excerpt {
+  margin-top: 1em;
+  max-width: 52ch;
+  font-size: 1.05em;
+}
+
+.other-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.other-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4em 2em;
+  padding: 1.6em 0;
+  border-top: 1px solid var(--color-border);
+  transition: padding var(--t-base);
+}
+
+.other-row:hover {
+  padding-left: 0.75em;
+}
+
+.other-row h3 {
+  font-size: clamp(1.35em, 2.2vw, 1.8em);
+}
+
+@media (min-width: 760px) {
+  .other-row {
+    grid-template-columns: 1.2fr 2fr 0.4fr;
+    align-items: baseline;
+  }
+}
+
 .work-card-title {
   font-size: clamp(1.75em, 3vw, 2.75em);
   margin-top: 0.7em;

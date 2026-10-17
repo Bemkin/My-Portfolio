@@ -268,7 +268,7 @@ export default function ResumePage() {
                                 <strong>What it does:</strong> Daily pipeline that sources roles from RemoteOK and LinkedIn (Playwright), finds the hiring manager or founder via RocketReach, and drafts a 3-sentence Gemini pitch matched to one of three role tracks; every email waits for approval in Telegram.
                             </li>
                             <li>
-                                <strong>Engineering:</strong> Free-webmail and company-domain guards with optional NeverBounce/Verimail checks, an owner-only bot with secret-protected cloud sync, Gmail delivery with the track's PDF resume, Docker on Render, Vitest and GitHub Actions CI.
+                                <strong>Engineering:</strong> Free-webmail and company-domain guards with optional NeverBounce/Verimail checks, an owner-only bot with secret-protected cloud sync, Gmail delivery with the track&rsquo;s PDF resume, Docker on Render, Vitest and GitHub Actions CI.
                             </li>
                             <li style={{ color: '#6b7280', fontSize: '12.5px' }}>
                                 <strong>Tech:</strong> TypeScript, Node.js, Google Gemini, RocketReach API, Playwright, Telegram Bot API, Nodemailer, Docker.

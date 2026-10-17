@@ -87,6 +87,9 @@ export const testimonials = [
     },
 ];
 
+// Projects shown first, in this order. Senselet is the lead case study.
+export const FEATURED_SLUGS = ['senselet', 'cyborg-job-pipeline', 'brain3-purchasing-agent', 'agy-telegram-bot', 'kaffa-roasters'];
+
 export const resumePdf = '/resume.pdf';
 export const resumeDownloadName = 'Bemnet-Kibret-Founding-Full-Stack-AI-Engineer-Resume.pdf';
 

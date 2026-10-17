@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import type { Project, BlogPost } from '@/types';
+import { FEATURED_SLUGS } from '@/lib/site';
 
 const contentDirectory = path.join(process.cwd(), 'src/content');
 
@@ -59,4 +60,14 @@ export async function getProjects() {
 
 export async function getBlogPosts() {
     return (await getPosts('blog')) as unknown as BlogPost[];
+}
+
+/** Case studies split into the curated featured set (in FEATURED_SLUGS order) and the rest. */
+export async function getCaseStudies() {
+    const caseStudies = (await getProjects()).filter((p) => p.problem);
+    const featured = FEATURED_SLUGS.map((slug) => caseStudies.find((p) => p.slug === slug)).filter(
+        (p): p is Project => Boolean(p)
+    );
+    const others = caseStudies.filter((p) => !FEATURED_SLUGS.includes(p.slug));
+    return { featured, others };
 }

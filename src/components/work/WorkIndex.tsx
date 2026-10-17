@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
@@ -10,24 +10,13 @@ import WorkCard, { projectHref, projectYear, shortTitle } from './WorkCard';
 import { categoriesOf, categoryLabel } from '@/lib/site';
 import type { Project } from '@/types';
 
-const FILTERS = ['ai', 'fullstack', 'frontend', 'mobile'];
-
 export default function WorkIndex({ projects }: { projects: Project[] }) {
-    const [filter, setFilter] = useState('all');
     const [view, setView] = useState<'list' | 'grid'>('list');
     const [hovered, setHovered] = useState<number | null>(null);
     const preview = useRef<HTMLDivElement>(null);
     const cursor = useRef<HTMLDivElement>(null);
 
-    const counts = useMemo(() => {
-        const c: Record<string, number> = { all: projects.length };
-        FILTERS.forEach((f) => {
-            c[f] = projects.filter((p) => categoriesOf(p.category).includes(f)).length;
-        });
-        return c;
-    }, [projects]);
-
-    const visible = filter === 'all' ? projects : projects.filter((p) => categoriesOf(p.category).includes(filter));
+    const visible = projects;
 
     // Floating preview follows the cursor over the list.
     useEffect(() => {
@@ -49,22 +38,7 @@ export default function WorkIndex({ projects }: { projects: Project[] }) {
     return (
         <>
             <div className="container medium" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '2em', flexWrap: 'wrap' }}>
-                <div className="filters" role="group" aria-label="Filter projects">
-                    {['all', ...FILTERS].map((f) => (
-                        <Button
-                            key={f}
-                            onClick={() => {
-                                setFilter(f);
-                                setHovered(null);
-                            }}
-                            className={f === filter ? 'is-dark is-active' : ''}
-                            ariaPressed={f === filter}
-                        >
-                            {f === 'all' ? 'All' : categoryLabel(f)}
-                            <sup>{counts[f]}</sup>
-                        </Button>
-                    ))}
-                </div>
+                <p className="eyebrow">Selected work · {projects.length}</p>
                 <div className="view-toggle only-desktop" role="group" aria-label="Layout">
                     <Button onClick={() => { setView('list'); setHovered(null); }} active={view === 'list'} ariaLabel="List view" ariaPressed={view === 'list'}>
                         <ListIcon />

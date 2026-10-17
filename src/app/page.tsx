@@ -1,12 +1,11 @@
 import Hero from '@/components/home/Hero';
 import WorkCard from '@/components/work/WorkCard';
 import Button from '@/components/ui/Button';
-import { getProjects } from '@/lib/mdx';
+import { getCaseStudies } from '@/lib/mdx';
 
 export default async function HomePage() {
-    const projects = await getProjects();
-    const caseStudies = projects.filter((p) => p.problem);
-    const featured = caseStudies.slice(0, 4);
+    const { featured, others } = await getCaseStudies();
+    const [lead, ...rest] = featured;
 
     return (
         <>
@@ -33,16 +32,17 @@ export default async function HomePage() {
             <section className="section" style={{ paddingTop: 0 }} aria-labelledby="work-title">
                 <div className="container medium">
                     <p id="work-title" className="eyebrow" style={{ marginBottom: '2.5em' }}>
-                        Recent work
+                        Selected work
                     </p>
                     <div className="work-grid">
-                        {featured.map((p) => (
+                        {lead && <WorkCard project={lead} wide />}
+                        {rest.map((p) => (
                             <WorkCard key={p.slug} project={p} />
                         ))}
                     </div>
                     <div className="center-btn">
                         <Button href="/work" magnetic>
-                            More work <sup>{caseStudies.length}</sup>
+                            All work <sup>{featured.length + others.length}</sup>
                         </Button>
                     </div>
                 </div>
