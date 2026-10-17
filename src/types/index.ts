@@ -17,6 +17,9 @@ export interface Project {
     features?: string[];
     metrics?: { label: string; value: string }[];
     screenshots?: string[];
+    video?: string;
+    videoPoster?: string;
+    videoCaption?: string;
 }
 
 export interface Testimonial {

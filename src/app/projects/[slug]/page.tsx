@@ -95,9 +95,24 @@ export default async function CaseStudyPage({ params }: Params) {
                 </div>
             </div>
 
-            <div className="cs-hero-media" style={{ marginTop: '5em' }} data-reveal>
-                <Image src={project.image} alt={`${shortTitle(project.title)} preview`} width={1600} height={1000} priority sizes="(max-width: 1200px) 90vw, 64em" />
-            </div>
+            {project.video ? (
+                <figure className="cs-hero-media cs-hero-video" style={{ marginTop: '5em' }} data-reveal>
+                    <video
+                        src={project.video}
+                        poster={project.videoPoster}
+                        controls
+                        muted
+                        playsInline
+                        preload="metadata"
+                        aria-label={`${shortTitle(project.title)} demo video`}
+                    />
+                    {project.videoCaption && <figcaption className="muted">{project.videoCaption}</figcaption>}
+                </figure>
+            ) : (
+                <div className="cs-hero-media" style={{ marginTop: '5em' }} data-reveal>
+                    <Image src={project.image} alt={`${shortTitle(project.title)} preview`} width={1600} height={1000} priority sizes="(max-width: 1200px) 90vw, 64em" />
+                </div>
+            )}
 
             <section className="section">
                 <div className="container medium" style={{ display: 'grid', gap: '5em' }}>

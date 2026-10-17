@@ -1703,3 +1703,26 @@ button:hover > .roll > span {
   opacity: 0.6;
   cursor: progress;
 }
+
+.cs-hero-video {
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25em;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.cs-hero-video video {
+  width: 100%;
+  max-width: 64em;
+  height: auto;
+  border-radius: 0.6em;
+  background: var(--color-dark);
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.4);
+}
+
+.cs-hero-video figcaption {
+  max-width: 64em;
+  width: 100%;
+  font-size: 0.95em;
+}
