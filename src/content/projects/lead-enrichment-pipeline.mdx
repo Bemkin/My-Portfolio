@@ -1,24 +1,78 @@
 ---
-title: 'Automated Lead Enrichment Pipeline'
+title: 'Lead Enrichment Pipeline – Autonomous Lead Qualification & Contact Enrichment'
 date: '2026-04-10'
 category: ['fullstack']
 image: '/images/lead-enrichment-hero.webp'
 link: ''
 github: ''
-tech: ['Node.js', 'REST APIs', 'Webhooks', 'Render']
-excerpt: 'A production-ready microservice designed to automate data collection and enrichment.'
-problem: 'Slow manual lead verification and aggregation delayed outreach and sales cycles.'
-solution: 'Built and deployed an automated data pipeline to production, managing parallel pilot testing schedules and ensuring high-availability webhooks.'
+tech: ['TypeScript', 'Node.js', 'Fastify', 'Google Gemini', 'RocketReach API', 'Lemlist API', 'Playwright', 'node-cron', 'Render']
+excerpt: 'An autonomous pipeline built for a client that qualifies sales leads from news coverage with Gemini and a deterministic rules engine, finds the right executive through RocketReach, and routes approved leads into the CRM and Lemlist outreach campaigns.'
+description: 'A TypeScript and Fastify service that turns raw news articles into qualified, enriched sales leads on a weekday schedule.'
+problem: 'Qualifying leads from news alerts by hand was slow. Each article had to be read, checked against the agency criteria, matched to a decision-maker with a working email and entered into the CRM, so the daily lead target was hard to hit.'
+solution: 'Built a TypeScript pipeline that pulls candidate articles from the client portal, filters them through Gemini plus a rules matrix, enriches qualified companies with a RocketReach executive contact, and approves them into the CRM. When the queue runs short, a second tier scans a pool of 1,292 companies through Google News RSS to fill the daily quota. Approved leads are routed into Lemlist campaigns, and RocketReach spend is capped by a daily credit budget.'
 features:
-  - 'Asynchronous Processing Queues'
-  - 'Automated Enrichment API Integration'
-  - 'Webhooks with Automatic Retries'
-  - 'High-Availability Worker Architecture'
+  - 'Two-tier waterfall: client portal review queue first, then a Google News RSS scan of 1,292 monitored companies'
+  - 'Gemini qualification combined with a deterministic rules matrix that rejects petty, government and non-adverse stories with a reason code'
+  - 'Dedup and blocklist gate so existing leads are rejected before any credits are spent'
+  - 'RocketReach executive lookup with an enrichment cache and a daily credit budget of 25 lookups'
+  - 'Serial RocketReach request queue and Retry-After-aware exponential backoff on 429s, with lockout detection'
+  - 'Lemlist campaign routing with lead dedup, a domain firewall and bounded concurrency'
+  - 'Playwright browser automation for CRM injection with a persistent login session'
+  - 'Fastify service with a secret-protected /enrich endpoint, health and stats routes, and an adapter for the portal article format'
+  - 'Weekday node-cron scheduler with a catch-up mode for missed runs'
+  - 'Standardised CLIs for auditing, purging, reviewer assignment and cache management'
 metrics:
-  - label: 'API Search Latency'
-    value: '-40%'
-  - label: 'Webhook SLA'
-    value: '99.99%'
+  - label: 'Monitored companies'
+    value: '1,292'
+  - label: 'Daily lead quota'
+    value: '20–22, configurable'
+  - label: 'Enrichment budget'
+    value: '25 credits / day cap'
 ---
 
-A backend microservice pipeline automating enterprise lead data enrichment.
+### How it works
+
+The pipeline replaces the manual triage of news alerts with an automated qualify, enrich and route loop, while leaving approved leads in a pending state for human review.
+
+```
+┌──────────────────┐     ┌───────────────────────┐     ┌──────────────────────┐
+│ Tier 1: portal   │ ──▶ │ Dedup + blocklist     │ ──▶ │ Gemini + rules matrix│
+│ article queue    │     │ gate                  │     │ qualify / reject     │
+└──────────────────┘     └───────────────────────┘     └──────────┬───────────┘
+        ▲                                                         │
+        │ quota short                                             ▼
+┌───────┴──────────┐     ┌───────────────────────┐     ┌──────────────────────┐
+│ Tier 2: News RSS │     │ CRM (pending) +       │ ◀── │ RocketReach + cache  │
+│ 1,292 companies  │     │ Lemlist campaigns     │     │ executive contact    │
+└──────────────────┘     └───────────────────────┘     └──────────────────────┘
+```
+
+### 1. Qualification
+
+- Candidate articles come from the client's review queue, alternating between news articles and alerts.
+- A dedup and blocklist gate rejects companies that are already leads before any paid lookup happens.
+- Gemini reads each story, and a rules matrix of more than a thousand lines excludes cases that do not fit the client's criteria, such as regional place names, traffic accidents and non-adverse roundups. Each rejection carries a classification code.
+
+### 2. Enrichment
+
+- Qualified companies are matched to a C-suite or VP contact through RocketReach, reusing a local enrichment cache wherever possible.
+- All RocketReach calls go through a single serial queue with exponential backoff that respects `Retry-After`, and the pipeline detects long lockouts instead of hammering the API.
+- A credit manager enforces a daily budget of 25 lookups and reports usage through `npm run stats`.
+
+### 3. Filling the quota
+
+- The daily target is a random number between 20 and 22, configurable through environment variables.
+- If the portal queue cannot meet it, a Tier 2 waterfall scans 1,292 monitored companies for crisis terms on Google News RSS, enriches the matches and injects them as direct leads.
+
+### 4. Routing
+
+- Approved leads stay in a pending state and are split evenly between the client's account owners.
+- Leads are pushed into Lemlist campaigns with dedup, a domain firewall and bounded concurrency.
+- Where the CRM has no API for a step, Playwright drives the browser using a persistent login session.
+
+### Engineering notes
+
+- **Service:** a Fastify server exposes `/enrich`, protected by a shared-secret header, plus health, stats and Lemlist routes. Production runs on Render.
+- **Scheduling:** node-cron runs the pipeline on weekdays, with a catch-up mode for missed runs and a once-only mode for manual runs.
+- **Maintainability:** dozens of one-off scripts were consolidated into five standardised CLIs for audits, purges, reviewer assignment, the Tier 2 waterfall and cache management.
+- **Safety:** a post-run audit checks that every injected lead is still pending before anyone reviews it.

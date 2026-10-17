@@ -1,27 +1,73 @@
 ---
-title: 'FitEthio - Landing Page'
+title: 'FitEthio – Scroll-Driven Landing Page for a Trainer CRM'
 date: '2026-04-09'
 category: ['frontend']
 image: '/images/fitethio-landing-hero.webp'
 link: 'https://trainer-crm-landing.vercel.app/'
-github: 'https://github.com/Bemkin/Trainer-CRM-Landing.git'
-tech: ['Next.js', 'React', 'Tailwind', 'Framer Motion', 'Three.js']
-excerpt: 'A cinematic, high-performance landing page for FitEthio, the operating system for elite fitness coaches.'
-problem: 'Traditional fitness CRMs often lack the premium feel and technical sophistication required by elite high-ticket coaches to build authority and trust with high-end clientele.'
-solution: 'FitEthio provides a "Command Center" experience with 3D anatomy visualizations, clinical precision metrics, and a sleek, modern UI that elevates a trainer\''s brand to the top 1%.'
+github: 'https://github.com/Bemkin/Trainer-CRM-Landing'
+tech: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS v4', 'GSAP ScrollTrigger', 'Framer Motion']
+excerpt: 'A pre-launch landing page for FitEthio, a CRM concept for personal trainers. A 192-frame image sequence plays on a canvas as you scroll, followed by a pinned phone mockup, feature cards, an integrations graphic and a waitlist call to action.'
+description: 'A Next.js landing page that uses GSAP ScrollTrigger to scrub a 192-frame canvas sequence and pin animated sections, with Framer Motion micro-interactions.'
+problem: 'A CRM for personal trainers needs a landing page that explains the product and collects early interest before the app itself exists, and looks polished enough for coaches who sell premium services.'
+solution: 'Built a single-page Next.js site. A pinned 600vh hero scrubs through 192 pre-rendered frames on a canvas while three headlines fade in and out, a second pinned section slides app screens across a phone frame, and a magnetic waitlist button opens an email form. The waitlist is front-end only for now.'
 features:
-  - '3D Human Anatomy Visualization'
-  - 'Cinematic Hero Sections'
-  - 'Hyper-Accurate Biometrics Tracking'
-  - 'Frictionless Payment Integration'
-  - 'Mobile-First Responsive Design'
+  - 'Scroll-scrubbed hero: 192 JPG frames drawn on a canvas with cover-fit scaling and frame snapping'
+  - 'Preloader driven by real load progress across 193 images'
+  - 'Pinned phone-mockup section that slides app screens with a scrubbed GSAP timeline'
+  - 'Feature cards with a mouse-following glow, using CSS custom properties'
+  - 'Integrations graphic (Stripe, Apple Health, WhatsApp, MyFitnessPal, Google Calendar) as concept artwork'
+  - 'Magnetic waitlist button with spring physics and touch-device detection'
+  - 'Waitlist email form UI (front-end only, no backend yet)'
+  - 'Responsive layout with md breakpoints'
 metrics:
-  - label: 'Conversion Rate'
-    value: '+45%'
-  - label: 'Page Speed Score'
-    value: '98/100'
-  - label: 'User Engagement'
-    value: 'High'
+  - label: 'Hero sequence'
+    value: '192 canvas frames'
+  - label: 'Pinned scroll scenes'
+    value: '2 GSAP timelines'
+  - label: 'Preloaded assets'
+    value: '193 images'
 ---
 
-FitEthio is more than just a landing page; it's a visual statement for fitness professionals who demand excellence. Built with **Next.js** and **Three.js**, it features immersive 3D elements and smooth animations that define the future of coaching software.
+### About the project
+
+FitEthio is a CRM concept for personal trainers. This repository is its pre-launch landing page: the CRM itself is not built here, so features like client tracking and payments are described in copy, not implemented.
+
+```
+┌────────────────────┐   ┌────────────────────┐   ┌────────────────────┐
+│ Preloader          │──▶│ Hero (600vh pin)   │──▶│ Phone mockup pin   │
+│ 193 images, real % │   │ 192-frame canvas   │   │ slides app screens │
+└────────────────────┘   └────────────────────┘   └─────────┬──────────┘
+                                                            ▼
+                         ┌────────────────────┐   ┌────────────────────┐
+                         │ Waitlist CTA       │◀──│ Feature cards ·    │
+                         │ magnetic button    │   │ integrations       │
+                         └────────────────────┘   └────────────────────┘
+```
+
+### 1. Canvas hero sequence
+
+- The hero is a 600vh section whose inner wrapper is pinned with GSAP ScrollTrigger.
+- A scrubbed timeline moves through 192 pre-rendered JPG frames (an AI-generated laptop and dashboard animation) and draws each one on a full-screen canvas. Cover-fit math crops the frame to the viewport, and the canvas redraws on resize.
+- Three headlines fade in and out at set points on the same timeline, and the hero fades out at the end so the next section takes over cleanly.
+
+### 2. Preloader
+
+- Every frame, plus the phone frame image, is preloaded with `new Image()`, and each load or error raises the progress count.
+- The preloader eases its on-screen number toward the real progress and only exits at 100%. It then refreshes ScrollTrigger so pin positions are measured after all images have loaded.
+
+### 3. Sections below the hero
+
+- **Phone mockup:** a pinned section holds for three screen heights of scrolling and slides a track of app screens across an iPhone frame.
+- **Feature cards:** three cards whose radial glow follows the mouse through CSS custom properties, revealed with a staggered Framer Motion animation.
+- **Integrations and reviews:** an integrations graphic and a scrolling review strip. The reviews are placeholder copy for the concept, not real customer testimonials.
+
+### 4. Waitlist call to action
+
+- The "Join Waitlist" button in the nav scrolls to the CTA and dispatches an `open-waitlist-form` event, which expands the form and focuses the email field.
+- The CTA button pulls toward the cursor using spring motion values, and the effect is turned off on touch devices.
+- Submitting the form checks the email and shows a confirmation state. Nothing is stored or sent yet; connecting it to an email list is the next step.
+
+### Engineering notes
+
+- **Stack:** Next.js 16.2, React 19.2, TypeScript, Tailwind CSS v4, GSAP 3 with ScrollTrigger and Framer Motion.
+- **Cleanup:** ScrollTrigger instances, resize listeners and intervals are removed when components unmount.

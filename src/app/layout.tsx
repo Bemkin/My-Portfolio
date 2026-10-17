@@ -17,13 +17,13 @@ const interTight = Inter_Tight({
 
 const title = `${profile.name} | ${profile.role}`;
 const description =
-  "Founding Full-Stack & AI Engineer building zero-to-production SaaS platforms, agentic AI systems and cloud infrastructure with Next.js, TypeScript, Python, PostgreSQL, Supabase and AWS.";
+  "Founding Full-Stack & AI Engineer building zero-to-production SaaS platforms, agentic AI systems and cloud infrastructure with TypeScript, React, Next.js, Node.js, PostgreSQL and Supabase.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: title, template: `%s | ${profile.name}` },
   description,
-  keywords: ["Bemnet Kibret", "Founding Full-Stack Engineer", "AI Engineer", "Agentic AI", "Portfolio", "Next.js", "TypeScript", "Python", "AWS", "Supabase", "PostgreSQL", "SaaS"],
+  keywords: ["Bemnet Kibret", "Founding Full-Stack Engineer", "AI Engineer", "Agentic AI", "Portfolio", "Next.js", "TypeScript", "Python", "Supabase", "PostgreSQL", "SaaS"],
   authors: [{ name: profile.name }],
   openGraph: {
     title,

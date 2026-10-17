@@ -33,28 +33,29 @@ export const greetings = ['Hello', 'ሰላም', 'Bonjour', 'Hola', 'Ciao', 'Olá
 export const services = [
     {
         title: 'Product Engineering',
-        text: 'Zero-to-production SaaS platforms with Next.js, TypeScript and PostgreSQL — from schema design and auth to deployment and observability.',
+        text: 'Zero-to-production products in TypeScript, React and PostgreSQL — from schema design and row-level security to deployment and tests.',
     },
     {
         title: 'Agentic AI Systems',
-        text: 'LLM agents with tool calling, cascading model failover and evidence trails, wired into real business workflows rather than demos.',
+        text: 'LLM agents with function calling, cascading model failover and a human in the loop, wired into real workflows such as inventory, outreach and lead qualification.',
     },
     {
-        title: 'Cloud & Data Infrastructure',
-        text: 'AWS, Supabase and Python services with idempotent pipelines, row-level security and offline-first sync built for messy real-world data.',
+        title: 'Backend & Data Integrity',
+        text: 'Supabase edge functions, Fastify and Node.js services with idempotent processing, offline sync queues and multi-tenant data isolation.',
     },
 ];
 
 export const experience = [
     {
         role: 'Founder & Lead Engineer',
-        company: 'Senselet & Independent Solutions',
-        date: '2024 — Present',
+        company: 'Senselet Technologies',
+        date: 'Dec 2025 — Present',
         points: [
-            { title: 'Zero-to-production architecture', detail: 'Architected and deployed an AI-native enterprise ERP on AWS and Supabase, scaling across 3+ commercial retail clients and eliminating 20+ hours of weekly manual auditing across 10k+ active SKUs.' },
-            { title: 'Agentic AI', detail: 'Engineered a 15-tool agentic backend using native JSON-schema function calling and cascading LLM failover; automated 90%+ of routine reorder and allocation decisions, cutting reconciliation from 45 min to under 30 sec.' },
-            { title: 'Data integrity', detail: 'Designed an offline-first architecture with a dual-ID resolution layer in PostgreSQL; authored 157 strict migrations with org-scoped RLS for zero data loss across 5+ warehouse locations.' },
-            { title: 'Pipelines & infrastructure', detail: 'Built containerized Python and Node.js services on AWS (ECS/Lambda) with idempotent webhook handlers, keeping execution under 500 ms with 99.9% deduplication reliability.' },
+            { title: 'Zero-to-production platform', detail: 'Designed and built Senselet solo: an AI-native inventory platform for retail, live at senselet.store, with a React/TypeScript frontend and a Supabase backend of 21 TypeScript edge functions.' },
+            { title: 'Agentic AI', detail: 'Built a 33-tool Gemini function-calling agent that adjusts stock, transfers between branches, proposes purchase orders and reconciles invoices, with role-scoped tools and cascading failover across Gemini models and OpenRouter.' },
+            { title: 'Multi-tenant data security', detail: 'Modeled a 28-table PostgreSQL schema through 160 migrations, with row-level security on every table (131 policies) isolating each organization’s data.' },
+            { title: 'Offline-first reliability', detail: 'Built an offline mutation queue with idempotency keys, backoff and a dead-letter queue; a 2,500-operation test on a simulated failing network lost 0 writes, and the duplicate-write case it exposed now fails closed.' },
+            { title: 'Testing & webhooks', detail: 'Covered the platform with 266 automated Vitest tests, and made Telegram webhook processing exactly-once with an insert-first claim on a unique index.' },
         ],
     },
     {
@@ -62,9 +63,9 @@ export const experience = [
         company: 'Marvels Creative Technology',
         date: 'Mar 2025 — Jun 2025',
         points: [
-            { title: 'API architecture', detail: 'Architected and optimized 20+ REST endpoints and server routes in TypeScript and Next.js, reducing response times by ~35% for enterprise client applications.' },
-            { title: 'Databases', detail: 'Designed PostgreSQL schemas and query workflows with Prisma, enforcing strict data contracts and sub-100 ms average query latency.' },
-            { title: 'Reliability', detail: 'Implemented automated API test suites with Jest and Postman in GitHub Actions CI/CD, maintaining 99.5%+ deployment stability.' },
+            { title: 'APIs', detail: 'Built REST API endpoints in TypeScript and Next.js for client applications, containerized with Docker.' },
+            { title: 'Databases', detail: 'Designed PostgreSQL schemas and query workflows with Prisma, enforcing data contracts and foreign-key integrity.' },
+            { title: 'Testing', detail: 'Wrote automated API test suites with Jest and Postman, run in GitHub Actions CI.' },
         ],
     },
 ];
@@ -75,8 +76,8 @@ export const education = [
 ];
 
 export const stack = [
-    'TypeScript', 'Python', 'Next.js', 'React', 'Node.js', 'PostgreSQL', 'Supabase', 'AWS',
-    'Docker', 'Prisma', 'Fastify', 'Jest', 'Tailwind CSS', 'Three.js', 'Git',
+    'TypeScript', 'Python', 'React', 'Next.js', 'Vite', 'Node.js', 'Fastify', 'FastAPI', 'PostgreSQL',
+    'Supabase', 'Gemini API', 'Playwright', 'Docker', 'Prisma', 'Vitest', 'Tailwind CSS', 'Three.js', 'React Native', 'Git',
 ];
 
 export const testimonials = [

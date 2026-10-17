@@ -1,28 +1,70 @@
 ---
-title: 'ShopHub - Modern eCommerce'
+title: 'ShopHub – Next.js & Redux Toolkit eCommerce Demo'
 date: '2026-03-21'
 
 category: ['frontend']
 image: '/images/shophub-banner.webp'
 link: 'https://ecommerce-shop-psi-umber.vercel.app/'
-github: ''
-tech: ['Next.js', 'TypeScript', 'Tailwind', 'Shadcn UI', 'Redux Toolkit']
-excerpt: 'A modern e-commerce experience featuring a product catalog with search and filter, a favorites management system, and full CRUD operations for products.'
-problem: 'Many e-commerce templates are either too complex to customize or lack essential modern features like Redux-managed state and seamless dark mode transitions, leading to poor user experiences and slow performance.'
-solution: 'ShopHub provides a streamlined, high-performance shopping interface. It leverages Redux Toolkit for efficient state management (Cart, Favorites) and Shadcn UI for a premium, accessible component architecture, ensuring a smooth transition between themes and responsive product interactions.'
+github: 'https://github.com/Bemkin/ecommerce-shop'
+tech: ['Next.js 16', 'React 19', 'TypeScript', 'Redux Toolkit', 'Tailwind CSS 4', 'shadcn/ui', 'Framer Motion', 'Axios', 'Zod', 'React Hook Form']
+excerpt: 'A storefront demo built on the DummyJSON API: infinite-scroll catalogue, debounced search, category filters in the URL, favourites, a persisted cart, product create/edit/delete and a 4-step checkout, all on 9 Redux Toolkit slices.'
+description: 'A Next.js App Router storefront with Redux Toolkit state, persisted cart and favourites, and a validated multi-step checkout.'
+problem: 'Storefront demos often stop at a product grid. I wanted to build the parts that make a shop feel real (search, filtering, cart, favourites, product management and checkout) with state handled cleanly enough to extend.'
+solution: 'Built a Next.js 16 App Router app in strict TypeScript that reads products from DummyJSON through an Axios client with a global error interceptor. Nine Redux Toolkit slices hold favourites, cart, theme, auth, categories, search, notifications, UI and checkout state, and a custom middleware saves the relevant slices to storage. Product create, edit and delete call the DummyJSON endpoints, which simulate writes, so changes show in the UI but are not stored on a server.'
 features:
-  - 'Modern Product Catalog'
-  - 'Search & Filtering'
-  - 'Favorites Management'
-  - 'Full CRUD Functionality'
-  - 'Dynamic Dark Mode'
+  - 'Infinite-scroll product grid using IntersectionObserver'
+  - 'Debounced search with request cancellation via AbortSignal'
+  - 'Category filter kept in the URL, plus sorting'
+  - 'Favourites and cart drawer saved to localStorage'
+  - 'Product create, edit and delete against DummyJSON (simulated writes)'
+  - '4-step checkout: shipping, payment, review, success, with Zod-validated forms'
+  - 'Mock login kept in sessionStorage, with guarded product, favourites and management pages'
+  - 'Notification dropdown, quick-view modal, gallery lightbox and fly-to-cart animation'
+  - 'Dark mode saved across visits'
 metrics:
-  - label: 'Performance Score'
-    value: '98/100'
-  - label: 'State Management'
-    value: 'Redux RTK'
-  - label: 'Typescript'
-    value: '100%'
+  - label: 'Redux slices'
+    value: '9'
+  - label: 'Checkout'
+    value: '4 steps, Zod-validated'
+  - label: 'Source'
+    value: 'Strict TypeScript, 0 JS files'
 ---
 
-ShopHub is a demonstration of modern web engineering principles, focused on performance and user experience in a retail context.
+### How it works
+
+ShopHub is a client-side storefront on top of the public DummyJSON products API.
+
+```
+┌──────────────────┐     ┌───────────────────────┐     ┌──────────────────────┐
+│ Next.js 16 pages │ ──▶ │ Axios client          │ ──▶ │ DummyJSON API        │
+│ (App Router)     │     │ global error toasts   │     │ products, categories │
+└────────┬─────────┘     └───────────────────────┘     └──────────────────────┘
+         │
+         ▼
+┌──────────────────┐     ┌───────────────────────┐
+│ Redux Toolkit    │ ──▶ │ Persistence middleware│
+│ 9 slices         │     │ localStorage/session  │
+└──────────────────┘     └───────────────────────┘
+```
+
+### 1. Browsing
+
+- Products load in pages as you scroll, triggered by an IntersectionObserver.
+- Search is debounced, and earlier requests are cancelled with an AbortSignal so stale results never replace newer ones.
+- The selected category is kept in the URL, so a filtered view can be refreshed or shared. Categories are fetched once and shared through Redux.
+
+### 2. Cart, favourites and checkout
+
+- The cart lives in a side drawer with quantity controls and a subtotal. Cart, favourites (stored as IDs only), theme and notifications are saved to localStorage.
+- Checkout runs through four steps: shipping, payment, review and success. Shipping and payment forms are validated with Zod and React Hook Form. The payment step is a mock: no card data is sent anywhere.
+
+### 3. Product management
+
+- After a mock login, users can create, edit and delete products. These call DummyJSON's POST, PUT and DELETE endpoints, which return realistic responses but do not store anything, so a deleted product is removed from the local list and new products are not kept.
+- Product detail, favourites, create and edit pages are protected by a route-guard hook.
+
+### Engineering notes
+
+- **State:** a custom Redux middleware compares slices before and after each action and debounces storage writes by 500 ms. Login state goes to sessionStorage so it clears when the browser closes.
+- **Errors:** one Axios response interceptor shows toast messages for failed requests and ignores cancelled ones.
+- **Types:** strict TypeScript throughout `src`, with no JavaScript files.

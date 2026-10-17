@@ -1,60 +1,85 @@
 ---
-title: 'CoachTrack ET – Pitch-Side Soccer Timesheet & Billing TMA'
+title: 'CoachTrack ET – Pitch-Side Soccer Timesheet & Billing Mini App'
 date: '2026-09-10'
 category: ['mobile', 'frontend', 'fullstack']
 image: '/images/coachtrack-et-hero.webp'
 link: 'https://github.com/Bemkin/coach-session-tma'
 github: 'https://github.com/Bemkin/coach-session-tma'
-tech: ['JavaScript', 'Telegram Mini App (TMA)', 'Google Apps Script', 'Telebirr', 'HTML5/CSS3', 'PWA']
-excerpt: 'Pitch-side Telegram Mini App built for soccer coaches to replace manual paper spreadsheets, auto-calculate decimal hours with background persistence, track attendance, and automate Ethiopian Birr (ETB) billing statements for parents.'
-problem: 'Grassroots soccer coaches lose hours calculating irregular decimal training times from messy paper sheets, lose track of attendance numbers, struggle with weather cancellations, and spend frustrating evenings manually drafting payment breakdown messages for parents across Telebirr and CBE.'
-solution: 'Built a lightweight, offline-resilient Telegram Mini App (TMA) featuring a pitch-side persistent stopwatch, 1-tap rain cancellation logging, real-time Google Sheets background synchronization via Apps Script webhooks, and automatic ETB billing calculation with 1-tap Telegram group statement dispatch.'
+tech: ['JavaScript', 'HTML5', 'CSS3', 'Telegram Mini App (WebApp JS)', 'Google Apps Script', 'localStorage', 'Web App Manifest']
+excerpt: 'A zero-dependency Telegram Mini App for grassroots soccer coaches: a pitch-side stopwatch that survives app restarts, decimal-hour timesheets, one-tap rain cancellations, an ETB billing statement for parents, CSV export and an optional Google Sheets webhook.'
+description: 'A vanilla JavaScript Telegram Mini App that replaces a coach''s paper timesheet with a stopwatch, a session log and a shareable ETB statement.'
+problem: 'Grassroots coaches track training on paper or in a spreadsheet: writing start and end times, converting them to decimal hours, marking rained-off days and then typing out a payment message for parents with the total and their Telebirr and bank details.'
+solution: 'Built a static Telegram Mini App with no build step. A stopwatch stores its start time in localStorage so it keeps counting through calls and restarts, and finishing it opens a pre-filled session form with decimal hours. Rain days are logged as zero-hour NO PRACTICE rows. The app totals sessions, hours and fees in Ethiopian Birr, builds a statement with the coach''s Telebirr number and CBE account, and opens Telegram''s share sheet to post it to a parent group. Sessions can be exported to CSV or appended to a Google Sheet through an Apps Script webhook.'
 features:
-  - 'Pitch-Side Live Stopwatch with Background Phone-Call Persistence'
-  - '1-Tap Weather & Rain Cancellation Logger (0-Hour Safe Mode)'
-  - 'Real-Time Google Sheets Sync via Google Apps Script Webhooks'
-  - 'Automated Ethiopian Birr (ETB) Rate × Attendance Calculations'
-  - '1-Tap Official Statement Dispatch to Parent Telegram Groups'
-  - 'Direct Telebirr & Commercial Bank of Ethiopia (CBE) 1-Click Copy'
-  - 'One-Click CSV Export Matching Official League Spreadsheets'
-  - 'Zero-Install Telegram Mini App Cockpit via @BotFather'
+  - 'Stopwatch with pause and resume, saved to localStorage so it survives calls, closing Telegram and reloads'
+  - 'Finish & Log pre-fills the session with start, end and decimal hours rounded to 0.01'
+  - 'Manual entries compute decimal hours from start and end times, including sessions past midnight'
+  - 'One-tap NO PRACTICE logging with a reason: Rain, Pitch Flooded, Holiday or Coach Unavailable'
+  - 'Timesheet with All, Completed and Cancelled filters, plus edit and delete for every entry'
+  - 'ETB billing summary: completed sessions × attendance × rate per kid'
+  - 'Parent statement with Telebirr and CBE details, shared through Telegram''s share sheet or copied as text'
+  - 'CSV export with the same 8 columns as the coach''s original timesheet'
+  - 'Optional Google Sheets sync: an Apps Script web app appends each new session as a row'
+  - 'Four-step onboarding wizard, Telegram haptic feedback and an installable web app manifest'
 metrics:
-  - label: 'Logging Time'
-    value: '1-Tap Pitch-Side'
-  - label: 'Formula Errors'
-    value: '0% Auto-Calculated'
-  - label: 'Billing Delivery'
-    value: 'Instant Telegram'
+  - label: 'Dependencies'
+    value: '0, no build step'
+  - label: 'Timesheet export'
+    value: 'CSV with 8 columns'
+  - label: 'Onboarding'
+    value: '4-step setup wizard'
 screenshots:
   - '/images/coachtrack-stopwatch.png'
   - '/images/coachtrack-timesheet.png'
   - '/images/coachtrack-earnings.png'
 ---
 
-### ⚽ CoachTrack ET — Pitch-Side Telegram Mini App (TMA)
+### How it works
 
-**CoachTrack ET** transforms grassroots sports management by bringing live stopwatch tracking, timesheet aggregation, and automated local currency billing into the app coaches already keep open: **Telegram**.
+CoachTrack ET is a static site (one HTML file, one script, one stylesheet) that opens inside Telegram as a Mini App. All data lives in the phone's localStorage, and Google Sheets sync is optional.
 
----
+```
+┌──────────────────┐     ┌───────────────────────┐     ┌──────────────────────┐
+│ Pitch-side       │ ──▶ │ Session form          │ ──▶ │ Timesheet            │
+│ stopwatch        │     │ start, end, decimal   │     │ (localStorage)       │
+│ (localStorage)   │     │ hours, attendance     │     │ + rain-day rows      │
+└──────────────────┘     └───────────────────────┘     └──────────┬───────────┘
+                                                                  │
+                         ┌────────────────────────────────────────┼───────────┐
+                         ▼                     ▼                  ▼
+              ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐
+              │ ETB statement    │  │ CSV export       │  │ Apps Script      │
+              │ → Telegram share │  │ (8 columns)      │  │ → Google Sheet   │
+              └──────────────────┘  └──────────────────┘  └──────────────────┘
+```
 
-### 🌟 Key Architecture & Highlights
+### 1. Pitch-side stopwatch
 
-1. **Pitch-Side Live Stopwatch with State Resilience**:
-   - 1-tap `Start Practice` locks in kickoff timestamp.
-   - Built with persistent local timer state: even if the coach takes an incoming phone call, leaves the app, or restarts Telegram, the stopwatch continues seamlessly without losing elapsed training time.
-   - 1-tap `Finish & Log` auto-calculates exact decimal training hours (e.g. `14:20` to `17:50` = `3.50 hrs`).
+- **Start Practice** records the start timestamp. Pause and resume handle water breaks by adding up the time that has passed.
+- The running timer is written to localStorage on every change and restored when the app reopens, so a phone call, closing Telegram or a reload does not lose the session.
+- **Finish & Log** rounds to the nearest minute and opens the session form pre-filled with start time, end time and decimal hours (for example 14:20 to 17:50 is 3.50 hrs).
 
-2. **1-Tap Weather & Rain Cancellation**:
-   - Records a `NO PRACTICE` session flag with reasons (Rain, Pitch Flooded, Public Holiday).
-   - Sets 0 hours without distorting cumulative billing calculations or spreadsheet integrity.
+### 2. Timesheet and rain days
 
-3. **Automated ETB Financials & Parent Invoicing**:
-   - Calculates total dues on the fly: `Completed Sessions × Attendance × Rate/Kid/Session` (e.g. `6 × 4 × 1,000 ETB = 24,000 ETB`).
-   - Generates verified statements with Ethiopian payment methods:
-     - **Telebirr** (with 1-click mobile copy)
-     - **Commercial Bank of Ethiopia (CBE)** account numbers
-   - 1-tap **"Send to Parent Telegram Group"** outputs a cleanly formatted invoice ready for group communication.
+- Sessions can also be added or edited by hand; the form previews decimal hours from the start and end times and handles sessions that cross midnight.
+- **Log Rain / Cancellation** adds a NO PRACTICE row with zero hours and zero attendance, a reason (Rain, Pitch Flooded, Holiday, Coach Unavailable) and an optional note.
+- Filter chips switch between all, completed and cancelled entries.
 
-4. **Real-Time Google Sheets Sync**:
-   - Webhook bridge built with **Google Apps Script** (`google_sheets_sync.gs`).
-   - Appends verified rows into the coach's remote Google Sheet the moment a session ends.
+### 3. ETB billing and parent statement
+
+- The earnings view totals completed sessions, pitch hours and fees as `sessions × attendance × rate per kid` (for example 6 × 4 × 1,000 ETB = 24,000 ETB). Attendance is the average across completed sessions, rounded to a whole number.
+- The statement lists sessions, rain days, hours, rate and total due, plus the coach's Telebirr number and CBE account from Settings.
+- **Share to Telegram** opens Telegram's share sheet with the statement so the coach can pick the parent group, and **Copy Summary Text** puts it on the clipboard.
+
+### 4. Export and Google Sheets
+
+- **Export CSV** downloads the timesheet with the original sheet's columns: #, Date, Day, Start Time, End Time, Duration (hrs), Session?, Notes.
+- For live sync, the coach pastes `google_sheets_sync.gs` into their sheet's Apps Script editor and deploys it as a web app. Each new session or rain day is posted to that URL and appended as a row, and a Test button pings it from Settings.
+
+### Engineering notes
+
+- **No dependencies:** vanilla JavaScript, HTML and CSS with only Telegram's WebApp script, so it can be hosted on any static host and registered as a Mini App through @BotFather.
+- **Telegram integration:** it uses the WebApp API for haptic feedback and the share link, and falls back to a normal browser tab outside Telegram.
+- **First run:** a four-step wizard collects the coach's name, class size, rate per kid and payment details.
+- **Safety:** user-entered notes are HTML-escaped before rendering, and CSV fields are quoted with embedded quotes escaped.
+- **Installable:** a web app manifest lets it be added to the home screen as a standalone portrait app.

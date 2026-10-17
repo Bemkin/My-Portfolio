@@ -1,51 +1,84 @@
 ---
-title: 'AGY Telegram Bot - Mobile AI Agent Cockpit'
+title: 'AGY Telegram Bot – Mobile Cockpit for a Local AI Coding Agent'
 date: '2026-08-30'
 category: ['ai', 'mobile', 'fullstack']
 image: '/images/agy-telegram-bot-hero.webp'
 link: 'https://github.com/Bemkin/agy-telegram-bot'
-github: 'https://github.com/Bemkin/agy-telegram-bot.git'
-tech: ['Python 3.12', 'Google Antigravity SDK', 'Gemini 3.7 Flash', 'Telegram Mini App', 'Playwright', 'Cloudflare Tunnels']
-excerpt: 'Control your Google Antigravity AI coding agent from Telegram — brainstorm, explore code, request changes, run commands, start live tunnels, and preview localhost from your phone.'
-problem: 'Developers running local autonomous AI coding agents face a major accessibility barrier: when away from their workstations, they have zero oversight, cannot safely review proposed changes or diffs, and lack mobile dev server preview capabilities.'
-solution: 'AGY Telegram Bot creates a secure, bidirectional bridge between Telegram and Google Antigravity. It features an embedded Telegram Mini App cockpit, safe planning mode, live Cloudflare tunnels for instant localhost preview, Playwright mobile screenshots, dev server lifecycle control, and automated Gemini model failovers.'
+github: 'https://github.com/Bemkin/agy-telegram-bot'
+tech: ['Python 3.12', 'Google Antigravity SDK', 'Google Gemini', 'python-telegram-bot', 'FastAPI', 'Uvicorn', 'Telegram Mini App', 'Playwright', 'Cloudflare Tunnel']
+excerpt: 'An open-source Telegram bot that drives a Google Antigravity coding agent running on your laptop: brainstorm and plan changes, approve them with a tap, run the dev server, open a Cloudflare tunnel and get Playwright screenshots of localhost, all from your phone.'
+description: 'A Python Telegram bot and Mini App that put a local Google Antigravity coding agent, its dev server and its Git repo in your pocket.'
+problem: 'A local AI coding agent is only useful while you sit at the laptop. Away from the desk there is no way to ask it questions about the code, review what it plans to do, restart the dev server or see what the app currently looks like.'
+solution: 'Built a Python bot that runs next to the Antigravity agent on the laptop and talks to Telegram over long polling. A planning mode tells the agent to research and draft an implementation plan before editing; the plan is saved to the project and executed only when I tap Approve. Commands start and stop the dev server, open a Cloudflare tunnel to localhost, send Playwright screenshots and run Git operations, and a FastAPI-backed Mini App shows the same controls in one screen.'
 features:
-  - 'Remote AI Coding Agent Control via Google Antigravity SDK'
-  - 'Safe Planning Mode with Pre-Implementation Diffs'
-  - 'Telegram Mini App (Mission Control) Web Cockpit'
-  - 'Live Cloudflare Tunnels for Instant Public HTTPS Previews'
-  - 'Automated Mobile & Desktop Screenshots via Playwright'
-  - 'Dev Server Lifecycle Management (Start, Stop, Tail Logs)'
-  - 'Smart AI Model Failover (Gemini 3.7 Flash to 3.5 Flash Lite)'
-  - 'Zero-Inbound-Port Whitelisted Security Model'
+  - 'Multi-turn chat with a Google Antigravity agent working inside the chosen project folder'
+  - 'Planning mode: the agent drafts an implementation plan, saved to .agent/plans with a timestamped archive, and executes it after an Approve tap'
+  - 'Automatic switch from gemini-3.7-flash to gemini-3.5-flash-lite when the API returns a 429 or quota error'
+  - '/model switching between five Gemini models, and /project switching between workspaces'
+  - '/dev to start, stop, restart and tail the dev server, with the start command detected from the project'
+  - '/tunnel opens a Cloudflare quick tunnel to any local port for a public HTTPS preview URL'
+  - '/preview sends Playwright screenshots at mobile (390x844) or desktop (1280x800) size'
+  - '/git status, diff, log, push and pull with inline buttons'
+  - 'Mission Control Mini App (FastAPI + vanilla JS) with dashboard, chat, plans, history, diff and log tabs'
+  - 'Voice notes transcribed and forwarded to the agent, plus a Markdown and JSON audit trail of every prompt'
 metrics:
-  - label: 'Security'
-    value: 'Zero Inbound Ports'
-  - label: 'Model Failover'
-    value: '< 1s Seamless'
-  - label: 'Remote Preview'
-    value: 'Instant HTTPS'
+  - label: 'Bot commands'
+    value: '16, allowlisted to one user ID'
+  - label: 'Automated tests'
+    value: '18 across 5 suites'
+  - label: 'Model fallback'
+    value: '3.7 Flash to 3.5 Flash Lite on 429'
 ---
 
-### 📱 AGY Telegram Bot — Mobile AI Coding Agent Controller
+### How it works
 
-**AGY Telegram Bot** bridges [Google Antigravity](https://antigravity.google) AI coding agents to Telegram, turning your smartphone into an executive mission control center. It enables software engineers to brainstorm architecture, approve structured plans, execute code modifications, control dev servers, and preview live interfaces from anywhere without exposing incoming firewall ports.
+The bot runs on the same laptop as the coding agent. Telegram is reached over long polling, so the phone talks to the bot without the laptop accepting incoming connections for the chat itself.
 
----
+```
+┌──────────────────┐     ┌────────────────────────┐     ┌──────────────────────┐
+│ Telegram (phone) │ ──▶ │ python-telegram-bot    │ ──▶ │ Google Antigravity   │
+│ commands, voice  │     │ long polling,          │     │ agent in the project │
+│ Mini App         │     │ user-ID allowlist      │     │ folder (Gemini)      │
+└──────────────────┘     └───────────┬────────────┘     └──────────────────────┘
+                                     │
+                                     ▼
+┌──────────────────┐     ┌────────────────────────┐     ┌──────────────────────┐
+│ Cloudflare       │ ◀── │ Dev server manager     │ ──▶ │ Playwright           │
+│ quick tunnel     │     │ start, stop, logs      │     │ mobile / desktop PNG │
+└──────────────────┘     └────────────────────────┘     └──────────────────────┘
+```
 
-### 🌟 Key Architecture & Capabilities
+### 1. Talking to the agent
 
-1. **Google Antigravity Bridge & Safe Planning Mode**:
-   - Integrates directly with the `google-antigravity` SDK and Gemini models.
-   - Enforces a rigorous planning protocol: the agent explores codebase dependencies, formulates structured implementation plans, and presents diffs for mobile approval before modifying source code.
+- Each chat message goes to a long-lived Antigravity agent session with mobile-friendly system instructions, so the agent remembers context across messages until `/reset`.
+- An `asyncio.Lock` serialises requests, so messages sent in quick succession are queued instead of colliding.
+- If the agent's connection drops, the bridge restarts the session and retries.
 
-2. **Telegram Mini App (Mission Control Cockpit)**:
-   - An embedded web IDE cockpit loaded directly within Telegram (`/app`).
-   - Features real-time task progress tracking, terminal output streaming, active Cloudflare tunnel URLs, and interactive Git controls.
+### 2. Planning before editing
 
-3. **Live Cloudflare Tunnels & Playwright Screenshots**:
-   - Spawns instant, secure HTTPS public preview tunnels (`/tunnel`) on demand.
-   - Uses headless Playwright to capture pixel-perfect mobile and desktop screenshots of the local development server (`/preview`) and pushes them directly into Telegram chat.
+- In planning mode, every prompt is wrapped with instructions to read the codebase and draft a plan without editing files.
+- `/plan` saves the agent's plan to `.agent/plans/implementation_plan.md`, keeps a timestamped copy in an archive folder, and replies with an **Approve & Execute** button.
+- Approving switches the agent to action mode and runs the plan; approving from the Mini App also saves a walkthrough of what was done. The guardrail is instruction-based: the agent's tools themselves are not blocked.
 
-4. **Resilient Model Failover**:
-   - Operates with `gemini-3.7-flash` for rapid execution, automatically failing over to `gemini-3.5-flash-lite` if rate limits or quota ceilings are approached, guaranteeing continuous uptime.
+### 3. Model fallback
+
+- The default model is `gemini-3.7-flash`. When a request fails with a 429, `RESOURCE_EXHAUSTED` or quota error, the bot switches to `gemini-3.5-flash-lite` and retries the message.
+- Switching restarts the agent session, and further rate-limit errors on the fallback model are retried after a 12-second wait, up to two times.
+
+### 4. Dev server, tunnels and previews
+
+- `/dev` detects the start command for the project, runs it, keeps the output and shows the latest log lines on request.
+- `/tunnel` launches `cloudflared` for a public HTTPS URL to a local port; `/tunnel stop` closes it.
+- `/preview` opens the local app in headless Chromium and sends a screenshot at phone or desktop size.
+
+### 5. Mission Control Mini App
+
+- `/app` serves a FastAPI backend and a vanilla JS front end through a Cloudflare tunnel and opens it inside Telegram.
+- Tabs cover a status dashboard, chat, plans and walkthroughs, change history, Git diffs and dev server logs. The page refreshes its status by polling every 3.5 seconds.
+
+### Engineering notes
+
+- **Access control:** every Telegram command and button handler is wrapped in an `authorized_only` check against one configured user ID, and other users are rejected and logged.
+- **Auditability:** prompts, responses and the files they mention are logged to Markdown and `logs/history.json`, and `/audit` shows recent activity.
+- **Quality:** 18 `unittest` tests cover the agent bridge, audit logger, message formatter, plan manager and the FastAPI endpoints, with a single runner script.
+- **Open source:** MIT licence, a contributing guide, `.env.example`, and start scripts for Windows, macOS and Linux.

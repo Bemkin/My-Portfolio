@@ -29,14 +29,14 @@ export default function AboutPage() {
                         </p>
                         <p className="muted">
                             My path started at Addis Ababa Science and Technology University and was sharpened through intensive
-                            training at Evangadi Technologies. Since then I&rsquo;ve built high-throughput APIs as a contract backend
-                            engineer at Marvels Creative Technology, and founded Senselet — an AI-native inventory platform running
-                            in production for retail clients.
+                            training at Evangadi Technologies. Since then I&rsquo;ve built REST APIs as a contract backend developer at
+                            Marvels Creative Technology, and founded Senselet — an AI-native inventory platform for retail, live at
+                            senselet.store, with a 33-tool AI agent and row-level security on every table.
                         </p>
                         <p className="muted">
-                            I work where cloud infrastructure (Python, PostgreSQL, Supabase, AWS) meets fast interfaces (TypeScript,
-                            Next.js). AI-assisted tooling is part of my daily workflow, which lets me move quickly without giving up
-                            rigour on data integrity, testing and security.
+                            I work across PostgreSQL and Supabase backends, Node.js and Python services, and TypeScript and React
+                            interfaces. AI-assisted tooling is part of my daily workflow, and I back the paths that move stock, money
+                            and messages with automated tests.
                         </p>
                         <div style={{ display: 'flex', gap: '1em', flexWrap: 'wrap', marginTop: '2.5em' }}>
                             <Button href={resumePdf} download={resumeDownloadName} magnetic className="is-dark">

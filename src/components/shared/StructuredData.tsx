@@ -13,9 +13,9 @@ export default function StructuredData() {
         "jobTitle": "Founding Full-Stack & AI Engineer",
         "worksFor": {
             "@type": "Organization",
-            "name": "Senselet & Independent Solutions"
+            "name": "Senselet Technologies"
         },
-        "description": "Professional Portfolio of Bemnet Kibret, a Founding Full-Stack & AI Engineer specializing in zero-to-production architectures, agentic AI backends, AWS/Supabase cloud infrastructure, and high-performance Next.js frontends.",
+        "description": "Professional Portfolio of Bemnet Kibret, a Founding Full-Stack & AI Engineer specializing in zero-to-production architectures, agentic AI backends, multi-tenant PostgreSQL/Supabase systems, and TypeScript/React frontends.",
         "knowsAbout": [
             "Agentic AI",
             "Full Stack Development",
@@ -25,9 +25,8 @@ export default function StructuredData() {
             "React",
             "PostgreSQL",
             "Supabase",
-            "AWS",
             "Docker",
-            "RAG Pipelines",
+            "LLM Function Calling",
             "System Architecture"
         ],
         "alumniOf": [

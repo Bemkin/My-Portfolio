@@ -1,28 +1,72 @@
 ---
-title: 'FormCheck AI - Workout Assistant'
+title: 'FormCheck AI – Exercise Form Analysis with MediaPipe & Gemini'
 date: '2026-03-19'
 
 category: ['ai', 'frontend']
 image: '/images/formcheck-hero.webp'
 link: 'https://form-wiz-79.vercel.app/'
 github: ''
-tech: ['Next.js', 'React', 'Mediapipe AI', 'Tailwind']
-excerpt: 'An AI-powered exercise form analysis tool providing real-time technique feedback.'
-problem: 'Working out without a coach increases the risk of injury due to poor form. Professional trainers are expensive, and many gym-goers lack access to real-time feedback on their squats, deadlifts, and other complex movements.'
-solution: 'FormCheck AI uses computer vision (MediaPipe) to track skeletal alignment in real-time. By comparing the user''s movement against biomechanical models, it provides instant visual and audio feedback to correct form and prevent injuries.'
+tech: ['React', 'TypeScript', 'Vite', 'MediaPipe Pose', 'Python', 'FastAPI', 'Google Gemini', 'scikit-learn', 'Supabase', 'Tailwind', 'shadcn/ui']
+excerpt: 'A workout form checker that tracks 33 body landmarks with MediaPipe, scores squats, planks, push-ups, lunges and deadlifts with joint-angle rules, and analyses uploaded workout videos with Google Gemini through a Python FastAPI backend.'
+description: 'A React + MediaPipe front end and a FastAPI backend that turn a webcam feed or an uploaded video into a form score, rep count and coaching cues.'
+problem: 'Lifting without a coach means nobody tells you when your knees cave, your back rounds or your squat is too shallow. Most people training alone have no quick way to check their technique.'
+solution: 'Built a browser app that runs MediaPipe Pose on the webcam feed, draws the skeleton and scores each frame with joint-angle rules for five exercises. A Python FastAPI backend adds a WebSocket stream that combines those rules with a RandomForest squat classifier, and an upload endpoint that sends the video to Gemini 2.5 Flash for a structured JSON breakdown of score, reps, issues and key metrics. The video and WebSocket features currently run against a local backend; the deployed site shows a Coming Soon page with a beta preview of the studio.'
 features:
-  - 'Real-time Pose Estimation'
-  - 'Instant Technique Feedback'
-  - 'Pose Comparison with Pros'
-  - 'Video Upload Analysis'
-  - 'Workout Session History'
+  - 'In-browser pose tracking with MediaPipe Pose and a live skeleton overlay'
+  - 'Rule-based form scoring for squat, plank, push-up, lunge and deadlift'
+  - 'Knee, back, hip and elbow angle checks with per-issue coaching cues'
+  - 'Knee-angle rep counter for live sessions'
+  - 'FastAPI WebSocket stream that blends rule scores with a RandomForest squat classifier'
+  - 'Video upload analysis with Gemini 2.5 Flash, JSON output and a keyframe fallback'
+  - 'OpenCV + MediaPipe fallback analysis when no Gemini key is configured'
+  - 'Supabase email auth with row-level security on profiles'
+  - 'English and Amharic interface'
 metrics:
-  - label: 'Processing Speed'
-    value: '30 FPS'
-  - label: 'Joint Accuracy'
-    value: '95%'
-  - label: 'Injury Reduction'
-    value: 'Significant'
+  - label: 'Exercises scored'
+    value: '5'
+  - label: 'Squat classifier'
+    value: 'RandomForest, 325 samples'
+  - label: 'Languages'
+    value: 'English + Amharic'
 ---
 
-FormCheck AI acts as a virtual coach that never blinks.
+### How it works
+
+FormCheck has two halves: a React front end that does pose tracking in the browser, and a Python backend for heavier analysis.
+
+```
+┌────────────────────┐     ┌────────────────────────┐     ┌──────────────────────┐
+│ Webcam / upload    │ ──▶ │ MediaPipe Pose         │ ──▶ │ Joint-angle rules    │
+│ (React + Vite)     │     │ 33 landmarks, overlay  │     │ score + coaching cue │
+└─────────┬──────────┘     └────────────────────────┘     └──────────────────────┘
+          │
+          ▼
+┌────────────────────┐     ┌────────────────────────┐
+│ FastAPI backend    │ ──▶ │ /ws/squat: rules + RF  │
+│ (local, port 8000) │     │ /analyze-video: Gemini │
+└────────────────────┘     └────────────────────────┘
+```
+
+### 1. Live pose tracking
+
+- MediaPipe Pose runs in the browser on a 1280×720 webcam stream and draws the skeleton onto a canvas.
+- Each frame goes to an exercise-specific analyser. The squat check, for example, looks at average knee angle (target 70–110°), back alignment from ankle to hip to shoulder, and whether the knees travel past the toes.
+- Each failed check deducts points and adds a specific cue, so the score always comes with a reason.
+- A rep counter watches the knee angle: below 100° counts as down, back above 150° completes the rep.
+
+### 2. Squat classifier
+
+- A training script extracts MediaPipe keypoints from labelled correct and incorrect squat images and trains a scikit-learn RandomForest (100 trees) on 325 samples.
+- Over the WebSocket, the backend runs the classifier on each frame, averages its confidence with the rule score, and flags form the model thinks is wrong.
+
+### 3. Video analysis with Gemini
+
+- Uploaded videos go to a FastAPI endpoint that sends them to Gemini 2.5 Flash through the Files API, with a prompt that asks for a strict JSON schema: average score, total reps, duration, issues, coaching feedback and key metrics.
+- If the upload fails, the backend extracts up to 12 keyframes and sends those instead. With no API key set, it falls back to frame-by-frame MediaPipe analysis with OpenCV.
+- These endpoints currently run on a local backend, so they work in development rather than on the deployed site.
+
+### Engineering notes
+
+- **Accounts:** Supabase email auth, with a signup trigger that creates a profile and row-level security policies that limit each user to their own rows.
+- **Localisation:** a language context switches the interface between English and Amharic.
+- **Status:** the project started from a Lovable scaffold. The public site shows a Coming Soon page with a beta preview of the workout studio, and the live camera mode is behind an in-app Premium toggle that is not tied to payments yet.

@@ -1,28 +1,74 @@
 ---
-title: 'Trainer CRM - Fitness Management'
+title: 'Trainer CRM – Client Management for Personal Trainers, Web + Mobile'
 date: '2026-03-20'
 
 category: ['fullstack', 'mobile']
 image: '/images/trainer-crm-banner.webp'
 link: 'https://trainer-crm-amber.vercel.app/'
 github: ''
-tech: ['Next.js', 'React', 'Tailwind', 'Supabase', 'PostgreSQL']
-excerpt: 'A comprehensive CRM platform with a companion mobile app designed for personal trainers.'
-problem: 'Personal trainers often juggle multiple apps, spreadsheets, and manual notebooks to track client progress, schedules, and payments, leading to administrative burnout and missed growth opportunities.'
-solution: 'Trainer CRM consolidates all aspects of a fitness business into one platform. From workout planning and progress tracking to automated billing and client messaging, it allows trainers to focus on what they do best: training.'
+tech: ['React', 'TypeScript', 'Vite', 'Supabase', 'PostgreSQL', 'Tailwind', 'Expo', 'React Native', 'NativeWind', 'Recharts', 'Supabase Edge Functions', 'Resend', 'Twilio']
+excerpt: 'A CRM for personal trainers with a React web app and an Expo mobile app on one Supabase backend: clients, appointments, workout programs, progress logs, habits, invoices and client messaging, isolated per organization with Postgres row-level security.'
+description: 'A multi-tenant Supabase CRM for personal trainers, with a Vite + React web app, an Expo companion app, and English/Amharic support with an Ethiopian-calendar date picker.'
+problem: 'Independent trainers track clients, sessions, programs and payments across notebooks, spreadsheets and chat apps. Nothing ties a client''s schedule, workouts, progress and invoices together in one place.'
+solution: 'Built a React + TypeScript web app and an Expo React Native app that share one Supabase Postgres backend. Each trainer works inside an organization, and row-level security policies keep every table scoped to that organization. Trainers build workout programs from their own and ExerciseDB exercises, assign them to clients, log progress and habits, schedule appointments, issue invoices and record payments, and message clients by email through Supabase Edge Functions.'
 features:
-  - 'Dynamic Workout Builder'
-  - 'Client Progress Analytics'
-  - 'Automated Billing & Reminders'
-  - 'Scheduling & Calendar Sync'
-  - 'Companion Mobile App'
+  - 'Client records with assigned workout programs'
+  - 'Workout builder: programs, workouts and ordered exercises, with assign-to-client and duplicate'
+  - 'Exercise search through the ExerciseDB API, cached for an hour'
+  - 'Appointment scheduling, with a one-click "send all reminders" action by email or SMS'
+  - 'Invoices with printable previews and payment recording'
+  - 'Progress entries, workout logs and habit tracking per client'
+  - 'Client email messaging through Resend, with live updates over Supabase Realtime'
+  - 'Dashboard with revenue and client-growth charts (Recharts)'
+  - 'Organizations with owner roles, org-scoped row-level security and an invite-member edge function'
+  - 'English and Amharic interface with an Ethiopian-calendar date picker'
+  - 'Expo React Native companion app covering the same modules'
 metrics:
-  - label: 'Admin Time Saved'
-    value: '15h / week'
-  - label: 'Client Retention'
-    value: '+30%'
-  - label: 'Active Users'
-    value: '100+'
+  - label: 'Platforms'
+    value: 'Web + Expo mobile'
+  - label: 'Database'
+    value: '17 CRM tables, all with RLS'
+  - label: 'Edge Functions'
+    value: '4 (Deno)'
 ---
 
-Trainer CRM is the ultimate tool for independent fitness professionals. Architected using AI-assisted development with GitHub Copilot and Google Antigravity, enabling rapid prototyping of the dynamic workout builder, progress analytics engine, and automated billing integrations.
+### How it works
+
+Both apps talk directly to Supabase. Business rules that need secrets, such as sending email or SMS, run in Deno Edge Functions.
+
+```
+┌──────────────────┐                          ┌──────────────────────────┐
+│ Web app          │ ──┐                  ┌─▶ │ Postgres + RLS           │
+│ Vite + React     │   │   ┌──────────┐   │   │ org-scoped tables        │
+└──────────────────┘   ├─▶ │ Supabase │ ──┤   └──────────────────────────┘
+┌──────────────────┐   │   │ client   │   │   ┌──────────────────────────┐
+│ Mobile app       │ ──┘   └──────────┘   └─▶ │ Edge Functions           │
+│ Expo + NativeWind│                          │ email, SMS, invites      │
+└──────────────────┘                          └──────────────────────────┘
+```
+
+### 1. Clients and programs
+
+- Trainers keep a client list and build workout programs made of workouts and ordered exercises. Programs can be duplicated and assigned to or removed from clients.
+- Exercises come from the trainer's own library or from the ExerciseDB API, with results cached in the browser for an hour.
+
+### 2. Sessions, progress and habits
+
+- Appointments are scheduled per client. A "send all reminders" action calls an Edge Function that emails the client through Resend, or texts them through Twilio when SMS is configured, and marks the appointment as reminded.
+- Progress entries, workout logs and habits are tracked per client.
+
+### 3. Billing and messaging
+
+- Trainers create invoices, preview and print them, record payments (cash, card, bank transfer, cheque or other) and mark invoices paid.
+- Client messages are sent by email from an Edge Function, and the inbox updates live through a Supabase Realtime channel.
+
+### 4. Organizations and security
+
+- On signup a trainer creates an organization and becomes its owner. Functional tables carry an organization ID, and row-level security policies limit every read and write to the user's organization.
+- The move to multi-tenancy shipped with backfill and rollback migrations, and the repo includes SQL scripts that check policy isolation.
+
+### Engineering notes
+
+- **Mobile:** the Expo 54 / React Native app uses NativeWind and mirrors the web modules: dashboard, clients, appointments, workouts, progress, habits, invoices and messages.
+- **Localisation:** a shared translation file covers English and Amharic, and dates can be picked in the Ethiopian calendar.
+- **Status:** reminders are sent when the trainer triggers them; scheduled sending is not built yet.

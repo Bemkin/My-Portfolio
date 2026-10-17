@@ -1,28 +1,87 @@
 ---
-title: 'Senselet - Inventory Intelligence'
+title: 'Senselet – Multi-Tenant Inventory Platform with an AI Operations Agent'
 date: '2026-03-22'
-
 category: ['fullstack', 'mobile', 'ai']
 image: '/images/senselet-banner.webp'
 link: 'https://www.senselet.store/'
 github: ''
-tech: ['Next.js', 'React', 'Tailwind', 'Supabase', 'Chapa']
-excerpt: 'A high-performance Retail Inventory Intelligence Platform featuring a Telegram Mini App for on-the-go management.'
-problem: 'Small and medium retail businesses in emerging markets struggle with fragmented inventory tracking, leading to frequent stockouts, overstocking, and a lack of real-time insights into their multi-warehouse operations.'
-solution: 'Senselet provides a unified "Digital twin" of the business, combining a powerful web dashboard with a lightweight Telegram Mini App. It utilizes cognitive forecasting to predict stock needs and ensures seamless synchronization across multiple locations.'
+tech: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'Deno Edge Functions', 'Google Gemini', 'OpenRouter', 'Chapa', 'Telegram Mini App', 'Vitest']
+excerpt: 'A multi-tenant inventory and point-of-sale platform for retail businesses, with a 33-tool AI agent that can search stock, record sales, raise purchase orders and reconcile invoices, plus a Telegram Mini App for running the store from a phone.'
+description: 'A React and Supabase inventory SaaS with org-scoped Postgres security, multi-branch stock, receipt OCR and a function-calling Gemini agent.'
+problem: 'Small and mid-sized retailers often track stock across spreadsheets, paper receipts and chat messages. Counts drift between branches, low stock is noticed too late, and getting a product catalogue into a new system means retyping it by hand.'
+solution: 'Built a multi-tenant web app on React and Supabase where every business is an isolated organisation protected by Postgres row-level security. Stock is tracked per product variant and per branch through server-side RPCs, and a Gemini agent with 33 function-calling tools lets staff ask questions or make changes in plain language, limited to what their role allows. Supabase Edge Functions handle receipt OCR, AI column mapping for imports, forecasts, low-stock alerts, Chapa billing and a Telegram bot.'
 features:
-  - 'Real-time Multi-warehouse Sync'
-  - 'Cognitive Sales Forecasting'
-  - 'Telegram Mini App for Mobile Management'
-  - 'Digital Twin Inventory Tracking'
-  - 'Automated Low-stock Alerts'
+  - '33-tool Gemini function-calling agent: product search, sales, stock counts and adjustments, branch transfers, suppliers, purchase requests, reorder triggers and invoice-to-PO reconciliation'
+  - 'Role-scoped tools: the agent only exposes the tools an admin, manager or clerk is allowed to use'
+  - 'Cascading model failover: Gemini models tried in order (up to five in the shared AI router), then OpenRouter free models, with retries on 429 rate limits'
+  - 'Multi-tenant Postgres: 160 migrations, 28 tables and 131 row-level security policies scoped by organisation'
+  - 'Multi-branch stock with product variants, warehouse and workshop quantities, and transfers between branches'
+  - 'Dual-ID resolution in stock RPCs: adjustments accept a variant ID or a product ID and fall back to the default variant'
+  - 'Receipt OCR with Gemini vision and Tesseract.js, plus AI column mapping for CSV product imports'
+  - 'Barcode and GTIN lookup with camera scanning and a vision fallback'
+  - 'Offline stock-adjustment queue that saves adjustments locally and syncs them, with retries, when the connection returns'
+  - 'Chapa subscription billing with HMAC-verified payment webhooks'
+  - 'Telegram Mini App and bot with webhook retry deduplication'
+  - '21 Supabase Edge Functions on Deno and 266 automated Vitest tests'
 metrics:
-  - label: 'Inventory Accuracy'
-    value: '99.9%'
-  - label: 'Forecast Precision'
-    value: '85%+'
-  - label: 'Setup Time'
-    value: '< 10 mins'
+  - label: 'Agent tools'
+    value: '33, role-scoped'
+  - label: 'Postgres migrations'
+    value: '160'
+  - label: 'RLS policies'
+    value: '131, org-scoped'
 ---
 
-Senselet is built to empower small businesses with enterprise-level tools. Developed using an AI-assisted engineering workflow with Claude and Cursor, the platform was rapidly iterated from concept to production—leveraging AI pair programming for complex database schema design, real-time sync logic, and Telegram Mini App integration.
+### How it works
+
+Senselet pairs a React dashboard with a Supabase backend. The browser talks to Postgres through row-level security, and the work that needs secrets or AI runs in Edge Functions.
+
+```
+┌──────────────────┐     ┌───────────────────────┐     ┌──────────────────────┐
+│ React + Vite app │ ──▶ │ Supabase Postgres     │ ◀── │ Edge Functions (Deno)│
+│ Telegram Mini App│     │ 160 migrations        │     │ ai-agent, OCR, import│
+│ Offline queue    │     │ 131 org-scoped RLS    │     │ alerts, billing, bot │
+└──────────────────┘     └───────────────────────┘     └──────────┬───────────┘
+                                                                  │
+                                                                  ▼
+                                                       ┌──────────────────────┐
+                                                       │ Gemini model cascade │
+                                                       │ → OpenRouter fallback│
+                                                       └──────────────────────┘
+```
+
+### 1. Multi-tenant data model
+
+- Every business is an organisation, and tenant tables carry an `org_id`. 131 row-level security policies across all 28 tables keep each organisation's products, sales, suppliers and logs visible only to its own members.
+- The schema has grown through 160 migrations, covering product variants, multi-unit cartons, branches, purchase requests, forecasts and subscriptions.
+- Stock lives on product variants with separate warehouse and workshop quantities, and check constraints stop quantities from going negative.
+
+### 2. Stock changes through RPCs
+
+- Adjustments and transfers go through Postgres functions such as `adjust_stock` and `transfer_stock` rather than direct table writes.
+- These RPCs resolve either ID type: a variant ID is used as is, and a product ID falls back to its default variant. Lookups are always scoped to the caller's organisation.
+- A multi-branch layer adds branch-level stock checks and transfers between branches.
+
+### 3. The AI operations agent
+
+- The `ai-agent` Edge Function exposes 33 tools to Gemini through native function calling, from read-only lookups (low stock, expiring products, best sellers, forecasts) to actions (record a sale, set an exact count, create a purchase request, reconcile an invoice against a PO).
+- Tools are filtered by role before each call, so a clerk's agent can handle POS and stock counts but cannot change suppliers or approve purchases.
+- Requests try a list of Gemini models in order (five in the shared AI router used by OCR and imports) and then fall back to OpenRouter. Gemini tool declarations are translated into OpenAI-style tools so function calling still works on the fallback.
+
+### 4. Getting data in
+
+- **Receipts:** photos are read with Gemini vision through a shared AI router, with Tesseract.js on the client.
+- **Imports:** an Edge Function uses the LLM to map arbitrary CSV headers onto Senselet's product fields.
+- **Barcodes:** camera scanning normalises GTINs and looks them up in catalogue APIs and a local cache, falling back to vision recognition.
+
+### 5. Alerts, billing and Telegram
+
+- Low-stock alerts and notifications are sent by email and Telegram from Edge Functions.
+- Subscriptions are paid through Chapa, and the payment webhook verifies an HMAC signature before activating a plan.
+- The Telegram bot skips repeated `update_id` deliveries so webhook retries are not processed twice.
+
+### Engineering notes
+
+- **Offline support:** if a stock adjustment fails while offline, it is saved to a local queue and replayed with up to five retries once the browser is back online. A badge shows how many are waiting.
+- **Quality:** 266 automated Vitest tests in 30 files cover agent tools, role-based access, branch scoping, the offline queue, receipt scanning, bulk imports and barcode benchmarks.
+- **Workflow:** built with an AI-assisted workflow, using LLM pair programming for schema design and feature work.

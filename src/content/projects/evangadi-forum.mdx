@@ -1,13 +1,22 @@
 ---
-title: 'Forum Page for Evangadi Tech'
+title: 'Evangadi Forum – Q&A Community for Evangadi Students'
 date: '2026-03-16'
 
 category: ['fullstack']
 image: '/images/Screenshot 2025-01-21 140027.webp'
-link: 'https://evangadiforumclient2.netlify.app'
-github: 'https://github.com/Bemkin/evangadi-forum'
-tech: ['React', 'MySQL', 'Node.js', 'Express']
-excerpt: 'A dynamic community forum built for Evangadi Tech students.'
+link: 'https://github.com/Bemkin/Evangadi-Forum'
+github: 'https://github.com/Bemkin/Evangadi-Forum'
+tech: ['React', 'Vite', 'React Router', 'Axios', 'Node.js', 'Express', 'MySQL', 'JWT', 'bcrypt']
+excerpt: 'A full-stack question-and-answer forum for Evangadi Tech students, with a React front end and a Node.js, Express and MySQL REST API secured with JWT and bcrypt.'
+description: 'React client in this repo; the Express + MySQL REST API (8 endpoints, with Markdown API docs) lives at https://github.com/Bemkin/Evangadi-Api'
 ---
 
-A platform for collaborative learning and discussion.
+A place for Evangadi students to ask questions and answer each other.
+
+- Sign up and log in, with passwords hashed by bcrypt and sessions carried by JWT.
+- Ask a question, browse all questions, open a question and post answers.
+- Protected routes on the client, backed by an auth middleware on the API.
+- MySQL access through parameterised queries.
+- Responsive layout for mobile and desktop.
+
+The backend lives in a separate repo: https://github.com/Bemkin/Evangadi-Api

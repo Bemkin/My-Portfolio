@@ -1,53 +1,91 @@
 ---
-title: 'Brain3 - Autonomous AI Purchasing Agent'
+title: 'Brain3 – AI Purchasing Agent with Auto-Pilot and Approval Modes'
 date: '2026-07-26'
 category: ['ai', 'fullstack']
 image: '/images/brain3-hero.webp'
 link: 'https://brain3-purchasing-agent.vercel.app/'
-github: 'https://github.com/Bemkin/brain3-purchasing-agent.git'
-tech: ['Next.js 16', 'TypeScript', 'Gemini 3.5 Flash Lite', 'Supabase', 'Resend', 'Zod', 'Tailwind']
-excerpt: 'An enterprise-grade, zero-touch autonomous purchasing agent that audits inventory, predicts stock depletion, generates AI purchase orders, and dispatches supplier emails.'
-problem: 'Manual stock auditing and traditional procurement workflows suffer from stockouts, human error, delayed reordering, and administrative overhead, causing business disruption.'
-solution: 'Brain3 provides a dual-node OS (Auto-Pilot & Approval mode) powered by Gemini 3.5 Flash Lite parallel batch analysis, Zod schema validation, fail-safe mathematical fallback engineering, and automated vendor email dispatch.'
+github: 'https://github.com/Bemkin/brain3-purchasing-agent'
+tech: ['Next.js 16', 'React 19', 'TypeScript', 'Google Gemini (@google/genai)', 'Supabase (PostgreSQL)', 'Resend', 'Zod', 'Tailwind CSS', 'Framer Motion']
+excerpt: 'A Next.js purchasing agent that checks inventory against reorder points, asks Gemini for reorder quantities in one batched call, falls back to a fixed formula when the AI is unavailable, and turns the result into supplier purchase orders that are either emailed straight away or queued for approval.'
+description: 'A Next.js and Supabase app where a stock check turns low inventory into Gemini-drafted purchase orders, with a deterministic fallback and a full audit log.'
+problem: 'Reordering by hand means someone has to notice that stock is low, work out how much to buy from each supplier, write up the purchase order and email it. Each step is easy to forget or get wrong, and there is no record of why an order was placed.'
+solution: 'Built a stock-check endpoint that finds every active item at or below its reorder point, groups the items by supplier and sends them to Gemini in a single request with strict prompt rules. The JSON response is validated with Zod and capped at each item''s spare capacity; if the call or the validation fails, a fixed reorder formula is used instead. Each supplier gets a purchase order, which Auto-Pilot mode approves and emails through Resend, and Approval mode queues for a person to sign off. Every step is written to an audit log.'
 features:
-  - 'Dual-Node Operating System (Auto-Pilot & Approval Mode)'
-  - 'Gemini 3.5 Flash Lite Parallel Batch Analysis'
-  - 'Zod Strict JSON Schema Output Validation'
-  - 'Fail-Safe Mathematical Reorder Fallback Engineering'
-  - 'Executive Donezo Light SaaS Dashboard UI'
-  - 'Automated Vendor PO Email Dispatch via Resend'
-  - 'Real-Time Stock Depletion & Demand Simulation'
+  - 'Two operating modes: Auto-Pilot approves and emails each PO, Approval mode queues it for sign-off'
+  - 'One batched Gemini call per stock check, covering every low-stock item across suppliers'
+  - 'Prompt guardrails: no orders above spare capacity, only known suppliers, lead-time-based safety buffer'
+  - 'Zod validation of the AI response, with quantities capped at max capacity minus current stock'
+  - 'Deterministic fallback formula when the AI call fails, returns bad JSON or omits a supplier'
+  - 'Supplier POs created in parallel, each with line items and AI reasoning'
+  - 'PO emails sent through Resend, with failures logged instead of crashing the run'
+  - 'Audit log of every check, AI request, fallback, PO and email in Supabase'
+  - 'Dashboard with Ctrl/Cmd+F search, stock alerts, CSV export and a sales-surge simulator for demos'
+  - 'Zod validation on every write API route and a shared-secret check for scheduled calls'
 metrics:
-  - label: 'Automation Level'
-    value: 'Zero-Touch'
-  - label: 'AI Audit Batch Speed'
-    value: '< 500ms'
-  - label: 'System Continuity'
-    value: '100% Fail-Safe'
+  - label: 'AI calls per stock check'
+    value: '1 batched request'
+  - label: 'Operating modes'
+    value: 'Auto-Pilot + Approval'
+  - label: 'Database'
+    value: '6 tables, 17 indexes'
 ---
 
-### 🤖 Brain3 — Autonomous AI Purchasing Agent
+### How it works
 
-**Brain3** is an enterprise-grade autonomous procurement agent designed to continuously audit inventory levels, predict stock depletion, generate AI-optimized purchase orders, and dispatch supplier emails without human intervention.
+A stock check runs whenever its endpoint is called, either from the dashboard's run button or by a scheduler that sends the shared secret.
 
----
+```
+┌──────────────────┐     ┌───────────────────────┐     ┌──────────────────────┐
+│ Trigger          │ ──▶ │ /api/cron/check-stock │ ──▶ │ Google Gemini        │
+│ dashboard button │     │ stock <= reorder pt,  │     │ one batched JSON     │
+│ or secret call   │     │ grouped by supplier   │     │ request              │
+└──────────────────┘     └───────────────────────┘     └──────────┬───────────┘
+                                                                  │
+                                                                  ▼
+┌──────────────────┐     ┌───────────────────────┐     ┌──────────────────────┐
+│ Resend email     │ ◀── │ Purchase order per    │ ◀── │ Zod validation or    │
+│ (Auto-Pilot or   │     │ supplier + line items │     │ fallback formula     │
+│ after approval)  │     │ + audit log entries   │     │                      │
+└──────────────────┘     └───────────────────────┘     └──────────────────────┘
+```
 
-### 🌟 Key Architecture & Capabilities
+### 1. Finding low stock
 
-1. **Dual-Node Operating System**:
-   - **Auto-Pilot Mode (Zero Touch)**: Fully autonomous procurement. The AI agent audits stock, calculates optimal reorder quantities, generates POs, approves orders within threshold ceiling, and dispatches supplier emails automatically.
-   - **Approval Mode (Human-in-the-Loop)**: AI generates draft PO recommendations with detailed reasoning, queuing them for human operator sign-off before dispatch.
+- The check loads every active item with its supplier and keeps the ones where current stock is at or below the reorder point.
+- Low-stock items are logged in one batch insert and grouped by supplier.
 
-2. **Gemini 3.5 Flash Lite + Zod Schema Validation**:
-   - Consolidates low-stock inventory audit items into a single parallel batch request to Gemini `gemini-3.5-flash-lite`.
-   - Enforces strict JSON schema validation via **Zod** (`BatchReorderResponseSchema`).
+### 2. Asking Gemini
 
-3. **Fail-Safe Mathematical Engineering**:
-   - If Gemini API quota or network errors occur, the pipeline gracefully falls back to deterministic mathematical reorder engineering:
-     $$ \text{Reorder Quantity} = \min\left((\text{Reorder Point} \times 2) - \text{Current Stock}, \, \text{Max Capacity} - \text{Current Stock}\right) $$
-   - Guarantees zero system downtime and continuous business continuity.
+- All low-stock items go to Gemini in a single `generateContent` call with `temperature: 0` and a JSON response type, while the audit log entry and the PO count are fetched in parallel.
+- The system prompt sets hard rules: never order more than the spare capacity, only use suppliers from the list, assume 1 unit a day when sales are 0, cover at least 1.5 times the lead-time demand, and set urgency by days to stockout.
 
-4. **Executive Light Dashboard Aesthetic**:
-   - Modern executive UI inspired by the Donezo Light SaaS dashboard.
-   - Solid Forest Green (`#064e3b`), Emerald Green (`#059669`), Off-White canvas (`#f3f4f6`), and crisp white card containers.
-   - `⌘F` / `Ctrl+F` global search shortcut, live instant search dropdown, supplier email logs popover, and system alerts notification drawer.
+### 3. Validating, or falling back
+
+- The response is parsed, matched to each supplier and checked against `BatchReorderResponseSchema` with Zod. Each recommended quantity is then capped at max capacity minus current stock.
+- If the call fails, the JSON cannot be parsed, validation fails or a supplier is missing from the answer, that supplier's order uses a fixed formula instead:
+
+```
+reorder quantity = min(reorder_point × 2 − current_stock, max_capacity − current_stock)
+                   (at least 1 unit)
+```
+
+- Fallback orders are marked as such on the PO and in the audit log.
+
+### 4. Purchase orders and email
+
+- Supplier orders are built in parallel with `Promise.allSettled`, so one failing supplier does not stop the others. PO numbers come from the existing count plus the supplier's position, to avoid clashes within a run.
+- In **Auto-Pilot** mode each PO is created as approved and emailed to the supplier through Resend, then marked as sent.
+- In **Approval** mode POs wait as pending; approving one in the Purchase Orders page sends the email.
+
+### 5. Dashboard
+
+- Pages for inventory, purchase orders, suppliers, settings and the audit log, with a Ctrl/Cmd+F search shortcut and a stock-alert drawer.
+- A simulator drops stock on 3 to 6 random items, or resets it, to demo the flow end to end. Inventory can be exported to CSV.
+
+### Engineering notes
+
+- **Auditability:** every check, AI request, fallback, PO, approval and email failure is written to an `ai_audit_logs` table with severity and source, and each run logs its duration.
+- **Data model:** six PostgreSQL tables in Supabase with 17 indexes, including a partial index on stock versus reorder point for active items, plus a seed script.
+- **Validation:** Zod schemas guard every write route (POs, suppliers, settings, email, simulation) as well as the AI output.
+- **Server-side keys:** the Supabase service-role key is only used in a server-side client inside API routes.
+- **Performance:** the dashboard caches API responses in memory for 30 seconds and refreshes them in the background.

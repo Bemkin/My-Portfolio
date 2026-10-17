@@ -1,28 +1,77 @@
 ---
-title: 'Kaffa Roasters - The Origin of Coffee'
+title: 'Kaffa Roasters – Scroll-Driven Coffee Brand Site'
 date: '2026-03-23'
 
 category: ['frontend', 'ui/ux', 'ecommerce']
 image: '/images/kaffa-banner.webp'
 link: 'https://ethiopian-coffee-brand.vercel.app/'
 github: 'https://github.com/Bemkin/ethiopian-coffee-brand'
-tech: ['Next.js', 'React', 'Framer Motion', 'Tailwind CSS']
-excerpt: 'A premium specialty coffee experience from the birthplace of wild Arabica, blending heritage with modern digital craftsmanship.'
-problem: 'Conveying the rich heritage and unique processing methods of Ethiopian specialty coffee to a global audience in a way that feels both authentic and premium.'
-solution: 'A high-end e-commerce platform that uses immersive storytelling, smooth animations, and interactive elements to guide users through the Kaffa highlands and the anaerobic fermentation process.'
+tech: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS v4', 'GSAP ScrollTrigger', 'React Three Fiber', 'three.js', 'drei', 'Lenis', 'Framer Motion']
+excerpt: 'A brand site concept for Kaffa Roasters, an Ethiopian specialty coffee label. A scroll-scrubbed hero sequence, a pinned horizontal video gallery, a clip-path video portal and a React Three Fiber flavor section tell the origin story, ending in a concept subscription checkout.'
+description: 'A Next.js brand site combining GSAP ScrollTrigger scenes, a React Three Fiber 3D section, Lenis smooth scrolling and Framer Motion micro-interactions.'
+problem: 'Specialty coffee from Ethiopia has a strong story (where Arabica comes from, how it is processed, the coffee ceremony) that is hard to get across on a standard product page.'
+solution: 'Built a single-page, chapter-style site. A canvas hero sequence opens the story, a pinned horizontal gallery walks through origin, processing, drying and ceremony videos, a clip-path portal expands into full-screen video, and a 3D jebena scene changes colour and lighting with each flavor profile. A preloader waits for every heavy section to be ready before revealing the page.'
 features:
-  - 'Immersive Heritage Storytelling'
-  - '72-Hour Anaerobic Process Showcase'
-  - 'Interactive Origin Mapping'
-  - 'Premium E-commerce Experience'
-  - 'Dynamic GSAP & Framer Motion Animations'
+  - 'Scroll-scrubbed canvas hero: 192 frames on desktop, 96 on screens under 768px'
+  - 'Pinned horizontal gallery of 4 video cards with parallax and a progress bar (desktop), native vertical stack on mobile'
+  - 'Clip-path video portal that expands to full screen on scroll'
+  - 'React Three Fiber flavor section: floating textured jebena, sparkles and ambient light eased toward each flavor'
+  - 'Preloader that waits for hero, gallery, 3D and portal readiness events, with a 30-second fallback'
+  - 'Lenis smooth scrolling with GSAP ScrollTrigger tuned for iOS Chrome'
+  - 'Morphing custom cursor driven by data-cursor labels (fine pointers only)'
+  - 'Concept subscription checkout drawer with a Framer Motion success animation (simulated, no payments)'
+  - 'JSON-LD CafeOrCoffeeShop schema, OpenGraph and Twitter metadata'
 metrics:
-  - label: 'Altitude'
-    value: '1,900m'
-  - label: 'Fermentation'
-    value: '72 Hours'
-  - label: 'Experience Score'
-    value: '99%'
+  - label: 'Hero frames'
+    value: '192 desktop / 96 mobile'
+  - label: 'Preloader gates'
+    value: '4 sections'
+  - label: 'Pinned GSAP scenes'
+    value: '3 scroll-scrubbed'
 ---
 
-Experience the birthplace of coffee through Kaffa Roasters. This project showcases the premium specialty coffee directly from the Ethiopian highlands, focusing on the unique 72-hour anaerobic processing and the rich heritage of the Kaffa Biosphere.
+### About the project
+
+Kaffa Roasters is a brand site concept for an Ethiopian specialty coffee label. It tells the origin story in chapters and ends in a concept subscription checkout. Details such as the 1,900m Kaffa highlands and 72-hour anaerobic fermentation are brand content shown on the gallery cards, not measured data.
+
+```
+┌──────────────────┐   ┌──────────────────┐   ┌──────────────────┐   ┌──────────────────┐
+│ Hero sequence    │──▶│ Horizontal       │──▶│ Video portal     │──▶│ Flavor matrix    │
+│ canvas, 192/96   │   │ gallery, 4 videos│   │ clip-path expand │   │ R3F jebena scene │
+└──────────────────┘   └──────────────────┘   └──────────────────┘   └──────────────────┘
+        ▲ Preloader waits for "hero", "gallery", "portal" and "matrix" ready events
+```
+
+### 1. Hero sequence
+
+- A canvas-based sequencer scrubs through 1920×1080 JPG frames with GSAP ScrollTrigger, then fades out the canvas and masthead together.
+- Phones load 96 frames instead of 192 to save memory and bandwidth, detected on the client so server and client markup stay in sync.
+- The first frame is drawn as soon as it arrives, and the masthead typography animates in once it is visible.
+
+### 2. Origin gallery and video portal
+
+- On desktop the gallery pins and slides four video cards horizontally (Kaffa highlands, anaerobic processing, sun drying, the ceremony), with video parallax, giant background text and a progress bar. `gsap.matchMedia` swaps this for a plain vertical stack on mobile.
+- An IntersectionObserver plays each video only while it is on screen and pauses it otherwise.
+- The video portal grows from an inset rounded clip-path to full screen as you scroll, with separate tuning for desktop and mobile.
+
+### 3. 3D flavor matrix
+
+- A React Three Fiber canvas renders the jebena (traditional coffee pot) as a textured plane inside drei's `Float`, with `Sparkles` and a city environment map.
+- Hovering or tapping a flavor profile (Floral & Citrus, Wild Berry & Wine, Stone Fruit & Spice) changes the section background and text colour, and `maath` eases the ambient light toward that profile's intensity.
+- A GSAP scroll trigger adds a slight parallax to the 3D canvas.
+
+### 4. Loading and scroll
+
+- The preloader locks scrolling and waits for ready events from the hero, gallery, 3D section and video portal. It falls back after 30 seconds if any of them stall.
+- Lenis provides smooth scrolling. ScrollTrigger ignores mobile resize events and limits refreshes to visibility, load and orientation changes, and `lagSmoothing` stops pinned scenes from jumping on iOS Chrome.
+
+### 5. Concept checkout
+
+- A cart button opens a spring-animated drawer with one subscription item and a particle burst on confirm. It is a simulated flow: there is no product catalogue, cart state or payment integration.
+
+### Engineering notes
+
+- **Stack:** Next.js 16.2, React 19.2, TypeScript, Tailwind CSS v4, GSAP 3, React Three Fiber 9, three.js, drei, maath, Lenis and Framer Motion.
+- **Performance:** below-the-fold GSAP sections load through `next/dynamic`, while the hero stays synchronous for first paint.
+- **Hosting:** Vercel headers set `Accept-Ranges` and revalidation for MP4 and WebM files.
+- **SEO:** JSON-LD `CafeOrCoffeeShop` schema plus OpenGraph and Twitter cards. The metadata base URL in the code points to an older Vercel domain, which still needs updating to the live link.
