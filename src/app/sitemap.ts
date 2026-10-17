@@ -10,14 +10,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ]);
 
     // Static pages
-    const staticPages = [
-        {
-            url: baseUrl,
-            lastModified: new Date(),
-            changeFrequency: 'monthly' as const,
-            priority: 1,
-        },
-    ];
+    const staticPages = ['', '/work', '/about', '/blog', '/contact'].map((path) => ({
+        url: `${baseUrl}${path}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: path === '' ? 1 : 0.8,
+    }));
 
     // Dynamic blog pages
     const blogPages = blogPosts.map((post: { slug: string; dateTime?: string }) => ({

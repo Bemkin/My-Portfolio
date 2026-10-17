@@ -10,19 +10,13 @@ export interface Project {
     description?: string;
     excerpt?: string;
     slug: string;
+    date?: string;
     problem?: string;
+    content?: string;
     solution?: string;
     features?: string[];
     metrics?: { label: string; value: string }[];
     screenshots?: string[];
-}
-
-export interface LifePhoto {
-    id: number;
-    title: string;
-    image: string;
-    category: string;
-    description: string;
 }
 
 export interface Testimonial {
@@ -40,10 +34,4 @@ export interface BlogPost {
     image: string;
     excerpt: string;
     content: string;
-}
-
-export interface SpotifyPlaylist {
-    id: number;
-    title: string;
-    embedUrl: string;
 }
