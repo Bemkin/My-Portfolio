@@ -49,19 +49,19 @@ export const experience = [
     {
         role: 'Founder & Lead Engineer',
         company: 'Senselet Technologies',
-        date: 'Dec 2025 — Present',
+        date: 'December 2025 — Present',
         points: [
-            { title: 'Zero-to-production platform', detail: 'Designed and built Senselet solo: an AI-native inventory platform for retail, live at senselet.store, with a React/TypeScript frontend and a Supabase backend of 21 TypeScript edge functions.' },
+            { title: 'Zero-to-production platform', detail: 'Designed and built Senselet solo: an AI-native inventory and ERP platform for retail, live in production (pre-revenue) at senselet.store, with a React/TypeScript frontend and a Supabase backend of 21 TypeScript edge functions.' },
             { title: 'Agentic AI', detail: 'Built a 33-tool Gemini function-calling agent that adjusts stock, transfers between branches, proposes purchase orders and reconciles invoices, with role-scoped tools and cascading failover across Gemini models and OpenRouter.' },
             { title: 'Multi-tenant data security', detail: 'Modeled a 28-table PostgreSQL schema through 160 migrations, with row-level security on every table (131 policies) isolating each organization’s data.' },
             { title: 'Offline-first reliability', detail: 'Built an offline mutation queue with idempotency keys, backoff and a dead-letter queue; a 2,500-operation test on a simulated failing network lost 0 writes, and the duplicate-write case it exposed now fails closed.' },
-            { title: 'Testing & webhooks', detail: 'Covered the platform with 266 automated Vitest tests, and made Telegram webhook processing exactly-once with an insert-first claim on a unique index.' },
+            { title: 'Testing & quality', detail: 'Covered ~81k lines of TypeScript with 266 automated Vitest tests, including a 120-item barcode classification suite (GTIN, GS1 and store-issued codes).' },
         ],
     },
     {
         role: 'Backend Developer (Contract)',
         company: 'Marvels Creative Technology',
-        date: 'Mar 2025 — Jun 2025',
+        date: 'March 2025 — June 2025',
         points: [
             { title: 'APIs', detail: 'Built REST API endpoints in TypeScript and Next.js for client applications, containerized with Docker.' },
             { title: 'Databases', detail: 'Designed PostgreSQL schemas and query workflows with Prisma, enforcing data contracts and foreign-key integrity.' },
@@ -71,8 +71,8 @@ export const experience = [
 ];
 
 export const education = [
-    { institution: 'Evangadi Technologies', degree: 'Full Stack Web Development (MERN) — Certified', date: '2024 — 2025' },
-    { institution: 'Addis Ababa Science and Technology University', degree: 'Science and Technology', date: '2021 — 2023' },
+    { institution: 'Evangadi Tech', degree: 'Certification, Full Stack Web Development (remote, Silver Spring, MD)', date: 'July 2024 — March 2025' },
+    { institution: 'Addis Ababa Science & Technology University', degree: 'Engineering Coursework', date: '2021 — 2023' },
 ];
 
 export const stack = [
